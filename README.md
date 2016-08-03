@@ -39,7 +39,7 @@ You will need the following things properly installed on your computer.
 - Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI.
 - Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in `node_modules/semantic-ui-ember/` directory.
 
-**When you are done your basic directory structure should be like:**<br>
+When you are done your basic directory structure should be like:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;|--/home/username/project-folder/<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-craft-repository<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-osf<br>
