@@ -1,0 +1,25 @@
+<!-- app/pods/components/comment-detail/template.hbs -->
+<div>
+    {{#if comment.deleted}}
+        <div>
+            Comment deleted
+            {{# if comment.canEdit}}
+                <button {{action restoreComment comment}} class="ui yellow button">Restore</button>
+            {{/if}}
+        </div>
+    {{else}}
+        <div>
+            <strong>
+                {{comment.dateCreated}}
+            </strong>:
+            {{# if comment.canEdit}}
+                {{input value=comment.content}}
+                <button {{action editComment comment}} class="ui green button">Edit</button>
+                <button {{action deleteComment comment}} class="ui red button">Delete</button>
+            {{else}}
+                <span>{{comment.content}}</span>
+                <button {{action reportComment comment}} class="ui yellow button">Report</button>
+            {{/if}}
+        </div>
+    {{/if}}
+</div>

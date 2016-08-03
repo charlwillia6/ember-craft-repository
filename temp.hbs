@@ -1,0 +1,156 @@
+{{!-- Code from project detail page for contributors --}}
+<h2> Add contributor </h2>
+<div class="form">
+    <div class="form-group">
+        <label> User ID </label> {{input value=newContributorId}}
+    </div>
+    <div class="form-group">
+        <label> Permissions: </label>
+        <div class="input-group">{{radio-button name="permission" value=READ checked=newContributorPermissions}} Read</div>
+        <div class="input-group">{{radio-button name="permission" value=WRITE checked=newContributorPermissions}} Read + Write</div>
+        <div class="input-group">{{radio-button name="permission" value=ADMIN checked=newContributorPermissions}} Administrator</div>
+    </div>
+    <div class="form-group">
+        <label> Bibliographic: </label>
+        <div class="input-group">{{radio-button name="bibliographic" value=true checked=newContributorIsBibliographic}} Bibliographic </div>
+        <div class="input-group">{{radio-button name="bibliographic" value=false checked=newContributorIsBibliographic}} Non-Bibliographic </div>
+    </div>
+    <div class="form-group">
+        <button {{action 'addContributor' newContributorId newContributorPermissions newContributorIsBibliographic}} class="btn btn-primary">Add</button>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th> Name </th>
+        <th> Permissions </th>
+        <th> Bibliographic </th>
+        <th> </th>
+    </tr>
+    {{#each contributors as |contrib|}}
+        <tr>
+            <td>
+                {{contrib.id}}
+            </td>
+            <td>
+                {{if contrib.unregisteredContributor contrib.unregisteredContributor contrib.users.fullName}}
+            </td>
+            <td>
+                <select onchange={{action (action 'permissionChange' contrib) value='target.value'}} >
+                    <option value=READ selected={{if (eq contrib.permission READ) true false}}> Read </option>
+                    <option value=WRITE selected={{if (eq contrib.permission WRITE) true false}}> Read + Write </option>
+                    <option value=ADMIN selected={{if (eq contrib.permission ADMIN) true false}}> Administrator </option>
+                </select>
+            </td>
+            <td>
+                <input onchange={{action (action 'bibliographicChange' contrib) value='target.checked'}} checked={{if contrib.bibliographic true false}} type="checkbox" name="bibliographic">
+            </td>
+            <td>
+                <button {{action 'removeContributor' contrib}} class="btn btn-danger"> Remove </button>
+            </td>
+        </tr>
+    {{/each}}
+</table>
+<button {{action 'updateContributors'}} class="btn btn-primary"> Save changes </button>
+
+{{!-- Old code in regards to files (may be able to salvage something) --}}
+{{#each model as |project|}}
+    <hr />
+    <div class="panel">
+        <p><label>Title: </label>{{project.title}}</p>
+        <p><label>Description: </label>{{project.description}}</p>
+        <p><label>Category: </label>{{project.category}}</p>
+
+        <p><label> Current User Permissions: </label> {{project.currentUserPermissions}} </p>
+
+        <p><label>Is a Fork: </label>{{project.fork}}</p>
+        <p><label>Is a Collection: </label>{{project.collection}}</p>
+        <p><label>Is Registered: </label>{{project.registration}}</p>
+        <p><label>Is Public: </label>{{project.public}}</p>
+
+        <p><label>Date Created: </label>{{moment-format project.dateCreated}}</p>
+        <p><label>Date Modified: </label>{{moment-format project.dateModified}}</p>
+
+        <p>
+            <label>Tags: </label>
+            {{#each project.tags as |tag|}}
+                {{tag}}
+            {{/each}}
+        </p>
+
+        <<p><label> templateFrom: </label> {{project.templateFrom}} </p>
+        {{#if project.parent}}
+            <p><label>Parent: </label>{{project.parent.title}}</p>
+        {{/if}}
+
+        {{#if project.children}}
+            <p>
+                <label>Children: </label>
+                {{#each project.children as |child|}}
+                    {{child.title}}
+                {{/each}}
+            </p>
+        {{/if}}
+
+        <p><label> comments: </label> {{project.comments}} </p> --}}
+        <p><label> contributors: </label> {{project.contributors}} </p>
+
+
+        <p><label>Files: </label></p>
+        {{#each project.files as |file|}}
+            <div class="col-md-1"></div><p><label>Project ID: </label>{{file.node.id}}</p>
+            <div class="col-md-1"></div><p><label>Name: </label>{{file.name}}</p>
+            <div class="col-md-1"></div><p><label>Path: </label>{{file.path}}</p>
+            <div class="col-md-1"></div><p><label>Materialized Path: </label> {{file.materializedPath}}</p>
+            <div class="col-md-1"></div><p><label>Kind: </label>{{file.kind}}</p>
+            <div class="col-md-1"></div><p><label>ETag: </label>{{file.etag}}</p>
+            <div class="col-md-1"></div><p><label>Provider: </label>{{file.provider}}</p>
+
+            <div class="col-md-1"></div><p><label> Extra: </label></p>
+
+            {{#each-in file.extra as |attribute|}}
+                <div class="col-md-2"></div><p><label> Attribute: </label> {{attribute}}</p>
+            {{/each-in}}
+
+            {{#if (eq file.kind "folder")}}
+                <div class="col-md-1"></div><p><label>Child Files: </label></p>
+
+                {{#each file.files as |child_file|}}
+                    <div class="col-md-2"></div><p><label>Child File: </label></p>
+
+                    <div class="col-md-3"></div>
+                    <p>
+                        <a id="{{child_file.path}}" href="https://staging-files.osf.io/v1/resources/{{file.node}}/providers/{{child_file.provider}}{{child_file.path}}"> Download File </a>
+                    </p>
+                    <div class="col-md-3"></div><p><label>Project ID: </label>{{child_file.node}}</p>
+                    <div class="col-md-3"></div><p><label>Name: </label>{{child_file.name}}</p>
+                    <div class="col-md-3"></div><p><label>Path: </label>{{child_file.path}}</p>
+                    <div class="col-md-3"></div><p><label>Materialized Path: </label>           {{child_file.materializedPath}}</p>
+                    <div class="col-md-3"></div><p><label>Kind: </label>{{child_file.kind}}</p>
+                    <div class="col-md-3"></div><p><label>ETag: </label>{{child_file.etag}}</p>
+                    <div class="col-md-3"></div><p><label>Date Modified: </label>{{child_file.dateModified}}</p>
+                    <div class="col-md-3"></div><p><label>Date Created: </label>{{child_file.dateCreated}}</p>
+                    <div class="col-md-3"></div><p><label>Provider: </label>{{child_file.provider}}</p>
+                {{/each}}
+            {{else}}
+                <div class="col-md-1"></div><p><label>Date Modified: </label>{{file.dateModified}}</p>
+                <div class="col-md-1"></div><p><label>Date Created: </label>{{file.dateCreated}}</p>
+                <div class="col-md-1"></div><p><label>Content Type: </label>{{file.contentType}}</p>
+                <div class="col-md-1"></div><p><label>Size: </label>{{file.size}}</p>
+
+                {{file.extra.content}}<br> --}}
+                {{file.extra.version}}<br>
+                {{file.extra.downloads}}<br>
+            {{/if}}
+
+        {{/each}}
+
+        <p><label> Forked From: </label> {{project.forkedFrom}} </p>
+        <p><label> nodeLinks: </label> {{project.nodeLinks}} </p>
+        <p><label> registrations: </label> {{project.registrations}} </p>
+        <p><label> primaryInstitution: </label> {{project.primaryInstitution}} </p>
+        <p><label> root: </label> {{project.root}} </p>
+        <p><label> logs: </label> {{project.logs}} </p>
+    </div>
+{{/each}}

@@ -6,7 +6,6 @@ export default Ember.Component.extend({
     layout,
     fileManager: Ember.inject.service(),
     store: Ember.inject.service(),
-
     actions: {
         download() {
             let file = this.get('file');

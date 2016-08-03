@@ -1,4 +1,5 @@
 <!-- app/pods/users/list/template.hbs -->
+{{title "Users"}}
 <h2 class="ui header">Users</h2>
 
 {{!-- User List --}}
@@ -10,13 +11,12 @@
                 <div class="header">{{user.fullName}}</div>
             </div>
             <div class="content">
-                <h4 class="ui sub header">Detail</h4>
+                <h4 class="ui sub header">Details</h4>
                 <div class="ui small feed">
                     <div class="event">
                         <div class="content">
-                            <div class="summary">
-                                <p><label>Date Registered: </label> {{moment-format user.dateRegistered}}</p>
-                            </div>
+                            <label class="bold">Date Registered: </label>
+                            <p>{{moment-format user.dateRegistered}}</p>
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
 </div>
 
 {{!-- Pagination --}}
-<div class="ui segment">
+<div class="ui segment pagination">
     {{pagination-control-ui
         currentPage=page
         pageCount=totalPages

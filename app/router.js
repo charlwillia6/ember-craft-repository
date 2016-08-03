@@ -10,10 +10,12 @@ Router.map(function() {
     this.route('index', {
         path: '/'
     });
+    this.route('login');
+    this.route('cookielogin');
     this.route('projects', function() {
-        this.route('index', {
-            path: '/'
-        });
+        // this.route('index', {
+        //     path: '/'
+        // });
         this.route('detail', {
             path: '/:node_id'
         }, function() {
@@ -24,12 +26,19 @@ Router.map(function() {
                 }, function() {
                     this.route('file', {
                         path: '/:file_id'
+                    }, function() {
+                        this.route('revisions');
                     });
+                });
+            });
+            this.route('registrations');
+            this.route('draft_registrations', function() {
+                this.route('detail', {
+                    path: '/:draft_registration_id'
                 });
             });
         });
     });
-    this.route('login');
     this.route('signup');
     this.route('institutions', function() {
         this.route('detail', {
@@ -56,6 +65,8 @@ Router.map(function() {
         });
     });
     this.route('prereg');
+    this.route('allnodes');
+    this.route('usernodes');
 });
 
 export default Router;

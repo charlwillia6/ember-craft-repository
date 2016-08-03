@@ -3,10 +3,7 @@ import Ember from 'ember';
 
 export default Ember.Route.extend({
     model() {
-        return this.store.query('node', {
-            filter: {
-                parent: this.modelFor('projects.detail').get('id')
-            }
-        });
-    }
+        let project = this.modelFor('projects.detail');
+        return project.get('children');
+    },
 });

@@ -1,20 +1,25 @@
 /** app/styles/app.less **/
 @import "src/semantic";
+@import "tags-widget/style";
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   text-decoration: none;
 }
 
 .header-fit {
-  margin: 5px 0 3px 0 !important;
+  margin      : 5px 0 3px !important;
   padding-left: 0 !important;
 }
 
 .img-head {
-  width: 38px !important;
+  width         : 38px !important;
   vertical-align: middle;
-  margin: 0;
-  padding: 0;
+  margin        : 0;
+  padding       : 0;
 }
 
 .img-head + span {
@@ -25,8 +30,8 @@ h1, h2, h3, h4, h5 {
   color: black;
 }
 
-.header-link:hover,
 .header-link:focus,
+.header-link:hover,
 .header-link:visited {
   color: black;
 }
@@ -36,7 +41,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .input-status {
-  color: white !important;
+  color  : white !important;
   padding: 10px;
   display: inline-block;
 }
@@ -54,7 +59,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .inverted.menu .item {
-  padding-top: 0;
+  padding-top   : 0;
   padding-bottom: 0;
 }
 
@@ -66,35 +71,48 @@ h1, h2, h3, h4, h5 {
   margin-top: 0;
 }
 
-.item.logout-button:hover,
 .item.logout-button:focus,
-.item.logout-button:visited, {
-  background-color: none;
+.item.logout-button:hover,
+.item.logout-button:visited {
+  background-color: transparent;
 }
 
-.ui.raised.segment.desktop-menu {
+/** Pagination Styles **/
+.ui.segment.pagination {
+  padding: 0;
+}
+
+/** Project List Component Styles **/
+.project.list .ui.segment:first-child,
+.project.list .ui.segment:last-child {
+  background-color: rgba(26, 88, 112, 0.15);
+}
+
+.project.list .ui.two.column.grid.vertically.fluid .row {
+  padding-top   : .9em;
+  padding-bottom: .9em;
+  color         : #212121;
+  border-bottom : 1px solid rgba(34, 36, 38, 0.15);
+}
+
+.project.list .ui.two.column.grid.vertically.fluid a.row:hover {
+  background-color: rgba(26, 88, 112, 0.15);
+}
+
+.project.list .ui.two.column.grid.vertically.fluid .column {
+  padding-top   : 0;
+  padding-bottom: 0;
+}
+
+.project.list .pagination.footbar {
+  border-top: none;
+}
+
+/** Navbar Styles **/
+.ui.raised.segment.desktop.navbar {
   padding-top: 0;
 }
 
-.ui.segment.mobile-menu {
+.ui.segment.mobile.navbar {
   margin-top: 0;
-}
-
-@media screen {
-  .screenClass:extend(.desktop-menu) {}
-    @media (max-width: 991px) {
-      .desktop-menu {
-        display:none !important;
-      }
-
-      .mobile-menu {
-        display:block !important;
-      }
-    }
-  .screenClass:extend(.mobile-menu) {}
-    @media (min-width: 992px) {
-      .mobile-menu {
-        display:none !important;
-      }
-    }
 }

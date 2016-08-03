@@ -1,0 +1,14 @@
+<!-- app/pods/components/comment-pane/template.hbs -->
+<h3 class="ui header">Comments</h3>
+{{#each comments as |comment|}}
+    {{comment-detail
+    comment=comment
+    editComment=attrs.editComment
+    deleteComment=attrs.deleteComment
+    restoreComment=attrs.restoreComment
+    reportComment=attrs.reportComment}}
+{{else}}
+    (none)
+{{/each}}
+
+{{comment-form addComment=attrs.addComment}}

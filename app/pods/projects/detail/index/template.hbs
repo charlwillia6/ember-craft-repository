@@ -1,0 +1,247 @@
+<!-- app/pods/projects/detail/index/template.hbs -->
+<!-- TODO: Compare to index.hbs in nodes/details of ember-osf dummy app -->
+{{!-- Breadcrumbs and buttons --}}
+<div class="ui two column doubling grid">
+    <div class="column">
+        <div class="ui breadcrumb">
+            <i class="left angle icon divider"></i>
+            {{#link-to 'projects' class="section"}}
+                Back to Projects List
+            {{/link-to}}
+	    {{#if model.parent}}
+		<i class="up angle icon divider"></i>
+	        {{#link-to 'projects.detail' model.parent class="section"}}
+		    Parent: {{model.parent.title}}
+	        {{/link-to}}
+	    {{/if}}
+        </div>
+    </div>
+
+    <div class="right aligned column">
+        {{!-- View on OSF Button --}}
+        <a href="{{model.links.html}}" target="_blank" class="ui blue button">
+            View on OSF
+        </a>
+
+        {{!-- Edit Project Button --}}
+        {{#if propertiesVisible}}
+            <button {{action "expandProperties"}} class="ui green button">
+                Close Project Settings
+            </button>
+            <table>
+                <tr>
+                    <td><label> Title: </label></td>
+                    <td>{{input value=editedTitle}}</td>
+                </tr>
+                <tr>
+                    <td><label> Description: </label></td>
+                    <td>{{input value=editedDescription}} </td>
+                </tr>
+            </table>
+            <p><label> Category: </label></p>
+            <div>
+                <p>{{radio-button name="category" value="analysis" checked=editedCategory}} Analysis </p>
+                <p>{{radio-button name="category" value="communication" checked=editedCategory}} Communication </p>
+                <p>{{radio-button name="category" value="data" checked=editedCategory}} Data </p>
+                <p>{{radio-button name="category" value="hypothesis" checked=editedCategory}} Hypothesis </p>
+                <p>{{radio-button name="category" value="instrumentation" checked=editedCategory}} Instrumentation </p>
+                <p>{{radio-button name="category" value="methods and measures" checked=editedCategory}} Methods and Measures </p>
+                <p>{{radio-button name="category" value="procedure" checked=editedCategory}} Procedure </p>
+                <p>{{radio-button name="category" value="project" checked=editedCategory}} Project </p>
+                <p>{{radio-button name="category" value="software" checked=editedCategory}} Software</p>
+                <p>{{radio-button name="category" value="other" checked=editedCategory}} Other </p>
+                <p>{{radio-button name="category" value="uncategorized" checked=editedCategory}} Uncategorized </p>
+            </div>
+            <p><label> Privacy settings </label></p>
+            {{radio-button name="isPublic" value=1 checked=isPublic}} Public
+            {{radio-button name="isPublic" value=0 checked=isPublic}} Private
+
+            <button {{action "editExisting" editedTitle editedDescription editedCategory isPublic}} class="ui green button"> Save changes </button>
+        {{else}}
+            <button {{action "expandProperties"}} class="ui teal button">
+                Edit project settings
+            </button>
+        {{/if}}
+
+        {{!-- Request Delete Project Button --}}
+        {{project-delete project=model name='delete-project' transitionTo='transitionToProjectList'}}
+
+        {{!-- Destroy Project Button --}}
+        <button class="ui red button" {{action "destroyProject"}}>
+            <i class="warning icon"></i>
+            Destroy this Project
+        </button>
+    </div>
+</div>
+
+{{!-- Project Summary --}}
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui two column grid">
+            <div class="column">
+                <h3 class="ui header">{{model.title}}</h3>
+            </div>
+            <div class="right aligned column">
+                {{#if model.public}}
+                    <a class="ui teal label">Public</a>
+                {{else}}
+                    <a class="ui red label">Private</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <span class="bold">Date Created: </span>{{moment-format model.dateCreated}}<br />
+        <span class="bold">Date Modified: </span>{{moment-format model.dateModified}}<br />
+        <span class="bold">Category: </span>{{model.category}}<br />
+        <span class="bold">Description: </span>{{model.description}}<br />
+    </div>
+    <div class="ui segment">
+        {{tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
+    </div>
+</div>
+
+{{!-- Contributors --}}
+{{contrib-manager contributors=model.contributors addContributor=(action 'addContributor')
+                          removeContributor=(action 'removeContributor')
+                          editContributors=(action 'updateContributors')}}
+
+{{!-- Recent Activity --}}
+{{log-detail model-logs=model.logs}}
+
+{{!-- Create Child Project --}}
+<div class="ui segments">
+    <div class="ui segment">
+        <h4 class="ui header">Create Child Project</h4>
+    </div>
+
+    <div class="ui segment">
+        <div class="ui form">
+            <div class="field">
+                <label for="title">Title:</label>
+                {{input type="text" value=title placeholder="Child Project's Title" required=true}}
+            </div>
+            <div class="field">
+                <label for="description">Description (optional):</label>
+                {{input type="text" value=description placeholder="Child Project's Description"}}
+            </div>
+            <div class="field">
+                <label for="category">Category (optional):</label>
+                {{#ui-dropdown class="selection"}}
+                    <div class="default text">
+                        Select Category
+                    </div>
+
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <option class="item" name="category" value="analysis">Analysis</option>
+                        <option class="item" name="category" value="communication">Communication</option>
+                        <option class="item" name="category" value="data">Data</option>
+                        <option class="item" name="category" value="hypothesis">Hypothesis</option>
+                        <option class="item" name="category" value="instrumentation">Instrumentation</option>
+                        <option class="item" name="category" value="methods and measures">Methods and Measures</option>
+                        <option class="item" name="category" value="procedure">Procedure</option>
+                        <option class="item" name="category" value="software">Software</option>
+                        <option class="item" name="category" value="other">Other</option>
+                        <option class="item" name="category" value="uncategorized">Uncategorized</option>
+                    </div>
+                {{/ui-dropdown}}
+            </div>
+            <button {{action "addChild" title description category }} class="ui green button">Create</button>
+        </div>
+    </div>
+    {{!-- Create Multiple Child Projects --}} <!-- TODO: Is this necessary? -->
+    {{!-- <div class="ui segment">
+        <h4 class="ui header">Create Multiple Child Projects (Bulk)</h4>
+    </div>
+    <div class="ui segment">
+        <h5 class="ui header">First Component</h5>
+        <label>Title:</label>
+        {{input type="text" value=child1 placeholder="Component's title" required=true}}
+        <h5 class="ui header">Second Component</h5>
+        <label>Title:</label>
+        {{input type="text" value=child2 placeholder="Component's title" required=true}}
+        <p><button {{action "addChildren" child1 child2 }}>Create</button></p>
+    </div> --}}
+</div>
+
+<div class="ui segments">
+    <hr />
+    <hr />
+    <hr />
+    <div class="ui segment">
+        <h4 class="ui header">Files</h4>
+    </div>
+    <div class="ui segment">
+        {{link-to 'View Files' 'projects.detail.files' model class='ui blue button'}}
+    </div>
+    <hr>
+    <hr>
+    <hr>
+</div>
+
+<!-- TODO: Check this to make sure the ember-osf comment-pane works -->
+<div class="ui segments">
+    <div class="ui segment">
+        {{comment-pane
+            comments=comments
+            addComment=(action 'addComment')
+            editComment=(action 'editComment')
+            deleteComment=(action 'deleteComment')
+            restoreComment=(action 'restoreComment')
+            reportComment=(action 'reportComment')
+        }}
+    </div>
+</div>
+
+{{outlet}}
+
+<!-- TODO: Compare to uper comment-pane component and determine if we need this -->
+{{partial 'comment-section'}}
+
+<!-- TODO: Will work on all that follows later -->
+{{!-- <div>
+    <h2>Project links </h2>
+    <table class="table">
+        <tr>
+            <th> Id </th>
+            <th> Name </th>
+            <th> </th>
+        </tr>
+        {{#each model.nodeLinks as |projectlink|}}
+            <tr>
+                <td> {{projectlink.targetNode.id}} </td>
+                <td> {{link-to projectlink.targetNode.title 'projects.detail' projectlink.targetNode.id}} </td>
+                <td> <button {{action "removeProjectLink" projectlink}} class="btn btn-danger"> Remove </button> </td>
+            </tr>
+        {{/each}}
+    </table>
+
+    <hr>
+
+    <h3>Add link</h3>
+    <label> Target project id </label> {{input value=targetProjectId}}
+    <button {{action "addProjectLink" targetProjectId}} class="btn btn-primary">Add</button>
+</div>
+
+<div>
+    <hr>
+    <h2>Affiliated Institutions</h2>
+    <p>
+        <table class="table">
+            {{#each model.affiliatedInstitutions as |inst|}}
+                <tr>
+                    <td>
+                        {{inst.name}}
+                    </td>
+                    <td>
+                        <button {{action "deaffiliateProject" inst}}>Unaffiliate</button>
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+        <h4>Add Institution</h4>
+        Institution Id {{input value=instId}}
+        <button {{action "affiliateProject" instId}} class="btn btn-primary">Affiliate Project</button>
+    </p>
+</div> --}}

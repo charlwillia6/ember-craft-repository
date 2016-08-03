@@ -1,6 +1,17 @@
 // config/environment.js
 /* jshint node: true */
 module.exports = function(environment) {
+  // Allow the dummy app to support either token or cookie auth as needed. (default to tokens)
+  var AUTHORIZER = process.env.AUTHORIZER || 'token';
+  var authConfig = {};
+  if (AUTHORIZER === 'cookie') {
+      authConfig = {
+          authorizer: 'authorizer:osf-cookie',
+          authenticator: 'authenticator:osf-cookie',
+          authenticationRoute: 'cookielogin'
+      };
+  }
+
   var ENV = {
     modulePrefix: 'ember-osf-dashboard',
     podModulePrefix: 'ember-osf-dashboard/pods',
@@ -13,17 +24,14 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       }
     },
-
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
     },
+    authorizationType: AUTHORIZER,
+    'ember-simple-auth': authConfig, // TODO: Does this override any default behaviors?
     i18n: {
       defaultLocale: 'en-US'
-    },
-    'ember-simple-auth': {
-        authenticationRoute: 'login',
-        routeAfterAuthentication: 'index'
     },
     'ember-cli-mirage': {
         enabled: false

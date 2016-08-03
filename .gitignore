@@ -2,6 +2,7 @@
 
 # compiled output
 /dist
+/docs
 /tmp
 
 # dependencies
@@ -16,6 +17,9 @@
 npm-debug.log
 testem.log
 /.imdone
+/config/local.yml
+/_extra/extra.txt
+/.idea
 
 # .env
 # .env-local

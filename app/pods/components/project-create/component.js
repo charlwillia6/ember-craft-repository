@@ -4,17 +4,17 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
+    tagName: '',
+    classNames: ['project', 'create'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
-    tagName: 'project-create',
-    classNames: ['project-create'],
     responseError: '',
     responseSuccess: '',
     actions: {
-        requestProjectCreate: function(name) {
-            $('.ui.modal.create.project').modal('setting', 'closable', false).modal('show');
+        requestProjectCreate: function(name) { // jshint ignore:line
+            $('.ui.modal.create.project').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
         },
-        confirmProjectCreate: function(name) {
+        confirmProjectCreate: function(name) { // jshint ignore:line
             var self = this;
             var project = this.get('store').createRecord('node', {
                 title: this.get('title'),
@@ -29,9 +29,9 @@ export default Ember.Component.extend({
                 self.set('title', '');
                 self.set('description', '');
                 Ember.run.later(name, function() {
-                    $('.ui.modal.response.message').modal().modal('show');
+                    $('.ui.modal.response.message').modal().modal('show'); // jshint ignore:line
                     Ember.run.later(function() {
-                        $('.ui.modal.response.message').modal().modal('hide');
+                        $('.ui.modal.response.message').modal().modal('hide'); // jshint ignore:line
                         self.sendAction('reloadRoute');
                     }, 2000);
                 }, 300);
@@ -42,16 +42,16 @@ export default Ember.Component.extend({
                 self.set('title', '');
                 self.set('description', '');
                 Ember.run.later(name, function() {
-                    $('.ui.modal.response.message').modal().modal('show');
+                    $('.ui.modal.response.message').modal().modal('show'); // jshint ignore:line
                 }, 300);
             });
         },
-        cancelProjectCreate: function(name) {
+        cancelProjectCreate: function(name) { // jshint ignore:line
             this.set('title', '');
             this.set('description', '');
             // self.set('responseError', '');
             // self.set('responseSuccess', '');
-            $('.ui.modal.create.project').modal().modal('hide');
+            $('.ui.modal.create.project').modal().modal('hide'); // jshint ignore:line
         }
     }
 });

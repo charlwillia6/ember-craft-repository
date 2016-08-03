@@ -1,0 +1,26 @@
+<!-- app/pods/components/project-delete/template.hbs -->
+{{!-- Request Project Delete Button --}}
+<button class="ui orange button" {{action 'requestDelete' 'delete-project'}}>
+    <i class="warning icon"></i>
+    Delete this Project
+</button>
+
+{{!-- Project Delete Confirmation Modal --}}
+{{#ui-modal name="project-delete" class="project delete" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
+    <i class="close icon"></i>
+    <div class="header">
+        Delete Project?
+    </div>
+    <div class="content">
+        <p>Are you sure you want to delete this project: {{project.title}}?</p>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button">
+            Cancel
+        </button>
+        <button class="ui red approve right labeled icon button">
+            Delete?
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+{{/ui-modal}}

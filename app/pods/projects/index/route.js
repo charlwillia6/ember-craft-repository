@@ -6,6 +6,7 @@ import PaginatedRouteMixin from  'ember-osf/mixins/paginated-route';
 export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    // TODO: Compare and test to ember-osf dummy app
     model(routeParams) {
         let user = this.modelFor('application');
         var userParams = {

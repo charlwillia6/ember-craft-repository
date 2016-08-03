@@ -4,6 +4,7 @@ import Ember from 'ember';
 export default Ember.Mixin.create({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    // TODO: Remove below after testing thoroughly
     // When page numbers are updated, fetch the new results from the server
     // queryParams: {
     //     page: {

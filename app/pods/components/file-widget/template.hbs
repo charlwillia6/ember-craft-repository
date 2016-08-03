@@ -1,0 +1,36 @@
+<!-- app/pods/components/file-widget/template.hbs -->
+<div class="eosf file widget box">
+    <div class="ui two column grid">
+        <div class="row">
+            {{#if (not selectedNode)}}
+                <div class="column">
+                    <div class="dropzone box">
+                        {{dropzone-widget preUpload=attrs.preUpload buildUrl=buildUrl listeners=dropzoneListeners
+                            options=dropzoneOptions}}
+                    </div>
+                </div>
+                <div class="column">
+                    {{#if (not session.isAuthenticated)}}
+                        {{#oauth-popup authUrl=authUrl loginSuccess=(action 'loginSuccess') loginFail=(action 'loginFail') as |popup|}}
+                            <button class="ui green login button" onclick={{action 'login' target=popup}} >
+                                Login to OSF
+                            </button>
+                        {{/oauth-popup}}
+                    {{else}}
+                        <label>Choose an OSF project:</label>
+                        {{#power-select options=userNodes closeOnSelect=false searchField='title' selected=selectedNode
+                        onchange=(action (mut selectedNode)) as |project|}}
+                            <img src="{{country.flagUrl}}" class="icon-flag"><strong>{{project.title}}</strong>
+                        {{/power-select}}
+                    {{/if}}
+                </div>
+            {{else}}
+                <p>
+                    {{selectedNode.title}}
+                    <button class="ui green button" {{action 'deselectNode'}}>Back</button>
+                </p>
+                {{file-browser rootNode=selectedNode onClickFile=(action 'selectNodeFile')}}
+            {{/if}}
+        </div>
+    </div>
+</div>

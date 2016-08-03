@@ -1,0 +1,6 @@
+<!-- app/pods/components/oauth-popup/template.js -->
+{{#if (not hasBlock) }}
+    <button {{action 'login'}} class="ui yellow button">Login</button>
+{{else}}
+    {{yield this}}
+{{/if}}

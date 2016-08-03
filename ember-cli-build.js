@@ -1,12 +1,14 @@
-/*jshint node:true*/
+/* jshint node: true */
 /* global require, module */
+var path = require('path');
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function (defaults) {
     var app = new EmberApp(defaults, {
         lessOptions: {
             paths: [
-                'bower_components/semantic-ui'
+                'bower_components/semantic-ui',
+                'app/pods/components'
             ]
         },
         outputPaths: {
@@ -41,6 +43,11 @@ module.exports = function (defaults) {
     // modules that you would like to import into your application
     // please specify an object with the list of modules as keys
     // along with the exports of each module as its value.
+
+    app.import(path.join(app.bowerDirectory, 'dropzone/dist/basic.css'));
+    app.import(path.join(app.bowerDirectory, 'dropzone/dist/dropzone.css'));
+    app.import(path.join(app.bowerDirectory, 'dropzone/dist/dropzone.js'));
+    app.import(path.join(app.bowerDirectory, 'jquery.tagsinput/src/jquery.tagsinput.js'));
 
     return app.toTree();
 };

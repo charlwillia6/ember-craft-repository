@@ -1,71 +1,81 @@
 <!-- app/templates/navbar.hbs -->
-<!-- Desktop Menu -->
-<div class="ui raised segment desktop-menu">
-    <div class="ui secondary menu">
-        <!-- Header -->
-        <div class="header item header-fit">
-            {{#link-to 'index' class="header-link"}}
-                <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
-                <span>Notre Dame OSF Dashboard</span>
-            {{/link-to}}
-        </div>
-
-        <div class="ui secondary right menu">
-            <!-- Logout -->
-            <div class="item logout-button">
-                <div class="ui red button">Logout</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="ui inverted menu">
-        {{link-to 'My Projects' 'projects' class="item"}}
-        {{link-to 'My Registrations' 'registrations' class="item"}}
-        {{link-to 'All Institutions' 'institutions' class="item"}}
-        {{link-to 'Users' 'users' class="item"}}
-        {{link-to 'Collections' 'collections' class="item"}}
-
-        <div class="ui inverted right menu">
-            <!-- Search -->
-            <div class="item">
-                {{#ui-search url="/search"}}
-                    <div class="ui icon input">
-                        <input type="text" class="prompt" placeholder="Search..." />
-                        <i class="ui search icon"></i>
+<div class="ui grid">
+    <!-- Desktop Menu -->
+    <div class="computer only row">
+        <div class="column">
+            <div class="ui computer only raised segment desktop navbar">
+                <div class="ui secondary menu">
+                    <!-- Header -->
+                    <div class="header item header-fit">
+                        {{#link-to 'index' class="header-link"}}
+                            <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
+                            <span>Notre Dame OSF Dashboard</span>
+                        {{/link-to}}
                     </div>
-                    <div class="results"></div>
-                {{/ui-search}}
-            </div>
-        </div>
-    </div>
-</div>
 
-<!-- Mobile Menu -->
-<div class="ui segment mobile-menu">
-    <div class="ui secondary menu">
-        {{#ui-accordion class="ui fluid"}}
-            <!-- Header -->
-            <div class="title header">
-                <div class="header item header-fit">
-                    <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
-                    <span>Ember OSF Dashboard (Beta)</span>
-                    <i class="dropdown icon"></i>
+                    <div class="ui secondary right menu">
+                        <!-- Logout -->
+                        <div class="item logout-button">
+                            <div class="ui red button">Logout</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui inverted menu">
+                    {{link-to 'Home' 'index' class="item"}}
+                    {{link-to 'My Projects' 'projects' class="item"}}
+                    {{link-to 'My Registrations' 'registrations' class="item"}}
+                    {{link-to 'All Institutions' 'institutions' class="item"}}
+                    {{link-to 'Users' 'users' class="item"}}
+                    {{link-to 'Collections' 'collections' class="item"}}
+
+                    <div class="ui inverted right menu">
+                        <!-- Search -->
+                        <div class="item">
+                            {{#ui-search url="/search"}}
+                                <div class="ui icon input">
+                                    <input type="text" class="prompt" placeholder="Search..." />
+                                    <i class="ui search icon"></i>
+                                </div>
+                                <div class="results"></div>
+                            {{/ui-search}}
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="tablet mobile only row">
+        <div class="column">
+            <!-- Mobile Menu -->
+            <div class="ui tablet mobile only segment mobile navbar">
+                <div class="ui secondary menu">
+                    {{#ui-accordion class="ui fluid"}}
+                        <!-- Header -->
+                        <div class="title header">
+                            <div class="header item header-fit">
+                                <img src="assets/images/osf_circle_logo.png" alt="Ember OSF Dashboard (Beta)" title="Ember OSF Dashboard" class="img-head"/>
+                                <span>Notre Dame OSF Dashboard</span>
+                                <i class="dropdown icon"></i>
+                            </div>
+                        </div>
 
-            <!-- Start Menu -->
-            <div class="content">
-                {{link-to 'Home' 'index' class="item"}}
-                {{link-to 'My Projects' 'projects' class="item"}}
-                {{link-to 'My Registrations' 'registrations' class="item"}}
-                {{link-to 'All Institutions' 'institutions' class="item"}}
-                {{link-to 'Users' 'users' class="item"}}
-                {{link-to 'Collections' 'collections' class="item"}}
-                <!-- Logout -->
-                <a class="item">
-                    Logout
-                </a>
+                        <!-- Start Menu -->
+                        <div class="content">
+                            {{link-to 'Home' 'index' class="item"}}
+                            {{link-to 'My Projects' 'projects' class="item"}}
+                            {{link-to 'My Registrations' 'registrations' class="item"}}
+                            {{link-to 'All Institutions' 'institutions' class="item"}}
+                            {{link-to 'Users' 'users' class="item"}}
+                            {{link-to 'Collections' 'collections' class="item"}}
+                            <!-- Logout -->
+                            <a class="item">
+                                Logout
+                            </a>
+                        </div>
+                    {{/ui-accordion}}
+                </div>
             </div>
-        {{/ui-accordion}}
+        </div>
     </div>
 </div>

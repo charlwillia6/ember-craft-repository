@@ -1,7 +1,7 @@
 <!-- app/pods/templates/components/project-list.hbs -->
 {{!-- Project List Widget --}}
     <div class="ui segments">
-        <div class="ui segment">
+        <div class="ui segment titlebar">
             <div class="ui two column grid fluid">
                 <div class="row">
                     <div class="left floated left aligned column">
@@ -18,25 +18,23 @@
             </div>
         </div>
         <div class="ui segment">
-            <div class="ui two column grid vertically divided fluid">
+            <div class="ui two column grid vertically fluid">
                 {{#each list as |project|}}
-                    <div class="row">
-
+                    {{#link-to 'projects.detail' project.id class="row"}}
+                        {{!-- <div class="row"> --}}
                             <div class="left floated left aligned column">
-                                {{#link-to 'projects.detail' project.id}}
-                                    <i class="book icon"></i>
-                                    {{project.title}}
-                                {{/link-to}}
+                                <i class="book icon"></i>
+                                {{project.title}}
                             </div>
                             <div class="right floated right aligned column">
                                 {{moment-format project.dateModified}}
                             </div>
-
-                    </div>
+                        {{!-- </div> --}}
+                    {{/link-to}}
                 {{/each}}
             </div>
         </div>
-        <div class="ui segment">
+        <div class="ui segment pagination footbar">
             {{pagination-control-ui
                 currentPage=page
                 pageCount=totalPages

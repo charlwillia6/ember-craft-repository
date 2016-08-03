@@ -1,4 +1,5 @@
 <!-- app/pods/projects/index/template.hbs -->
+{{title "Projects"}}
 <div class="ui two column grid">
     <div class="column">
         <h2 class="ui header">My Projects</h2>
@@ -57,7 +58,7 @@
 </div>
 
 {{!-- Pagination --}}
-<div class="ui segment">
+<div class="ui segment pagination">
     {{pagination-control-ui
         currentPage=page
         pageCount=totalPages

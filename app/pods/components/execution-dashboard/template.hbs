@@ -1,0 +1,66 @@
+<!-- app/pods/components/execution-dashboard/template.hbs -->
+<div class="ui segment">
+    <h4 class="ui header">Execution Dashboard</h4>
+    <!-- Three Column Grid -->
+    <div class="ui two column very relaxed grid form">
+        <!-- Column One -->
+        <div class="ui column">
+            <div class="field">
+                <label class="bold">Data </label>
+                <select class="ui fluid dropdown">
+                    {{#each model as |project|}}
+                        {{#each project.files as |provider|}}
+                            {{#each provider.files as |file|}}
+                                <option value="{{file.path}}">
+                                    {{file.name}} ({{file.provider}})
+                                </option>
+                            {{/each}}
+                        {{/each}}
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="field">
+                <label class="bold">Mode </label>
+                <select class="ui fluid dropdown">
+                    <option value="Execute Script"> Execute Script </option>
+                    <option value="Run Notebook"> Run Notebook </option>
+                </select>
+            </div>
+
+            <!-- Run and Reset -->
+            <div class="ui buttons">
+                <button type="button" class="ui green button">
+                    Run <i class="ui play icon"></i>
+                </button>
+                <button type="button" class="ui red button">
+                    Reset <i class="ui eject icon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Column Two -->
+        <div class="ui column">
+            <div class="field">
+                <label class="bold">Script </label>
+                <select class="ui fluid dropdown">
+                    {{#each model as |project|}}
+                        {{#each project.files as |provider|}}
+                            {{#each provider.files as |file|}}
+                                <option value="{{file.path}}">
+                                    {{file.name}} ({{file.provider}})
+                                </option>
+                            {{/each}}
+                        {{/each}}
+                    {{/each}}
+                </select>
+            </div>
+            <div class="field">
+                <label class="bold">Status </label>
+                <div class="input-status ready">
+                    Ready
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
