@@ -5,18 +5,23 @@ export default Ember.Route.extend({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     model() {
-        if(this.get('session.isAuthenticated')) {
-            // console.log("YES");
+        if(this.get('session.session.isAuthenticated')) {
             // console.log("1: ", this.get('session'));
             // console.log("2: ", this.get('session.isAuthenticated'));
             // console.log("3: ", this);
+            // console.log("4: ", this.get('session.session.isAuthenticated'));
             return this.get('store').findRecord('user', 'me');
         }
-        // console.log("4: ", this.get('session'));
-        // console.log("5: ", this.get('session.isAuthenticated'));
-        // console.log("6: ", this);
         return null;
-    }
+    },
+    // afterModel() {
+    //     console.log("session: ", this.get('session'));
+    //     console.log("session.isAuthenticated: ", this.get('session.isAuthenticated'));
+    //     console.log("session.session.isAuthenticated: ", this.get('session.session.isAuthenticated'));
+    //     console.log("this: ", this);
+    //     console.log("session.session.authenticator: ", this.get('session.session.authenticator'));
+    //     console.log("session.session: ", this.get('session.session'));
+    // }
     // ,
     // actions: {
     //     menuSidebarTransition() {

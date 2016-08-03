@@ -8,6 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     session: Ember.inject.service(),
     // TODO: Compare and test to ember-osf dummy app
     model(routeParams) {
+        console.log(this);
         let user = this.modelFor('application');
         var userParams = {
             filter: {

@@ -1,4 +1,4 @@
-Ember-OSF-Dashboard gratefully acknowledges the use of some third-party code.
+ember-craft-repository gratefully acknowledges the use of some third-party code.
 
 
 ## Infinity custom mixin

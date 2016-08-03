@@ -1,6 +1,6 @@
-# Ember OSF Dashboard
+# Ember Craft Dashboard
 
-This project is for creating a Ember Dashboard on top of [OSF](http://osf.io). Semantic-UI has been added to the dependencies and installs with bower.
+This project is for creating a Ember Dashboard for the DARPA Craft repository on top of [OSF](http://osf.io).
 
 ## Prerequisites
 
@@ -28,9 +28,9 @@ You will need the following things properly installed on your computer.
 - `git clone https://github.com/crcresearch/ember-osf`
 - Read instructions on the ember-osf repository for installation and configuration. Note we use fork on CRC github, it is syncronized monthly with primary OSF repository
 
-## Ember OSF Dashboard Installation and Configuration
+## Ember Craft Dashboard Installation and Configuration
 
-- `git clone https://github.com/crcresearch/ember-osf-dashboard.git develop`
+- `git clone https://github.com/crcresearch/ember-craft-repository.git develop`
 - `cd` into the new app directory
 - `npm install`
 - `bower install`
@@ -39,11 +39,11 @@ You will need the following things properly installed on your computer.
 - Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI.
 - Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in `node_modules/semantic-ui-ember/` directory.
 
-When you are done your basic directory structure should be like:<br>
-|--/home/username/project-folder/<br>
-|--ember-osf-dashboard<br>
-|--ember-osf<br>
-|--env-node
+**When you are done your basic directory structure should be like:**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;|--/home/username/project-folder/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-craft-repository<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-osf<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--env-node
 
 ## Running / Development
 

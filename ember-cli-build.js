@@ -14,9 +14,9 @@ module.exports = function (defaults) {
         outputPaths: {
             app: {
                 css: {
-                    app: "assets/css/ember-osf-dashboard.css"
+                    app: "assets/css/ember-craft-repository.css"
                 },
-                js: "assets/js/ember-osf-dashboard.js"
+                js: "assets/js/ember-craft-repository.js"
             },
             vendor: {
                 css: "assets/css/vendor.css",

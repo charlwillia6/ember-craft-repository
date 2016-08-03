@@ -1,12 +1,11 @@
 <!-- app/pods/index/template.hbs -->
 {{title "Home"}}
 <h1 class="ui header">
-    Welcome {{currentUser}}
+    Welcome {{currentUser.fullName}}
 </h1>
 
 {{!-- Project List Component --}}
-{{user}}
-{{project-list user_id=model.id}}
+{{project-list}}
 
 {{!-- OSF File-Widget Component --}}
 {{!-- TODO:0 issue:3 Develop file-widget --}}

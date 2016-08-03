@@ -13,10 +13,10 @@ module.exports = function(environment) {
   }
 
   var ENV = {
-    modulePrefix: 'ember-osf-dashboard',
-    podModulePrefix: 'ember-osf-dashboard/pods',
+    modulePrefix: 'ember-craft-repository',
+    podModulePrefix: 'ember-craft-repository/pods',
     environment: environment,
-    baseURL: '/',
+    rootURL: '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -48,7 +48,7 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.baseURL = '/';
+    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter
