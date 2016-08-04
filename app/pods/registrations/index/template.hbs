@@ -8,9 +8,10 @@
         <p><label>Category: </label>{{registration.category}}</p>
         <p><label>Date Registered: </label>{{moment-format registration.dateRegistered}}</p>
         <p class="btn-group">
-            <a href="{{registration.links.html}}" target="_blank" class="btn btn-default">
+            {{!-- View on OSF Button --}}
+            {{!-- <a href="{{registration.links.html}}" target="_blank" class="btn btn-default">
                 View on OSF
-            </a>
+            </a> --}}
             {{link-to 'Detail' 'registrations.detail' registration.id class="btn btn-primary"}}
         </p>
     </div>

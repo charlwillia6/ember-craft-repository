@@ -9,9 +9,10 @@
         <p><label>Logo URL: </label>{{inst.logoPath}}</p>
         <p><label>Auth URL: </label>{{inst.authUrl}}</p>
         <p class="btn-group">
-            <a href="{{inst.links.html}}" target="_blank" class="btn btn-default">
+            {{!-- View on OSF Button --}}
+            {{!-- <a href="{{inst.links.html}}" target="_blank" class="btn btn-default">
                 View on OSF
-            </a>
+            </a> --}}
             {{link-to 'Detail' 'institutions.detail' inst.id class="btn btn-primary"}}
         </p>
     </div>

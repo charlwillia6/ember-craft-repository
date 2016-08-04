@@ -8,7 +8,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     session: Ember.inject.service(),
     // TODO: Compare and test to ember-osf dummy app
     model(routeParams) {
-        console.log(this);
         let user = this.modelFor('application');
         var userParams = {
             filter: {
@@ -19,13 +18,13 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
         if(user) {
             userParams['filter']['contributors'] = user.id;
             return this.queryForPage('node', routeParams, userParams);
-            // return user.get('nodes'); // Fetch from `/users/me/nodes/`
         } else {
-            console.log(user);
-            this.get('store').findRecord('user', 'me').then(user => user);
-            userParams['filter']['contributors'] = user.id;
-            return this.queryForPage('node', routeParams, userParams);
-            // return this.get('store').findRecord('user', 'me').then(user => user.get('nodes'));
+            let self = this;
+
+            return this.get('store').findRecord('user', 'me').then(function(user) {
+                userParams['filter']['contributors'] = user.id;
+                return self.queryForPage('node', routeParams, userParams);
+            });
         }
     },
     actions: {
