@@ -10,7 +10,7 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     init() {
         this._super(...arguments);
-        console.log(this.get('model.tags'));
+        console.log('MODEL: ', this.model.get('category'));
     },
     actions: {
         addATag() {

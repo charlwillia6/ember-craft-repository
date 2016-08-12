@@ -9,6 +9,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
     classNames: ['project', 'edit'],
     toast: Ember.inject.service(),
     isSaving: false,
+    editedCategory: {},
     categories: {},
     init() {
         var categories = [
@@ -53,17 +54,20 @@ export default Ember.Component.extend(NodeActionsMixin, {
         this._super(...arguments);
         this.set('categories', categories);
         this.set('selectedModel', this.get('project'));
-        console.log('PROJECT:', this.get('project'));
     },
     actions: {
         openProjectEdit(name) { // jshint ignore:line
             $('.ui.project.edit.modal').modal('show'); // jshint ignore:line
         },
-        updateProject(editedTitle, editedDescription,
+        privacyChange(component, id, value) {
+            this.set('editedCategory', id);
+        },
+        updateNode(editedTitle, editedDescription,
             editedCategory, isPublic) {
-            // this.updateNode(editedTitle, editedDescription,
+            // updateNode(editedTitle, editedDescription,
             //     editedCategory, isPublic);
             this.set('isSaving', true);
+            this.set('node', this.get('selectedModel'));
             return this._super(...arguments)
                 .then(() => {
                     this.set('isSaving', false);

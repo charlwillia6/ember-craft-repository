@@ -18,7 +18,7 @@
                     <div class="column">
                         <label class="bold">Title:</label>
                         <div class="ui fluid input">
-                            {{input type="text" value=editedTitle placeholder="Project Title" required=true}}
+                            {{input type="text" value=editedTitle placeholder="Project Title"}}
                         </div>
 
                     </div>
@@ -31,27 +31,28 @@
                     <div class="column">
                         <label class="bold">Category:</label>
                         <div class="ui fluid input">
-                            {{#ui-dropdown class="selection" selected=categories onChange=(action (mut categories))}}
+                            {{#ui-dropdown class="selection" onChange=(action 'privacyChange')}}
                                 <div class="default text">Categories</div>
                                 <i class="dropdown icon"></i>
                                 <div class="menu">
                                     {{#each categories as |category|}}
-                                        <div class="item" data-value="{{category.id}}">
+                                        <div class="item" value="{{category.id}}">
                                             {{category.text}}
                                         </div>
                                     {{/each}}
                                 </div>
                             {{/ui-dropdown}}
                         </div>
+                        {{category.text}}
                     </div>
                     <div class="column">
                         <label class="bold">Privacy Settings:</label>
-                        <div class="ui grouped inline fields">
-                            <div class="field">
-                                {{radio-button name="isPublic" value=1 checked=isPublic class="ui radio checkbox"}} Public
+                        <div class="inline fields">
+                            <div class="inline field">
+                                {{ui-radio name="isPublic" value=1 current=isPublic label="Public"}}
                             </div>
-                            <div class="field">
-                                {{radio-button name="isPublic" value=0 checked=isPublic class="ui radio checkbox"}} Private
+                            <div class="inline field">
+                                {{ui-radio name="isPublic" value=0 current=isPublic label="Private"}}
                             </div>
                         </div>
                     </div>
@@ -62,7 +63,7 @@
                     <button {{action 'cancelProjectEdit' 'project-edit'}} class="ui black deny button">
                         Cancel
                     </button>
-                    <button disabled={{isSaving}} {{action "updateProject" editedTitle editedDescription
+                    <button disabled={{isSaving}} {{action "updateNode" editedTitle editedDescription
                     editedCategory isPublic}} class="ui positive right labeled icon button">
                         Save changes
                         <i class="checkmark icon"></i>
