@@ -1,0 +1,26 @@
+<!-- app/pods/components/project-summary/template.hbs -->
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui two column grid">
+            <div class="column">
+                <h3 class="ui header">{{model.title}}</h3>
+            </div>
+            <div class="right aligned column">
+                {{#if model.public}}
+                    <a class="ui teal label">Public</a>
+                {{else}}
+                    <a class="ui red label">Private</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        <span class="bold">Date Created: </span>{{moment-format model.dateCreated}}<br />
+        <span class="bold">Date Modified: </span>{{moment-format model.dateModified}}<br />
+        <span class="bold">Category: </span>{{model.category}}<br />
+        <span class="bold">Description: </span>{{model.description}}<br />
+    </div>
+    <div class="ui segment">
+        {{tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
+    </div>
+</div>
