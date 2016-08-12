@@ -67,7 +67,10 @@ export default Ember.Component.extend(NodeActionsMixin, {
             // updateNode(editedTitle, editedDescription,
             //     editedCategory, isPublic);
             this.set('isSaving', true);
-            this.set('node', this.get('selectedModel'));
+            if (!this.get('node')) {
+                this.set('node', this.get('selectedModel'));
+            }
+
             return this._super(...arguments)
                 .then(() => {
                     this.set('isSaving', false);
