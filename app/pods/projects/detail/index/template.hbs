@@ -24,47 +24,10 @@
         </a> --}}
 
         {{!-- Edit Project Button --}}
-        {{#if propertiesVisible}}
-            <button {{action "expandProperties"}} class="ui green button">
-                Close Project Settings
-            </button>
-            <table>
-                <tr>
-                    <td><label> Title: </label></td>
-                    <td>{{input value=editedTitle}}</td>
-                </tr>
-                <tr>
-                    <td><label> Description: </label></td>
-                    <td>{{input value=editedDescription}} </td>
-                </tr>
-            </table>
-            <p><label> Category: </label></p>
-            <div>
-                <p>{{radio-button name="category" value="analysis" checked=editedCategory}} Analysis </p>
-                <p>{{radio-button name="category" value="communication" checked=editedCategory}} Communication </p>
-                <p>{{radio-button name="category" value="data" checked=editedCategory}} Data </p>
-                <p>{{radio-button name="category" value="hypothesis" checked=editedCategory}} Hypothesis </p>
-                <p>{{radio-button name="category" value="instrumentation" checked=editedCategory}} Instrumentation </p>
-                <p>{{radio-button name="category" value="methods and measures" checked=editedCategory}} Methods and Measures </p>
-                <p>{{radio-button name="category" value="procedure" checked=editedCategory}} Procedure </p>
-                <p>{{radio-button name="category" value="project" checked=editedCategory}} Project </p>
-                <p>{{radio-button name="category" value="software" checked=editedCategory}} Software</p>
-                <p>{{radio-button name="category" value="other" checked=editedCategory}} Other </p>
-                <p>{{radio-button name="category" value="uncategorized" checked=editedCategory}} Uncategorized </p>
-            </div>
-            <p><label> Privacy settings </label></p>
-            {{radio-button name="isPublic" value=1 checked=isPublic}} Public
-            {{radio-button name="isPublic" value=0 checked=isPublic}} Private
-
-            <button {{action "editExisting" editedTitle editedDescription editedCategory isPublic}} class="ui green button"> Save changes </button>
-        {{else}}
-            <button {{action "expandProperties"}} class="ui teal button">
-                Edit project settings
-            </button>
-        {{/if}}
+        {{project-edit project=model}}
 
         {{!-- Request Delete Project Button --}}
-        {{project-delete project=model name='delete-project' transitionTo='transitionToProjectList'}}
+        {{project-delete project=model transitionTo='transitionToProjectList'}}
 
         {{!-- Destroy Project Button --}}
         <button class="ui red button" {{action "destroyProject"}}>
@@ -142,18 +105,12 @@
 </div>
 
 <div class="ui segments">
-    <hr />
-    <hr />
-    <hr />
     <div class="ui segment">
         <h4 class="ui header">Files</h4>
     </div>
     <div class="ui segment">
         {{link-to 'View Files' 'projects.detail.files' model class='ui blue button'}}
     </div>
-    <hr>
-    <hr>
-    <hr>
 </div>
 
 <!-- TODO: Check this to make sure the ember-osf comment-pane works -->
@@ -173,7 +130,7 @@
 {{outlet}}
 
 <!-- TODO: Compare to uper comment-pane component and determine if we need this -->
-{{partial 'comment-section'}}
+{{!-- {{partial 'comment-section'}} --}}
 
 <!-- TODO: Will work on all that follows later -->
 {{!-- <div>

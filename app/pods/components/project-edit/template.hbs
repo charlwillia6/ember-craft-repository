@@ -1,1 +1,74 @@
 <!-- app/pods/components/project-edit/template.hbs -->
+{{!-- Edit Project Button --}}
+<button {{action 'openProjectEdit' 'project-edit'}} class="ui green button">
+    <i class="edit icon"></i>
+    Edit Project
+</button>
+
+{{!-- Edit Project Modal --}}
+{{#ui-modal name="project-edit" class="project edit" onDeny=(action 'cancelProjectEdit')}}
+    <i class="close icon"></i>
+    <div class="header">
+        Edit Project: {{project.title}}
+    </div>
+    <div class="ui form">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class="ui two column stackable grid">
+                    <div class="column">
+                        <label class="bold">Title:</label>
+                        <div class="ui fluid input">
+                            {{input type="text" value=editedTitle placeholder="Project Title" required=true}}
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <label class="bold">Description (optional):</label>
+                        <div class="ui fluid input">
+                            {{input type="text" value=editedDescription placeholder="Project Description"}}
+                        </div>
+                    </div>
+                    <div class="column">
+                        <label class="bold">Category:</label>
+                        <div class="ui fluid input">
+                            {{#ui-dropdown class="selection" selected=categories onChange=(action (mut categories))}}
+                                <div class="default text">Categories</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu">
+                                    {{#each categories as |category|}}
+                                        <div class="item" data-value="{{category.id}}">
+                                            {{category.text}}
+                                        </div>
+                                    {{/each}}
+                                </div>
+                            {{/ui-dropdown}}
+                        </div>
+                    </div>
+                    <div class="column">
+                        <label class="bold">Privacy Settings:</label>
+                        <div class="ui grouped inline fields">
+                            <div class="field">
+                                {{radio-button name="isPublic" value=1 checked=isPublic class="ui radio checkbox"}} Public
+                            </div>
+                            <div class="field">
+                                {{radio-button name="isPublic" value=0 checked=isPublic class="ui radio checkbox"}} Private
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui segment">
+                <div class="actions">
+                    <button {{action 'cancelProjectEdit' 'project-edit'}} class="ui black deny button">
+                        Cancel
+                    </button>
+                    <button disabled={{isSaving}} {{action "updateProject" editedTitle editedDescription
+                    editedCategory isPublic}} class="ui positive right labeled icon button">
+                        Save changes
+                        <i class="checkmark icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/ui-modal}}

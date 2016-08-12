@@ -11,15 +11,14 @@ export default Ember.Component.extend({
     selectedModel: '',
     actions: {
         requestDelete(name) {
-            console.log(name);
             this.set('selectedModel', this.get('project'));
             this.selectedModel.deleteRecord();
-            $('.ui.modal').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
+            $('.ui.project.delete.modal').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
         },
         confirmDelete() {
             // TODO: Need to add error handling
             var self = this;
-            this.selectedModel.save().then(function() {
+            this.selectedModel.save().then(function () {
                 self.sendAction('transitionTo');
             });
         },
