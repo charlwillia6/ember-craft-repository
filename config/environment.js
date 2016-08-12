@@ -16,8 +16,8 @@ module.exports = function(environment) {
     modulePrefix: 'ember-craft-repository',
     podModulePrefix: 'ember-craft-repository/pods',
     environment: environment,
-    rootURL: '/',
     locationType: 'auto',
+    rootURL: '/',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -48,7 +48,6 @@ module.exports = function(environment) {
 
   if (environment === 'test') {
     // Testem prefers this...
-    ENV.rootURL = '/';
     ENV.locationType = 'none';
 
     // keep test console output quieter

@@ -15,12 +15,12 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
         toggleEditNode() {
             this.toggleProperty('propertiesVisible');
         },
-        updateNode() {
+        updateProject() {
             this.set('isSaving', true);
             return this._super(...arguments)
                 .then(() => {
                     this.set('isSaving', false);
-                    this.get('toast').success('Node updated successfully');
+                    this.get('toast').success('Project updated successfully');
                 })
                 .catch(() => this.set('isSaving', false));
         },
