@@ -1,0 +1,41 @@
+<!-- app/pods/components/file-browser/template.hbs -->
+<div class="ui segments">
+    <div class="ui segment">
+        <div class='file-browser-header'>
+            <h3 class="ui header">Files</h3>
+        </div>
+    </div>
+    <div class="ui segment">
+
+        <div class="ui breadcrumb">
+    	    {{#each breadcrumbs as |item|}}
+                <a {{action 'navigateToItem' item}} class="section">
+                    {{file-browser-icon item=item}}
+                    {{item.itemName}}
+                </a>
+                {{#unless @last}}
+                    <span class="divider">/</span>
+                {{/unless}}
+    	    {{/each}}
+        </div>
+
+        {{#if selectedItems}}
+            {{! TODO: show available actions for selected files }}
+        {{/if}}
+
+        <div class='file-browser-list'>
+            {{#ember-collection items=items
+                cell-layout=(fixed-grid-layout itemWidth itemHeight)
+                as |item index|}}
+                {{file-browser-item item=item
+                navigateToItem=(action 'navigateToItem')
+                selectItem=(action 'selectItem')
+                openItem=(action 'openItem')
+                }}
+            {{/ember-collection}}
+            {{#unless itemsLoaded}}
+                {{fa-icon 'spinner' size=3 pulse=true}}
+            {{/unless}}
+        </div>
+    </div>
+</div>

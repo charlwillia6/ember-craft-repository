@@ -11,65 +11,62 @@
     <div class="header">
         Edit Project: {{project.title}}
     </div>
-    <div class="ui form">
-        <div class="ui segments">
-            <div class="ui segment">
-                <div class="ui two column stackable grid">
-                    <div class="column">
-                        <label class="bold">Title:</label>
-                        <div class="ui fluid input">
-                            {{input type="text" value=editedTitle placeholder="Project Title"}}
-                        </div>
+    <div class="content">
+        <div class="ui form">
+            <div class="ui two column stackable grid">
+                <div class="column">
+                    <label class="bold">Title:</label>
+                    <div class="ui fluid input">
+                        {{input type="text" value=editedTitle placeholder="Project Title"}}
+                    </div>
 
-                    </div>
-                    <div class="column">
-                        <label class="bold">Description (optional):</label>
-                        <div class="ui fluid input">
-                            {{input type="text" value=editedDescription placeholder="Project Description"}}
-                        </div>
-                    </div>
-                    <div class="column">
-                        <label class="bold">Category:</label>
-                        <div class="ui fluid input">
-                            {{#ui-dropdown class="selection" onChange=(action 'privacyChange')}}
-                                <div class="default text">Categories</div>
-                                <i class="dropdown icon"></i>
-                                <div class="menu">
-                                    {{#each categories as |category|}}
-                                        <div class="item" value="{{category.id}}">
-                                            {{category.text}}
-                                        </div>
-                                    {{/each}}
-                                </div>
-                            {{/ui-dropdown}}
-                        </div>
-                        {{category.text}}
-                    </div>
-                    <div class="column">
-                        <label class="bold">Privacy Settings:</label>
-                        <div class="inline fields">
-                            <div class="inline field">
-                                {{ui-radio name="isPublic" value=1 current=isPublic label="Public"}}
-                            </div>
-                            <div class="inline field">
-                                {{ui-radio name="isPublic" value=0 current=isPublic label="Private"}}
-                            </div>
-                        </div>
+                </div>
+                <div class="column">
+                    <label class="bold">Description (optional):</label>
+                    <div class="ui fluid input">
+                        {{input type="text" value=editedDescription placeholder="Project Description"}}
                     </div>
                 </div>
-            </div>
-            <div class="ui segment">
-                <div class="actions">
-                    <button {{action 'cancelProjectEdit' 'project-edit'}} class="ui black deny button">
-                        Cancel
-                    </button>
-                    <button disabled={{isSaving}} {{action "updateNode" editedTitle editedDescription
-                    editedCategory isPublic}} class="ui positive right labeled icon button">
-                        Save changes
-                        <i class="checkmark icon"></i>
-                    </button>
+                <div class="column">
+                    <label class="bold">Category:</label>
+                    <div class="ui fluid input">
+                        {{#ui-dropdown class="selection" onChange=(action 'privacyChange')}}
+                            <div class="default text">Categories</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                {{#each categories as |category|}}
+                                    <div class="item" value="{{category.id}}">
+                                        {{category.text}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/ui-dropdown}}
+                    </div>
+                    {{category.text}}
+                </div>
+                <div class="column">
+                    <label class="bold">Privacy Settings:</label>
+                    <div class="inline fields">
+                        <div class="inline field">
+                            {{ui-radio name="isPublic" value=1 current=isPublic label="Public"}}
+                        </div>
+                        <div class="inline field">
+                            {{ui-radio name="isPublic" value=0 current=isPublic label="Private"}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="actions">
+        <button {{action 'cancelProjectEdit' 'project-edit'}} class="ui black deny button">
+            Cancel
+        </button>
+        <button disabled={{isSaving}} {{action "updateNode" editedTitle editedDescription
+        editedCategory isPublic}} class="ui positive right labeled icon button">
+            Save changes
+            <i class="checkmark icon"></i>
+        </button>
+    </div>
+
 {{/ui-modal}}
