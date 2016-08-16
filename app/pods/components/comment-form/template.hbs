@@ -1,7 +1,12 @@
 <!-- app/pods/components/comment-form/template.hbs -->
-<div>
-    {{textarea class="form-control" maxlength="500" placeholder="Add a comment" value=_commentText}}
-    <button {{action 'addComment' _commentText}} class="ui green button" disabled={{if (not _commentText) true}}>
-        Add comment
-    </button>
+<div class="ui form">
+
+    <div class="ui field">
+        {{textarea class="form-control" maxlength="500" placeholder="Add a comment" value=_commentText}}
+    </div>
+    <div class="ui field">
+        <button {{action 'addComment' _commentText}} class="ui green button" disabled={{if (not _commentText) true}}>
+            Add comment
+        </button>
+    </div>
 </div>
