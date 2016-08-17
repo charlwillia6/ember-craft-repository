@@ -4,6 +4,19 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    setupController: function (controller) {
+        this._super(controller);
+        let user = this.modelFor('application');
+
+        if (user) {
+            controller.set('currentUser', user);
+        } else {
+            this.get('store').findRecord('user', 'me').then(function (user) {
+                controller.set('currentUser', user);
+            });
+        }
+    },
+
     model() {
         if(this.get('session.session.isAuthenticated')) {
             // console.log("1: ", this.get('session'));
