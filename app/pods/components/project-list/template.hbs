@@ -1,67 +1,48 @@
 <!-- app/pods/templates/components/project-list.hbs -->
 {{!-- Project List Widget --}}
-
-    <div class="ui segments">
-        <div class="ui inverted black segment">
-            <div class="ui two column grid fluid">
-                <div class="row">
-                    <div class="left floated left aligned column">
-                        <div class="bold">
-                            Projects
-                        </div>
+<div class="ui segments">
+    <div class="ui inverted black segment">
+        <div class="ui two column grid fluid">
+            <div class="row">
+                <div class="left floated left aligned column">
+                    <div class="bold">
+                        Projects
                     </div>
-                    <div class="right floated right aligned column">
-                        <div class="content">
-                            Total Projects: {{pagination.total}}
-                        </div>
+                </div>
+                <div class="right floated right aligned column">
+                    <div class="content">
+                        Total Projects: {{pagination.total}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="ui segment">
-            <div class="ui two column grid vertically fluid">
-                {{#each list as |project|}}
-                    {{#link-to 'projects.detail' project.id class="row"}}
-                        {{!-- <div class="row"> --}}
-                            <div class="left floated left aligned column">
-                                    <div class="ui brown header">
-                                        <i class="grey archive icon"></i>
-                                        {{project.title}}
-                                    </div>
-                            </div>
-                            <div class="right floated right aligned column">
-                                {{moment-format project.dateModified}}
-                            </div>
-                        {{!-- </div> --}}
-                    {{/link-to}}
-                {{/each}}
-            </div>
-        </div>
-        <div class="ui inverted black segment pagination footbar">
-            {{pagination-control-ui
-                currentPage=page
-                pageCount=totalPages
-                next=(action 'next')
-                previous=(action 'previous')
-                goToPage=(action 'goToPage')
-            }}
+    </div>
+    <div class="ui segment">
+        <div class="ui two column grid vertically fluid">
+            {{#each list as |project|}}
+                {{#link-to 'projects.detail' project.id class="row"}}
+                    {{!-- <div class="row"> --}}
+                        <div class="left floated left aligned column">
+                                <div class="ui brown header">
+                                    <i class="grey archive icon"></i>
+                                    {{project.title}}
+                                </div>
+                        </div>
+                        <div class="right floated right aligned column">
+                            {{moment-format project.dateModified}}
+                        </div>
+                    {{!-- </div> --}}
+                {{/link-to}}
+            {{/each}}
         </div>
     </div>
-
-{{!-- Project List Widget Modal --}}
-{{!-- {{#ui-modal name="delete-project" class="delete-project large" onApprove=(action 'confirmDelete') onDeny=(action 'cancelDelete')}}
-    <div class="header">
-        Delete Project?
+    <div class="ui inverted black segment pagination footbar">
+        {{pagination-control-ui
+            currentPage=page
+            pageCount=totalPages
+            next=(action 'next')
+            previous=(action 'previous')
+            goToPage=(action 'goToPage')
+        }}
     </div>
-    <div class="content">
-        <p>Are you sure you want to delete this project: {{project.title}}?</p>
-    </div>
-    <div class="actions">
-        <button class="ui black cancel button">
-            <i class="close icon"></i>Cancel
-        </button>
-        <button class="ui red approve right labeled icon button">
-            <i class="checkmark icon"></i>Delete
-        </button>
-    </div>
-{{/ui-modal}} --}}
+</div>

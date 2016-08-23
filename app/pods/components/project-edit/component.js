@@ -50,7 +50,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
                 "id": "uncategorized",
                 "text": "Uncategorized"
             }
-        ]
+        ];
         this._super(...arguments);
         this.set('categories', categories);
         this.set('selectedModel', this.get('project'));

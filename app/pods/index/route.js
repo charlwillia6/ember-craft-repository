@@ -10,9 +10,14 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         let user = this.modelFor('application');
 
         if (user) {
+            console.log('yep');
+            console.log(user.get('fullName'));
             controller.set('currentUser', user);
+            console.log(controller.get('currentUser.fullName'));
         } else {
+            console.log(this.get('store').findRecord('user', 'me'));
             this.get('store').findRecord('user', 'me').then(function (user) {
+                console.log('nope');
                 controller.set('currentUser', user);
             });
         }

@@ -11,6 +11,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     classNames: ['project', 'list'],
     init() {
         this._super(...arguments);
+
         if (this.get('session.isAuthenticated')) {
             this._setCurrentUser();
         }

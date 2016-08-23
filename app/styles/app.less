@@ -1,6 +1,11 @@
 /** app/styles/app.less **/
+@import "src/semantic";
 @import "tags-widget/style";
-@import "src/semantic.less";
+@import "file-widget/style";
+@import "file-browser/style";
+@import "log-detail/style";
+@import "navbar-main/style";
+@import "footer-main/style";
 
 @backgroundcolor: #fbfbfb;
 
@@ -128,96 +133,11 @@ body {
   border-top: none;
 }
 
-/** Navbar Styles **/
-.ui.raised.segment.desktop.navbar {
-  padding-top: 0;
-}
-
-.ui.segment.mobile.navbar {
-  margin-top: 0;
-}
-
-/** Navbar New Styles **/
-
-.ui.grid.masthead.segment {
-  background-image:  url("/assets/images/header-bg.png");
-  color: #fbf8ff;
-  -webkit-background-size: cover;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  font-size: 140%;
-  overflow: visible;
-  -webkit-box-shadow: 0 -20px 10px 0 rgb(244, 244, 244) inset !important;
-  box-shadow: 0 -15px 10px 0 #e0e0e0 inset !important;
-}
-
-
-.masthead.segment img {
-  margin: 0;
-  padding: 0;
-  top: 0;
-}
-
-.ui.grid.masthead.footer {
-  background-color: #434e55;
-  color: #f4f4f4;
-  -webkit-background-size: cover;
-  background-size: cover;
-  margin: 0;
-  padding: 20px;
-  overflow: visible;
-  -webkit-box-shadow: 0 -20px 10px 0 rgb(251, 251, 251) inset !important;
-  box-shadow: 0 -15px 10px 0 #58656c inset !important;
-}
-
-.craft.logo {
-  background-image: url("/assets/images/craft.png");
-  width: 150px;
-  height: 78px;
-  opacity: 1.0;
-  margin-left: 3px;
-}
-
-.craft.logo.mobile {
-  background-image: url("/assets/images/craft.png");
-  width: 150px;
-  height: 78px;
-  margin-top: 5px;
-}
-
-.user.login.label {
-  padding: 10px;
-  width: 240px;
-  color: white;
-
-}
-
-.detailed {
-	font-size: 140%;
-}
-
-.ui.dropdown.menuheader > .text {
-  color: black !important;
-}
-
-.ui.inverted.menu .item, .ui.inverted.menu .item > a:not(.ui), .ui.dropdown > .default.text, .ui.default.dropdown > .text  {
-  color: white !important;
-}
-
-.menu-horiz {
-  float: right;
-}
-
-.ui.dropdown.item {
-  width: auto;
-}
-
-.ui.menu .dropdown.item .menu {
-  margin-left:auto; margin-right:0;
-  right: 0;
-  width:250px;
-}
-
-
-
+/** Old Navbar Styles **/
+// .ui.raised.segment.desktop.navbar {
+//   padding-top: 0;
+// }
+//
+// .ui.segment.mobile.navbar {
+//   margin-top: 0;
+// }
