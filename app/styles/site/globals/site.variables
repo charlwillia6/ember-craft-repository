@@ -4,39 +4,3 @@
 
 @imagePath : 'themes/default/assets/images';
 @fontPath  : 'themes/default/assets/fonts';
-
-<<<<<<< Updated upstream
-
-
-=======
-/*-------------------
-      Base Sizes
---------------------*/
-
-/* This is the single variable that controls them all */
-@emSize   : 18px;
-
-/* The size of page text  */
-@fontSize : 120%;
-
-/*******************************
-     User Global Variables
-*******************************/
-
-@primaryColor   : @black;
-@secondaryColor : @grey;
-@red            : #ce0a32;
-@orange         : #FE9A76;
-@yellow         : #FFD700;
-@olive          : #32CD32;
-@green          : #016936;
-@teal           : #008080;
-@blue           : #2c88ef;
-@violet         : #EE82EE;
-@purple         : #B413EC;
-@pink           : #ff30d5;
-@brown          : #a56057;
-@grey           : #aeaeae;
-@black          : #434e55;
-@white          : #FFFFFF;
->>>>>>> Stashed changes
