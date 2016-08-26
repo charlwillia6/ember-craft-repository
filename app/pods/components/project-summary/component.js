@@ -4,8 +4,9 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    tagName: 'project-summary',
-    classNames: ['project', 'summary'],
+    attributeBindings:['elementId:id'],
+    elementId: 'project-summary',
+    classNames: ['project', 'summary', 'ui', 'segments'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     init() {

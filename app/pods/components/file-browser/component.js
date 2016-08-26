@@ -4,7 +4,8 @@ import layout from './template';
 
 export default FileBrowser.extend({
     layout,
-    tagName: ['file-browser'],
+    attributeBindings:['elementId:id'],
+    elementId: 'file-browser',
     classNames: ['file', 'browser'],
     actions: {
         openNode() {

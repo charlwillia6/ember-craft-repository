@@ -4,6 +4,7 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    tagName: 'footer-main',
+    attributeBindings:['elementId:id'],
+    elementId: 'footer-main',
     className: ['footer', 'main']
 });

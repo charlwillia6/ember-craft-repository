@@ -1,5 +1,5 @@
 <!-- app/pods/components/comment-detail/template.hbs -->
-<div>
+<div class="comment">
     {{#if comment.deleted}}
         <div>
             Comment deleted
@@ -8,18 +8,86 @@
             {{/if}}
         </div>
     {{else}}
-        <div>
-            <strong>
+        <a class="avatar">
+            <!-- TODO: Add customer avatar helper -->
+            <img src="http://semantic-ui.com/images/avatar/small/christian.jpg">
+        </a>
+        <div class="content">
+            <!-- TODO: Add Author Helper -->
+            <a class="author">
+                Name of User
+            </a>
+
+            <!-- TODO: Add More Metadata? -->
+            <div class="metadata">
                 {{comment.dateCreated}}
-            </strong>:
-            {{# if comment.canEdit}}
-                {{input value=comment.content}}
-                <button {{action editComment comment}} class="ui green button">Edit</button>
-                <button {{action deleteComment comment}} class="ui red button">Delete</button>
+            </div>
+
+            {{#if comment.canEdit}}
+                <div class="text">
+                    {{input value=comment.content}}
+                </div>
+                <div class="actions">
+                    <a class="edit" {{action editComment comment}}>Edit</a>
+                    <a class="hide" {{action deleteComment comment}}>Delete</a>
+                    <!-- TODO: Add ability to reply -->
+                    <a class="reply">Reply</a>
+                </div>
+
+                {{!-- <button {{action editComment comment}} class="ui green button">Edit</button>
+                <button {{action deleteComment comment}} class="ui red button">Delete</button> --}}
             {{else}}
-                <span>{{comment.content}}</span>
-                <button {{action reportComment comment}} class="ui yellow button">Report</button>
+                <div class="text">
+                    {{comment.content}}
+                </div>
+                <div class="actions">
+                    <a class="hide" {{action reportComment comment}}>Report</a>
+                    <!-- TODO: Add ability to reply -->
+                    <a class="reply">Reply</a>
+                </div>
+
+                {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}
             {{/if}}
+            <!-- TODO: Add Logic to have nested comments when user replies (See Semantic "Threaded Comments") -->
+            {{!-- {{#if some kind of logic}}
+                <div class="comments">
+                    <div class="comment">
+                        <a class="avatar">
+                            <!-- TODO: Add customer avatar helper -->
+                            <img src="http://semantic-ui.com/images/avatar/small/christian.jpg">
+                        </a>
+                        <div class="content">
+                            <a class="author">
+                                Name of User
+                            </a>
+                            <!-- TODO: Add More Metadata? -->
+                            <div class="metadata">
+                                {{comment.dateCreated}}
+                            </div>
+                            {{#if comment.canEdit}}
+                                <div class="text">
+                                    {{input value=comment.content}}
+                                </div>
+                                <div class="actions">
+                                    <a class="edit" {{action editComment comment}}>Edit</a>
+                                    <a class="hide" {{action deleteComment comment}}>Delete</a>
+                                    <!-- TODO: Add ability to reply -->
+                                    <a class="reply">Reply</a>
+                                </div>
+                            {{else}}
+                                <div class="text">
+                                    {{comment.content}}
+                                </div>
+                                <div class="actions">
+                                    <a class="hide" {{action reportComment comment}}>Report</a>
+                                    <!-- TODO: Add ability to reply -->
+                                    <a class="reply">Reply</a>
+                                </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            {{/if}} --}}
         </div>
     {{/if}}
 </div>

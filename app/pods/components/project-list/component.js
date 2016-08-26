@@ -7,7 +7,8 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
     currentUser: Ember.inject.service(),
     user: null,
-    tagName: 'project-list',
+    attributeBindings:['elementId:id'],
+    elementId: 'project-list',
     classNames: ['project', 'list'],
     init() {
         this._super(...arguments);
@@ -24,6 +25,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     }),
     loadProfileList: function() {
         var user = this.get('user');
+
         if(user) {
             this.set('user', user);
         } else {

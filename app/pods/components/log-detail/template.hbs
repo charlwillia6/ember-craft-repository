@@ -1,50 +1,48 @@
 <!-- app/pods/components/log-detail/template.js -->
-<div class="ui segments">
-    <div class="ui segment">
-        <h4 class="ui header">Recent Activity</h4>
-    </div>
-    <div class="ui segment">
-        <table class="ui table">
-            <thead>
+<div class="ui segment">
+    <h4 class="ui header">Recent Activity</h4>
+</div>
+<div class="ui segment">
+    <table class="ui table">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Original Project</th>
+                <th>User</th>
+                <th>Current Project</th>
+                <th>Date</th>
+                <th>Additional Params Included</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each model-logs as |project-log|}}
                 <tr>
-                    <th>Action</th>
-                    <th>Original Project</th>
-                    <th>User</th>
-                    <th>Current Project</th>
-                    <th>Date</th>
-                    <th>Additional Params Included</th>
+                    <td>
+                        {{project-log.action}}
+                    </td>
+                    <td>
+                        <a href="{{project-log.originalNode.links.html}}">{{project-log.originalNode.title}}<!--:  {{project-log.originalNode.id}}--></a>
+                    </td>
+                    <td>
+                        <a href="{{project-log.user.links.html}}">{{project-log.user.givenName}}</a>
+                    </td>
+                    <td>
+                        <a href="{{project-log.node.links.html}}">{{project-log.node.title}}<!--: {{project-log.node.id}}--></a>
+                    </td>
+                    <td>
+                        {{moment-format project-log.date}}
+                    </td>
+                    <td>
+                        {{#each-in project-log.params as |key value|}}
+                            <div class="ui small label">
+                                {{key}}
+                            </div>
+                        {{/each-in}}
+                        {{if project-log.linkedNode "linked_node"}}
+                        {{if project-log.templateNode "template_node"}}
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {{#each model-logs as |project-log|}}
-                    <tr>
-                        <td>
-                            {{project-log.action}}
-                        </td>
-                        <td>
-                            <a href="{{project-log.originalNode.links.html}}">{{project-log.originalNode.title}}<!--:  {{project-log.originalNode.id}}--></a>
-                        </td>
-                        <td>
-                            <a href="{{project-log.user.links.html}}">{{project-log.user.givenName}}</a>
-                        </td>
-                        <td>
-                            <a href="{{project-log.node.links.html}}">{{project-log.node.title}}<!--: {{project-log.node.id}}--></a>
-                        </td>
-                        <td>
-                            {{moment-format project-log.date}}
-                        </td>
-                        <td>
-                            {{#each-in project-log.params as |key value|}}
-                                <div class="ui small label">
-                                    {{key}}
-                                </div>
-                            {{/each-in}}
-                            {{if project-log.linkedNode "linked_node"}}
-                            {{if project-log.templateNode "template_node"}}
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+            {{/each}}
+        </tbody>
+    </table>
 </div>

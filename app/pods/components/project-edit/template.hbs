@@ -30,7 +30,7 @@
                 <div class="column">
                     <label class="bold">Category:</label>
                     <div class="ui fluid input">
-                        {{#ui-dropdown class="selection" onChange=(action 'privacyChange')}}
+                        {{#ui-dropdown class="selection" selected=project.category onChange=(action 'categoryChange')}}
                             <div class="default text">Categories</div>
                             <i class="dropdown icon"></i>
                             <div class="menu">
@@ -48,10 +48,10 @@
                     <label class="bold">Privacy Settings:</label>
                     <div class="inline fields">
                         <div class="inline field">
-                            {{ui-radio name="isPublic" value=1 current=isPublic label="Public"}}
+                            {{ui-radio name="isPublic" value=1 current=project.public label="Public" onChange=(action 'isPublicChange' value='target.value')}}
                         </div>
                         <div class="inline field">
-                            {{ui-radio name="isPublic" value=0 current=isPublic label="Private"}}
+                            {{ui-radio name="isPublic" value=0 current=project.public label="Private" onChange=(action 'isPublicChange' value='target.value')}}
                         </div>
                     </div>
                 </div>
@@ -68,5 +68,4 @@
             <i class="checkmark icon"></i>
         </button>
     </div>
-
 {{/ui-modal}}

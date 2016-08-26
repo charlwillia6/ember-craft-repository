@@ -6,27 +6,27 @@ export default Ember.Component.extend({
     layout,
     fileManager: Ember.inject.service(),
     store: Ember.inject.service(),
+    attributeBindings:['elementId:id'],
+    elementId: 'file-actions',
+    classNames: ['file', 'actions'],
     actions: {
         download() {
             let file = this.get('file');
             let url = file.get('links').download;
             window.open(url);
         },
-
         updateContents(contents) {
             let file = this.get('file');
             let fm = this.get('fileManager');
 
             fm.updateContents(file, contents);
         },
-
         addSubfolder(name) {
             let folder = this.get('file');
             if (name) {
                 this.get('fileManager').addSubfolder(folder, name);
             }
         },
-
         uploadFiles(files) {
             let fm = this.get('fileManager');
             let folder = this.get('file');
@@ -35,14 +35,12 @@ export default Ember.Component.extend({
                 fm.uploadFile(folder, file.name, file);
             }
         },
-
         rename(newName) {
             let file = this.get('file');
             if (newName) {
                 this.get('fileManager').rename(file, newName);
             }
         },
-
         deleteFile() {
             let file = this.get('file');
             let p = this.get('fileManager').deleteFile(file);
@@ -50,7 +48,6 @@ export default Ember.Component.extend({
                 this.get('onChange')();
             });
         },
-
         moveFile(folderId) {
             let file = this.get('file');
             let store = this.get('store');
