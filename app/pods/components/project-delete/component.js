@@ -4,8 +4,6 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'project-delete',
     tagName: '',
     classNames: ['project', 'delete'],
     responseError: '',

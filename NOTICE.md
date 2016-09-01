@@ -1,9 +1,5 @@
 ember-craft-repository gratefully acknowledges the use of some third-party code.
 
-
-## Infinity custom mixin
-Adapts and extends [ember-infinity](https://github.com/hhff/ember-infinity).
-
 ## Ember-OSF
 Uses the Ember-OSF project for creating our own custom interface [ember-osf](https://github.com/centerforopenscience/ember-osf).
 

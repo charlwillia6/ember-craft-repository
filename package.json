@@ -1,6 +1,6 @@
 {
   "name": "ember-craft-repository",
-  "version": "0.0.1",
+  "version": "0.0.2.beta",
   "description": "Dashboard created with ember.js on top of OSF",
   "private": true,
   "directories": {
@@ -47,6 +47,6 @@
     "ember-toastr": "^1.4.1",
     "ember-truth-helpers": "^1.2.0",
     "loader.js": "^4.0.1",
-    "semantic-ui-ember": "^1.0.0"
+    "semantic-ui-ember": "2.0.0-beta.0"
   }
 }

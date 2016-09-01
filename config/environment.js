@@ -38,6 +38,16 @@ module.exports = function(environment) {
     },
     'ember-cli-mirage': {
         enabled: false
+    },
+    'ember-toastr': {
+      injectAs: 'toast',
+      toastrOptions: {
+        closeButton: true,
+        progressBar: true,
+        onclick: null,
+        timeOut: '10000',
+        extendedTimeOut: '1000'
+      }
     }
   };
 
