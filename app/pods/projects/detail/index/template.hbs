@@ -49,7 +49,7 @@
 {{log-detail model-logs=model.logs}}
 
 {{!-- Create Child Project --}}
-<div class="ui segments">
+{{!-- <div class="ui segments">
     <div class="ui segment">
         <h4 class="ui header">Create Child Project</h4>
     </div>
@@ -88,7 +88,8 @@
             </div>
             <button {{action "addChild" title description category }} class="ui green button">Create</button>
         </div>
-    </div>
+    </div> --}}
+
     {{!-- Create Multiple Child Projects --}} <!-- TODO: Is this necessary? -->
     {{!-- <div class="ui segment">
         <h4 class="ui header">Create Multiple Child Projects (Bulk)</h4>
@@ -101,8 +102,8 @@
         <label>Title:</label>
         {{input type="text" value=child2 placeholder="Component's title" required=true}}
         <p><button {{action "addChildren" child1 child2 }}>Create</button></p>
-    </div> --}}
-</div>
+    </div>
+</div>--}}
 
 <!-- TODO: Delete this section of code after file browser is functioning. -->
 {{!-- <div class="ui segments">

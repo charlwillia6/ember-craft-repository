@@ -1,0 +1,62 @@
+<!-- app/pods/templates/components/projects-list.hbs -->
+{{!-- Projects List Widget --}}
+<div class="ui segments">
+    <div class="ui inverted black segment">
+        <div class="ui two column grid fluid">
+            <div class="row">
+                <div class="left floated left aligned column">
+                    <div class="bold">
+                        Projects
+                    </div>
+                </div>
+                <div class="right floated right aligned column">
+                    <div class="content">
+                        Total Projects: {{pagination.total}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui segment">
+        {{!-- Initialize Loader --}}
+        {{#if isLoading}}
+            <div class="ui active inverted dimmer">
+                <div class="ui big text loader">
+                    Loading...
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+        {{/if}}
+        <div class="ui two column grid vertically fluid">
+            {{#each list as |project|}}
+                {{#link-to 'projects.detail' project.id class="row"}}
+                    <div class="left floated left aligned column">
+                        <div class="ui brown header">
+                            <i class="grey archive icon"></i>
+                            {{project.title}}
+                        </div>
+                    </div>
+                    <div class="right floated right aligned column">
+                        {{moment-format project.dateModified}}
+                    </div>
+                {{/link-to}}
+            {{/each}}
+        </div>
+    </div>
+    {{!-- Pagination Control UI Component--}}
+    <div class="ui inverted black segment pagination footbar">
+        {{pagination-control-ui
+            currentPage=page
+            pageCount=totalPages
+            next=(action 'next')
+            previous=(action 'previous')
+            goToPage=(action 'goToPage')
+        }}
+    </div>
+</div>

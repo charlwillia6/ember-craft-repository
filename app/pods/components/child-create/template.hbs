@@ -1,14 +1,14 @@
-<!-- app/pods/components/project-create.hbs -->
+<!-- app/pods/components/child-project-create/template.hbs -->
 {{!-- Create Project Button Widget --}}
-<button class="ui green button" {{action 'requestProjectCreate' 'create-project'}}>
-    <i class="plus icon"></i> Create Project
+<button class="ui green button" {{action 'requestChildCreate' 'child-create'}}>
+    <i class="plus icon"></i> Create Child Project
 </button>
 
 {{!-- Create Project Modal Widget --}}
-{{#ui-modal name="project-create" class="project create"}}
+{{#ui-modal name="childt-create" class="child create"}}
     <i class="close icon"></i>
     <div class="header">
-        Create Project?
+        Create Child Project?
     </div>
     <div class="content">
         <div class="ui two column stackable grid">
@@ -25,14 +25,14 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="actions">
-        <button class="ui black cancel button" {{action 'cancelProjectCreate' 'project-create'}}>
-            <i class="close icon"></i>Cancel
-        </button>
-        <button class="ui green approve right labeled icon button" {{action 'confirmProjectCreate' 'response-message'}}>
-            <i class="checkmark icon"></i>Create
-        </button>
+        <div class="actions">
+            <button class="ui black cancel button" {{action 'cancelChildCreate' 'project-create'}}>
+                <i class="close icon"></i>Cancel
+            </button>
+            <button class="ui green approve right labeled icon button" {{action 'confirmChildCreate' 'response-message'}}>
+                <i class="checkmark icon"></i>Create
+            </button>
+        </div>
     </div>
 {{/ui-modal}}
 

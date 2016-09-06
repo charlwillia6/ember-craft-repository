@@ -27,6 +27,18 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
         closeMessage: function() {
             this.set('responseSuccess', '');
             this.set('responseError', '');
+        },
+        // TODO: Put these actions in file component
+        fileDetail(file) {
+            console.log(this.get('node'));
+            console.log(file.get('provider'));
+            this.transitionToRoute('projects.detail.files.provider.file',
+                                   this.get('node'),
+                                   file.get('provider'),
+                                   file);
+        },
+        nodeDetail(project) {
+            this.transitionToRoute('projects.detail', project);
         }
     }
 });

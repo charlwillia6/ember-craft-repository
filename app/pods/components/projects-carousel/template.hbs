@@ -24,17 +24,14 @@
         {{!-- Edit Project Button --}}
         {{project-edit project=model}}
 
-        {{!-- Create Child Project Button --}}
-        {{child-create}}
-
         {{!-- Request Delete Project Button --}}
         {{project-delete project=model transitionTo='transitionToProjectList'}}
 
         {{!-- Destroy Project Button --}}
-        {{!-- <button class="ui red button" {{action "destroyProject"}}>
+        <button class="ui red button" {{action "destroyProject"}}>
             <i class="trash icon"></i>
             Destroy this Project
-        </button> --}}
+        </button>
     </div>
     <div class="ui segment">
         {{tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
