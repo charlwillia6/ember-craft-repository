@@ -28,6 +28,7 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
             this.set('responseSuccess', '');
             this.set('responseError', '');
         },
+        
         // TODO: Put these actions in file component
         fileDetail(file) {
             console.log(this.get('node'));

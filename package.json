@@ -50,6 +50,7 @@
     "semantic-ui-ember": "2.0.0-beta.0"
   },
   "dependencies": {
+    "ember-collection": "^1.0.0-alpha.5",
     "ember-responsive": "^1.2.7"
   }
 }

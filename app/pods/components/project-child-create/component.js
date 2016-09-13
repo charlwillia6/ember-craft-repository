@@ -5,18 +5,18 @@ import layout from './template';
 export default Ember.Component.extend({
     layout,
     attributeBindings:['elementId:id'],
-    elementId: 'child-create',
+    elementId: 'project-child-create',
     tagName: '',
-    classNames: ['child', 'create'],
+    classNames: ['project', 'child', 'create'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     responseError: '',
     responseSuccess: '',
     actions: {
-        requestChildCreate(name) { // jshint ignore:line
-            $('.ui.modal.child.create').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
+        requestProjectChildCreate(name) { // jshint ignore:line
+            $('.ui.modal.project.child.create').modal('setting', 'closable', false).modal('show'); // jshint ignore:line
         },
-        confirmChildCreate(name) { // jshint ignore:line
+        confirmProjectChildCreate(name) { // jshint ignore:line
             var self = this;
             var project = this.get('store').createRecord('node', {
                 title: this.get('title'),
@@ -48,12 +48,12 @@ export default Ember.Component.extend({
                 }, 300);
             });
         },
-        cancelChildCreate(name) { // jshint ignore:line
+        cancelProjectChildCreate(name) { // jshint ignore:line
             this.set('title', '');
             this.set('description', '');
             // self.set('responseError', '');
             // self.set('responseSuccess', '');
-            $('.ui.modal.child.create').modal().modal('hide'); // jshint ignore:line
+            $('.ui.modal.project.child.create').modal().modal('hide'); // jshint ignore:line
         }
     }
 });

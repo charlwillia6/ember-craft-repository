@@ -4,6 +4,7 @@ import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-contr
 
 export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
     _url: null,
+    // TODO: Comeback to the dropzone later
     dropzoneOptions: {
         method: 'PUT'
     },
