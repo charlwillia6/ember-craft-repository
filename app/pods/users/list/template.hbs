@@ -3,36 +3,43 @@
 <h2 class="ui header">Users</h2>
 
 {{!-- User List --}}
-<div class="ui four column doubling grid">
-{{#each model as |user|}}
-    <div class="column">
-        <div class="ui fluid card">
+<div class="ui four doubling cards">
+    {{#each model as |user|}}
+        <div class="ui card">
             <div class="content">
-                <div class="header">{{user.fullName}}</div>
+                <h3 class="ui header">{{user.fullName}}</h3>
             </div>
             <div class="content">
-                <h4 class="ui sub header">Details</h4>
                 <div class="ui small feed">
                     <div class="event">
                         <div class="content">
-                            <label class="bold">Date Registered: </label>
-                            <p>{{moment-format user.dateRegistered}}</p>
+                            <div class="summary">
+                                <div class="ui list">
+                                    <div class="item">
+                                        <div class="content">
+                                            <h5 class="ui blue sub header">
+                                                <i class="calendar icon"></i>Date Registered
+                                            </h5>
+                                            <div class="description">
+                                                {{moment-format user.dateRegistered}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="extra content">
-                {{!-- View on OSF Button --}}
-                {{!-- <a href="{{user.links.html}}" target="_blank" class="ui blue button"> View On OSF</a> --}}
-                {{link-to 'Detail' 'users.detail' user.id class="ui orange button"}}
-            </div>
+            {{!-- View on OSF Button --}}
+            {{!-- <a href="{{user.links.html}}" target="_blank" class="ui blue button"> View On OSF</a> --}}
+            {{link-to 'Detail' 'users.detail' user.id class="ui bottom attached button"}}
         </div>
-    </div>
-{{/each}}
+    {{/each}}
 </div>
 
 {{!-- Pagination --}}
-<div class="ui segment pagination">
+<div class="ui inverted black segment pagination">
     {{pagination-control-ui
         currentPage=page
         pageCount=totalPages
