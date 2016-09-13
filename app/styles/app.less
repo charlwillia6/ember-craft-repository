@@ -1,6 +1,11 @@
 /** app/styles/app.less **/
+@import "src/semantic";
 @import "tags-widget/style";
-@import "src/semantic.less";
+@import "file-widget/style";
+@import "file-browser/style";
+@import "log-detail/style";
+@import "navbar-main/style";
+@import "footer-main/style";
 
 @backgroundcolor: #fbfbfb;
 
@@ -30,36 +35,11 @@ body {
   font: 1.0em Helvetica, Arial, sans-serif;
 }
 
-.header-fit {
-  margin      : 5px 0 3px !important;
-  padding-left: 0 !important;
-}
-
-.img-head {
-  width         : 38px !important;
-  vertical-align: middle;
-  margin        : 0;
-  padding       : 0;
-}
-
-.img-head + span {
-  margin-left: 10px;
-}
-
-.header-link {
-  color: black;
-}
-
-.header-link:focus,
-.header-link:hover,
-.header-link:visited {
-  color: black;
-}
-
 .bold {
   font-weight: bold;
 }
 
+/** Execution Dashboard **/
 .input-status {
   color  : white !important;
   padding: 10px;
@@ -74,150 +54,92 @@ body {
   background-color: #BB1C1C;
 }
 
-.title.header {
-  padding: 0 !important;
-}
-
-.inverted.menu .item {
-  padding-top   : 0;
-  padding-bottom: 0;
-}
-
-.secondary.menu {
-  margin-bottom: 0;
-}
-
-.inverted.menu {
-  margin-top: 0;
-}
-
-.item.logout-button:focus,
-.item.logout-button:hover,
-.item.logout-button:visited {
-  background-color: transparent;
-}
-
 /** Pagination Styles **/
 .ui.segment.pagination {
   padding: 0;
 }
 
 /** Project List Component Styles **/
-.project.list .ui.segment:first-child,
-.project.list .ui.segment:last-child {
+.projects.list .ui.segment:first-child,
+.projects.list .ui.segment:last-child {
   background-color: rgba(26, 88, 112, 0.15);
 }
 
-.project.list .ui.two.column.grid.vertically.fluid .row {
+.projects.list .ui.two.column.grid.vertically.fluid .row {
   padding-top   : .9em;
   padding-bottom: .9em;
   color         : #212121;
   border-bottom : 1px solid rgba(34, 36, 38, 0.15);
 }
 
-.project.list .ui.two.column.grid.vertically.fluid a.row:hover {
+.projects.list .ui.two.column.grid.vertically.fluid a.row:hover {
   background-color: rgba(26, 88, 112, 0.15);
 }
 
-.project.list .ui.two.column.grid.vertically.fluid .column {
+.projects.list .ui.two.column.grid.vertically.fluid .column {
   padding-top   : 0;
   padding-bottom: 0;
 }
 
-.project.list .pagination.footbar {
+.projects.list .pagination.footbar {
   border-top: none;
 }
 
-/** Navbar Styles **/
-.ui.raised.segment.desktop.navbar {
-  padding-top: 0;
-}
-
-.ui.segment.mobile.navbar {
-  margin-top: 0;
-}
-
-/** Navbar New Styles **/
-
-.ui.grid.masthead.segment {
-  background-image:  url("/assets/images/header-bg.png");
-  color: #fbf8ff;
-  -webkit-background-size: cover;
-  background-size: cover;
-  margin: 0;
-  padding: 0;
-  font-size: 140%;
-  overflow: visible;
-  -webkit-box-shadow: 0 -20px 10px 0 rgb(244, 244, 244) inset !important;
-  box-shadow: 0 -15px 10px 0 #e0e0e0 inset !important;
-}
-
-
-.masthead.segment img {
-  margin: 0;
-  padding: 0;
-  top: 0;
-}
-
-.ui.grid.masthead.footer {
-  background-color: #434e55;
-  color: #f4f4f4;
-  -webkit-background-size: cover;
-  background-size: cover;
-  margin: 0;
-  padding: 20px;
-  overflow: visible;
-  -webkit-box-shadow: 0 -20px 10px 0 rgb(251, 251, 251) inset !important;
-  box-shadow: 0 -15px 10px 0 #58656c inset !important;
-}
-
-.craft.logo {
-  background-image: url("/assets/images/craft.png");
-  width: 150px;
-  height: 78px;
+/** Toastr Styles **/
+#toast-container > div {
   opacity: 1.0;
-  margin-left: 3px;
 }
 
-.craft.logo.mobile {
-  background-image: url("/assets/images/craft.png");
-  width: 150px;
-  height: 78px;
-  margin-top: 5px;
-}
-
-.user.login.label {
-  padding: 10px;
-  width: 240px;
-  color: white;
-
-}
-
-.detailed {
-	font-size: 140%;
-}
-
-.ui.dropdown.menuheader > .text {
-  color: black !important;
-}
-
-.ui.inverted.menu .item, .ui.inverted.menu .item > a:not(.ui), .ui.dropdown > .default.text, .ui.default.dropdown > .text  {
-  color: white !important;
-}
-
-.menu-horiz {
-  float: right;
-}
-
-.ui.dropdown.item {
-  width: auto;
-}
-
-.ui.menu .dropdown.item .menu {
-  margin-left:auto; margin-right:0;
-  right: 0;
-  width:250px;
-}
-
-
-
+/** Old Navbar Styles **/
+// .ui.raised.segment.desktop.navbar {
+//  padding-top: 0;
+// }
+//
+// .ui.segment.mobile.navbar {
+//  margin-top: 0;
+// }
+//
+// .header-fit {
+//  margin      : 5px 0 3px !important;
+//  padding-left: 0 !important;
+// }
+//
+// .img-head {
+//  width         : 38px !important;
+//  vertical-align: middle;
+//  margin        : 0;
+//  padding       : 0;
+// }
+//
+// .img-head + span {
+//  margin-left: 10px;
+// }
+//
+// .header-link {
+//  color: black;
+// }
+//
+// .header-link:focus,
+// .header-link:hover,
+// .header-link:visited {
+//  color: black;
+// }
+//
+// .title.header {
+//  padding: 0 !important;
+// }
+//
+//
+// .secondary.menu {
+//  margin-bottom: 0;
+// }
+//
+// .inverted.menu {
+//  margin-top: 0;
+// }
+//
+// .item.logout-button:focus,
+// .item.logout-button:hover,
+// .item.logout-button:visited {
+//  background-color: transparent;
+// }

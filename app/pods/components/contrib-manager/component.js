@@ -10,8 +10,9 @@ export default Ember.Component.extend({
     layout: layout,
     permissionChanges: {},
     bibliographicChanges: {},
-    tagName: '',
-    classNames: ['contributors'],
+    attributeBindings:['elementId:id'],
+    elementId: 'contributor-manager',
+    classNames: ['contributor', 'manager', 'ui', 'segments'],
     actions: {
         // TODO: Reset values after you addContributor and refresh
         addContributor(userId, permission, isBibliographic) {

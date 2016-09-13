@@ -1,0 +1,19 @@
+<!-- app/pods/components/file-chooser/template.hbs -->
+{{#if hasBlock}}
+    {{yield this}}
+{{else}}
+    {{input type='file' multiple=multiple change=(action 'onFileInputChange')}}<br />
+    You can also drag and drop a file from your computer.
+
+    {{#if errorMessage}}
+        <div>Error: {{errorMessage}}</div>
+    {{/if}}
+    {{#if files}}
+        <h4 class="ui header">Chosen files</h4>
+        <ul>
+            {{#each files as |file|}}
+                <li>{{file.name}}</li>
+            {{/each}}
+        </ul>
+    {{/if}}
+{{/if}}

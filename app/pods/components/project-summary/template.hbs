@@ -1,5 +1,5 @@
 <!-- app/pods/components/project-summary/template.hbs -->
-<div class="ui segments">
+{{!-- <div class="ui segments"> --}}
     <div class="ui segment">
         <div class="ui two column grid">
             <div class="column">
@@ -21,6 +21,22 @@
         <span class="bold">Description: </span>{{model.description}}<br />
     </div>
     <div class="ui segment">
+        {{!-- Edit Project Button --}}
+        {{project-edit project=model}}
+
+        {{!-- Create Child Project Button --}}
+        {{project-child-create}}
+
+        {{!-- Request Delete Project Button --}}
+        {{project-delete project=model transitionTo='transitionToProjectList'}}
+
+        {{!-- Destroy Project Button --}}
+        {{!-- <button class="ui red button" {{action "destroyProject"}}>
+            <i class="trash icon"></i>
+            Destroy this Project
+        </button> --}}
+    </div>
+    <div class="ui segment">
         {{tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
     </div>
-</div>
+{{!-- </div> --}}

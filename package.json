@@ -47,6 +47,10 @@
     "ember-toastr": "^1.4.1",
     "ember-truth-helpers": "^1.2.0",
     "loader.js": "^4.0.1",
-    "semantic-ui-ember": "^1.0.0"
+    "semantic-ui-ember": "2.0.0-beta.0"
+  },
+  "dependencies": {
+    "ember-collection": "^1.0.0-alpha.5",
+    "ember-responsive": "^1.2.7"
   }
 }

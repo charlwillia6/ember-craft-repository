@@ -1,9 +1,11 @@
-// app/pods/components/project-list/component.js
+// app/pods/components/projects-list/component.js
 import Ember from 'ember';
 import layout from './template';
 
 export default Ember.Component.extend({
     layout,
+    attributeBindings:['elementId:id'],
+    elementId: 'project-create',
     tagName: '',
     classNames: ['project', 'create'],
     store: Ember.inject.service(),

@@ -1,4 +1,4 @@
-// app/pods/components/project-list/component.js
+// app/pods/components/projects-list/component.js
 import Ember from 'ember';
 import layout from './template';
 import PaginatedComponentMixin from 'ember-craft-repository/mixins/paginated-component';
@@ -7,10 +7,13 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
     currentUser: Ember.inject.service(),
     user: null,
-    tagName: 'project-list',
-    classNames: ['project', 'list'],
+    attributeBindings:['elementId:id'],
+    elementId: 'projects-list',
+    classNames: ['projects', 'list'],
+    isLoading: true,
     init() {
         this._super(...arguments);
+
         if (this.get('session.isAuthenticated')) {
             this._setCurrentUser();
         }
@@ -23,6 +26,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     }),
     loadProfileList: function() {
         var user = this.get('user');
+
         if(user) {
             this.set('user', user);
         } else {
@@ -40,7 +44,12 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
                 contributors: this.get('user.id')
             }
         };
+
         this.queryForComponent('node', routeParams, userParams);
+    },
+    willUpdate: function() {
+        this.set('isLoading', false);
+        console.log(this.get('isLoading', false));
     },
     actions: {
         next: function() {

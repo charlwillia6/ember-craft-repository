@@ -1,0 +1,58 @@
+<!-- app/pods/components/child-project-create/template.hbs -->
+{{!-- Create Project Button Widget --}}
+<button class="ui blue button" {{action 'requestProjectChildCreate' 'project-child-create'}}>
+    <i class="plus icon"></i> Create Child Project
+</button>
+
+{{!-- Create Project Modal Widget --}}
+{{#ui-modal name="project-child-create" class="project child create"}}
+    <i class="close icon"></i>
+    <div class="header">
+        Create Child Project?
+    </div>
+    <div class="content">
+        <div class="ui two column stackable grid">
+            <div class="column">
+                <label class="bold">Title:</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=title placeholder="Project Title" required=true}}
+                </div>
+            </div>
+            <div class="column">
+                <label class="bold">Description (optional):</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=description placeholder="Project Description"}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button" {{action 'cancelProjectChildCreate' 'project-create'}}>
+            <i class="close icon"></i>Cancel
+        </button>
+        <button class="ui green approve right labeled icon button" {{action 'confirmProjectChildCreate' 'response-message'}}>
+            <i class="checkmark icon"></i>Create
+        </button>
+    </div>
+{{/ui-modal}}
+
+{{!-- Response Message Modal Widget --}}
+{{#ui-modal name="response-message" class="response message"}}
+    <i class="close icon"></i>
+    {{!-- Response Messages --}}
+    {{#if responseSuccess}}
+        <div class="ui green header">
+            Success!
+        </div>
+        <div class="content">
+            {{responseSuccess}}
+        </div>
+    {{else if responseError}}
+        <div class="ui red header">
+            Warning!
+        </div>
+        <div class="content">
+            {{responseError}}
+        </div>
+    {{/if}}
+{{/ui-modal}}

@@ -1,11 +1,28 @@
 <!-- app/pods/index/template.hbs -->
-{{title "Home"}}
-<div class="ui header">
-    Dashboard
+{{title "Dashboard"}}
+<div class="ui grid">
+    {{#if media.isDesktop}}
+        <div class="ui computer only centered sixteen wide row">
+            <div class="fourteen wide column">
+                <div class="ui header">
+                    Dashboard
+                </div>
+                {{!-- Project List Component --}}
+                {{projects-list}}
+            </div>
+        </div>
+    {{else if (or media.isTablet media.isMobile)}}
+        <div class="ui tablet only mobile only row">
+            <div class="column">
+                <div class="ui header">
+                    Dashboard
+                </div>
+                {{!-- Project List Component --}}
+                {{projects-list}}
+            </div>
+        </div>
+    {{/if}}
 </div>
-
-{{!-- Project List Component --}}
-{{project-list}}
 
 {{!-- OSF File-Widget Component --}}
 {{!-- TODO:0 issue:3 Develop file-widget --}}

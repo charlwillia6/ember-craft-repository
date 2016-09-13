@@ -6,8 +6,8 @@
         Paths
 --------------------*/
 
-@imagePath : "themes/default/assets/images";
-@fontPath  : "themes/default/assets/fonts";
+@imagePath : "../../themes/default/assets/images";
+@fontPath  : "../../themes/default/assets/fonts";
 
 /*-------------------
        Fonts
@@ -104,3 +104,4 @@
 @computerBreakpoint          : 992px;
 @largeMonitorBreakpoint      : 1400px;
 @widescreenMonitorBreakpoint : 1900px;
+

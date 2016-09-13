@@ -4,6 +4,7 @@ import layout from './template';
 
 export default TagsWidget.extend({
     layout,
-    tagName: ['tags-widget'],
+    attributeBindings:['elementId:id'],
+    elementId: 'tags-widget',
     classNames: ['tags', 'widget'],
 });

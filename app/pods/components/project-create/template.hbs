@@ -10,33 +10,29 @@
     <div class="header">
         Create Project?
     </div>
-    <div class="ui segments">
-        <div class="ui segment">
-            <div class="ui two column stackable grid">
-                <div class="column">
-                    <label class="bold">Title:</label>
-                    <div class="ui fluid input">
-                        {{input type="text" value=title placeholder="Project Title" required=true}}
-                    </div>
+    <div class="content">
+        <div class="ui two column stackable grid">
+            <div class="column">
+                <label class="bold">Title:</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=title placeholder="Project Title" required=true}}
                 </div>
-                <div class="column">
-                    <label class="bold">Description (optional):</label>
-                    <div class="ui fluid input">
-                        {{input type="text" value=description placeholder="Project Description"}}
-                    </div>
+            </div>
+            <div class="column">
+                <label class="bold">Description (optional):</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=description placeholder="Project Description"}}
                 </div>
             </div>
         </div>
-        <div class="ui segment">
-            <div class="actions">
-                <button class="ui black cancel button" {{action 'cancelProjectCreate' 'project-create'}}>
-                    <i class="close icon"></i>Cancel
-                </button>
-                <button class="ui green approve right labeled icon button" {{action 'confirmProjectCreate' 'response-message'}}>
-                    <i class="checkmark icon"></i>Create
-                </button>
-            </div>
-        </div>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button" {{action 'cancelProjectCreate' 'project-create'}}>
+            <i class="close icon"></i>Cancel
+        </button>
+        <button class="ui green approve right labeled icon button" {{action 'confirmProjectCreate' 'response-message'}}>
+            <i class="checkmark icon"></i>Create
+        </button>
     </div>
 {{/ui-modal}}
 

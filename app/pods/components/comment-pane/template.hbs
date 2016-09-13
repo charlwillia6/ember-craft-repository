@@ -1,14 +1,34 @@
 <!-- app/pods/components/comment-pane/template.hbs -->
-<h3 class="ui header">Comments</h3>
-{{#each comments as |comment|}}
-    {{comment-detail
-    comment=comment
-    editComment=attrs.editComment
-    deleteComment=attrs.deleteComment
-    restoreComment=attrs.restoreComment
-    reportComment=attrs.reportComment}}
-{{else}}
-    (none)
-{{/each}}
+<div class="ui segment">
+    <h4 class="ui header">Comments</h4>
+</div>
+<div class="ui segment">
+    <div class="ui threaded comments">
+        {{#each comments as |comment|}}
+            {{comment-detail
+            comment=comment
+            editComment=attrs.editComment
+            deleteComment=attrs.deleteComment
+            restoreComment=attrs.restoreComment
+            reportComment=attrs.reportComment}}
+        {{else}}
+            (none)
+        {{/each}}
+        
+    </div>
 
-{{comment-form addComment=attrs.addComment}}
+
+
+
+
+
+
+
+
+
+
+
+</div>
+<div class="ui segment">
+    {{comment-form addComment=attrs.addComment}}
+</div>

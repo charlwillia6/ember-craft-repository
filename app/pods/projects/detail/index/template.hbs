@@ -17,24 +17,12 @@
         </div>
     </div>
 
-    <div class="right aligned column">
+    {{!-- <div class="right aligned column"> --}}
         {{!-- View on OSF Button --}}
         {{!-- <a href="{{model.links.html}}" target="_blank" class="ui blue button">
             View on OSF
         </a> --}}
-
-        {{!-- Edit Project Button --}}
-        {{project-edit project=model}}
-
-        {{!-- Request Delete Project Button --}}
-        {{project-delete project=model transitionTo='transitionToProjectList'}}
-
-        {{!-- Destroy Project Button --}}
-        <button class="ui red button" {{action "destroyProject"}}>
-            <i class="trash icon"></i>
-            Destroy this Project
-        </button>
-    </div>
+    {{!-- </div> --}}
 </div>
 
 {{!-- Project Summary --}}
@@ -49,7 +37,7 @@
 {{log-detail model-logs=model.logs}}
 
 {{!-- Create Child Project --}}
-<div class="ui segments">
+{{!-- <div class="ui segments">
     <div class="ui segment">
         <h4 class="ui header">Create Child Project</h4>
     </div>
@@ -88,7 +76,8 @@
             </div>
             <button {{action "addChild" title description category }} class="ui green button">Create</button>
         </div>
-    </div>
+    </div> --}}
+
     {{!-- Create Multiple Child Projects --}} <!-- TODO: Is this necessary? -->
     {{!-- <div class="ui segment">
         <h4 class="ui header">Create Multiple Child Projects (Bulk)</h4>
@@ -101,8 +90,8 @@
         <label>Title:</label>
         {{input type="text" value=child2 placeholder="Component's title" required=true}}
         <p><button {{action "addChildren" child1 child2 }}>Create</button></p>
-    </div> --}}
-</div>
+    </div>
+</div>--}}
 
 <!-- TODO: Delete this section of code after file browser is functioning. -->
 {{!-- <div class="ui segments">
@@ -118,23 +107,16 @@
 {{!-- {{file-browser rootItem=node openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}} --}}
 
 <!-- TODO: Check this to make sure the ember-osf comment-pane works -->
-<div class="ui segments">
-    <div class="ui segment">
-        {{comment-pane
-            comments=comments
-            addComment=(action 'addComment')
-            editComment=(action 'editComment')
-            deleteComment=(action 'deleteComment')
-            restoreComment=(action 'restoreComment')
-            reportComment=(action 'reportComment')
-        }}
-    </div>
-</div>
+{{comment-pane
+    comments=comments
+    addComment=(action 'addComment')
+    editComment=(action 'editComment')
+    deleteComment=(action 'deleteComment')
+    restoreComment=(action 'restoreComment')
+    reportComment=(action 'reportComment')
+}}
 
 {{outlet}}
-
-<!-- TODO: Compare to uper comment-pane component and determine if we need this -->
-{{!-- {{partial 'comment-section'}} --}}
 
 <!-- TODO: Will work on all that follows later -->
 {{!-- <div>
