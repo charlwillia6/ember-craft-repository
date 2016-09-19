@@ -1,0 +1,76 @@
+<!-- app/pods/components/contrib-add/template.hbs -->
+{{!-- Create Project Button Widget --}}
+<button class="ui blue button" {{action 'requestContribAdd' 'contrib-add'}}>
+    <i class="plus icon"></i>Add Contributor
+</button>
+
+{{!-- Add Contributor Modal--}}
+{{#ui-modal name="contrib-add" class="contrib add"}}
+    <i class="close icon"></i>
+    <div class="header">
+        Add Contributor?
+    </div>
+    <div class="content">
+        <div class="ui stackable grid">
+            <div class="sixteen wide column">
+                <label class="bold">User ID:</label>
+                <div class="ui fluid input">
+                    {{input type="text" value=newContributorId placeholder="User ID" required=true}}
+                </div>
+            </div>
+            <div class="two column row">
+                <div class="column">
+                    <div class="ui fluid input">
+                        <div class="ui inline fields">
+                            <label for="permision">Permissions</label>
+                            <div class="field">
+                                {{ui-radio name="newContributorPermissions" value=READ label="Read"
+                                    current=newContributorPermissions
+                                    onChange=(action 'permissionsChange' value=target.value)}}
+                            </div>
+                            <div class="field">
+                                {{ui-radio name="newContributorPermissions" value=WRITE label="Read + Write"
+                                    current=newContributorPermissions
+                                    onChange=(action 'permissionsChange' value=target.value)}}
+                            </div>
+                            <div class="field">
+                                {{ui-radio name="newContributorPermissions" value=ADMIN label="Administrator"
+                                    current=newContributorPermissions
+                                    onChange=(action 'permissionsChange' value=target.value)}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="column">
+                    <label for="bibliographic">Bibliographic</label>
+                    <div class="ui fluid input">
+                        <div class="ui inline fields">
+                            <div class="field">
+                                {{ui-radio name="newContributorIsBibliographic" value=true label="Bibliographic"
+                                    current=newContributorIsBibliographic
+                                    onChange=(action 'isBibliographicChange' value=target.value)}}
+                            </div>
+                            <div class="field">
+                                {{ui-radio name="newContributorIsBibliographic" value=false label="Non-Bibliographic"
+                                    current=newContributorIsBibliographic
+                                    onChange=(action 'isBibliographicChange' value=target.value)}}
+                            </div>
+                            {{newContributorPermissions}}
+                            {{newContributorIsBibliographic}}
+                            {{newContributorId}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="actions">
+        <button class="ui black cancel button" {{action 'cancelContribAdd' 'project-create'}}>
+            <i class="close icon"></i>Cancel
+        </button>
+        <button class="ui green approve right labeled icon button"
+            {{action 'addContributor' newContributorId newContributorPermissions newContributorIsBibliographic}}>
+            <i class="checkmark icon"></i>Add
+        </button>
+    </div>
+{{/ui-modal}}
