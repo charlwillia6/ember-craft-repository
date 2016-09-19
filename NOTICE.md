@@ -3,7 +3,9 @@ ember-craft-repository gratefully acknowledges the use of some third-party code.
 ## Ember-OSF
 Uses the Ember-OSF project for creating our own custom interface [ember-osf](https://github.com/centerforopenscience/ember-osf).
 
-The MIT License (MIT)
+Apache License
+Version 2.0, January 2004
+[http://www.apache.org/licenses/](http://www.apache.org/licenses/)
 
 Copyright (c) 2016
 

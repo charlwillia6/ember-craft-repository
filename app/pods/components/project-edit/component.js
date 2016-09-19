@@ -19,7 +19,6 @@ export default Ember.Component.extend(NodeActionsMixin, {
     selectedCategory: null,
     init() {
         this._super(...arguments);
-        // console.log(this.get('project.category'));
         this.set('selectedCategory', this.get('project.category'));
 
         var categories = [
@@ -60,27 +59,21 @@ export default Ember.Component.extend(NodeActionsMixin, {
             ];
 
         this.set('categories', categories);
-        // console.log("CATEGORIES: ", this.get('categories'));
         this.set('selectedModel', this.get('project'));
 
         if (!this.get('_node')) {
             this.set('_node', this.get('selectedModel'));
         }
-
-        // console.log(this.get('selectedModel'));
     },
     actions: {
         openProjectEdit(name) { // jshint ignore:line
             $('.ui.project.edit.modal').modal('show'); // jshint ignore:line
         },
-        categoryChange(component, id, value) {
+        categoryChange(component) {
             this.set('editedCategory', component);
         },
         isPublicChange(value) {
             let prevSelection = this.get('project.public');
-
-            // console.log(value);
-            // console.log(prevSelection);
 
             if(value !== prevSelection) {
                 this.set('isPublic', value);
@@ -89,18 +82,22 @@ export default Ember.Component.extend(NodeActionsMixin, {
             }
 
         },
-        updateNode() {
-            // editedTitle, editedDescription, editedCategory, isPublic
+        updateProject(editedTitle, editedDescription, editedCategory, isPublic) {
             this.set('isSaving', true);
 
-            return this._super(...arguments).then(() => {
-                this.set('isSaving', false);
+            if(this.get('project.data.currentUserPermissions') === "read,write,admin") {
+                this.send('updateNode', editedTitle, editedDescription, editedCategory, isPublic);
                 this.get('toast').success('Project updated successfully');
                 this.set('editedTitle', null);
                 this.set('editedDescription', null);
                 this.set('editedCategory', null);
                 this.set('isPublic', null);
-            }).catch(() => this.set('isSaving', false));
+                this.set('isSaving', false);
+            } else {
+                this.set('isSaving', false);
+                this.selectedModel.rollbackAttributes();
+                console.log("You do not have permission to edit this project");
+            }
         },
         cancelProjectEdit() {
             this.selectedModel.rollbackAttributes();

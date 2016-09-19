@@ -12,11 +12,10 @@
             <div class="ui black user login label">
                 <div class="ui grid">
                     <div class="twelve wide column">
-                        <div class="detailed">{{currentUserFullName}}<br>Welcome</div>
+                        <div class="detailed">{{user.fullName}}<br>Welcome</div>
                     </div>
                     <div class="four wide column" style="padding-top: 12px; margin-top: 0;">
-                        <img class="ui top aligned small avatar image" src="http://semantic-ui.com/images/avatar/small/christian.jpg">
-                        <!--<img class="ui top aligned tiny avatar image" src="{{currentUser.avatar}}">-->
+                        <img class="ui top aligned tiny avatar image" src="{{gravatarUrl}}" alt="User gravatar">
                     </div>
                 </div>
             </div>
@@ -50,11 +49,14 @@
                 {{/ui-dropdown}}
             </div>
             <div class="right floated item logout-button">
-                <div class="ui red button">
+                <div class="ui red button" action={{action 'logout'}}>
                     <i class="eject icon"></i>
                     Logout
                 </div>
             </div>
+            {{!-- {{#if showSearch}}
+                {{search-dropdown action='toggleSearch'}}
+            {{/if}} --}}
         </div>
     </div>
  </div>
