@@ -19,7 +19,6 @@
                     <div class="ui fluid input">
                         {{input type="text" value=editedTitle placeholder="Project Title"}}
                     </div>
-
                 </div>
                 <div class="column">
                     <label class="bold">Description (optional):</label>
@@ -30,8 +29,8 @@
                 <div class="column">
                     <label class="bold">Category:</label>
                     <div class="ui fluid input">
-                        {{!-- {{#ui-dropdown class="selection" selected=selectedCategory onChange=(action 'categoryChange')}} --}}
-                        {{#ui-dropdown class="selection" selected=selectedCategory onChange=(action 'categoryChange') as |execute mapper|}}
+                        {{#ui-dropdown class="selection" selected=selectedCategory
+                            onChange=(action 'categoryChange') as |execute mapper|}}
                             <div class="default text">Categories</div>
                             <i class="dropdown icon"></i>
                             <div class="menu">
@@ -48,11 +47,12 @@
                     <label class="bold">Privacy Settings:</label>
                     <div class="inline fields">
                         <div class="inline field">
-                            {{ui-radio name="isPublic" value=true current=project.public label="Public" onChange=(action 'isPublicChange' value=target.value)}}
+                            {{ui-radio name="isPublic" value=true current=project.public label="Public"
+                                onChange=(action 'isPublicChange' value=target.value)}}
                         </div>
                         <div class="inline field">
-                            {{ui-radio name="isPublic" value=false current=project.public label="Private" onChange=(action 'isPublicChange' value=target.value)}}
-                            {{target.current}}
+                            {{ui-radio name="isPublic" value=false current=project.public label="Private"
+                                onChange=(action 'isPublicChange' value=target.value)}}
                         </div>
                     </div>
                 </div>
@@ -61,9 +61,9 @@
     </div>
     <div class="actions">
         <button {{action 'cancelProjectEdit' 'project-edit'}} class="ui black deny button">
-            Cancel
+            <i class="close icon"></i>Cancel
         </button>
-        <button disabled={{isSaving}} {{action "updateNode" editedTitle editedDescription
+        <button disabled={{isSaving}} {{action "updateProject" editedTitle editedDescription
         editedCategory isPublic}} class="ui positive right labeled icon button">
             Save changes
             <i class="checkmark icon"></i>

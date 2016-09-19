@@ -21,18 +21,16 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
             });
         },
         cancelDelete() {
-            console.log(this.selectedModel);
             this.selectedModel.rollbackAttributes();
         },
         closeMessage: function() {
             this.set('responseSuccess', '');
             this.set('responseError', '');
         },
-        
         // TODO: Put these actions in file component
         fileDetail(file) {
-            console.log(this.get('node'));
-            console.log(file.get('provider'));
+            console.log("this.get('node'); ", this.get('node'));
+            console.log("file.get('provider'); ", file.get('provider'));
             this.transitionToRoute('projects.detail.files.provider.file',
                                    this.get('node'),
                                    file.get('provider'),

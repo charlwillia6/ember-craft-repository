@@ -4,36 +4,59 @@ import layout from './template';
 import permissions from 'ember-osf/const/permissions';
 
 export default Ember.Component.extend({
-    READ: permissions.READ,
-    WRITE: permissions.WRITE,
-    ADMIN: permissions.ADMIN,
-    layout: layout,
-    permissionChanges: {},
-    bibliographicChanges: {},
+    layout,
     attributeBindings:['elementId:id'],
     elementId: 'contributor-manager',
     classNames: ['contributor', 'manager', 'ui', 'segments'],
+    toast: Ember.inject.service(),
+    READ: permissions.READ,
+    WRITE: permissions.WRITE,
+    ADMIN: permissions.ADMIN,
+    updatedContributorPermissions: {},
+    updatedContributorIsBibliographic: {},
+    permissions: null,
+    init() {
+        this._super(...arguments);
+
+        var permissions = [
+            {
+                "value"       : this.get('ADMIN'),
+                "description" : "Administrator"
+            },
+            {
+                "value"       : this.get('READ'),
+                "description" : "Read"
+            },
+            {
+                "value"       : this.get('WRITE'),
+                "description" : "Read + Write"
+            }
+        ];
+
+        this.set('permissions', permissions);
+    },
     actions: {
-        // TODO: Reset values after you addContributor and refresh
-        addContributor(userId, permission, isBibliographic) {
-            this.sendAction('addContributor', userId, permission, isBibliographic);
-        },
         removeContributor(contrib) {
             this.sendAction('removeContributor', contrib);
         },
-        permissionChange(contributor, permission) {
-            this.set(`permissionChanges.${contributor.id}`, permission.toLowerCase());
+        permissionsUpdate(contributor, permission) {
+            this.set(`updatedContributorPermissions.${contributor.id}`, permission.toLowerCase());
         },
-        bibliographicChange(contributor, isBibliographic) {
-            this.set(`bibliographicChanges.${contributor.id}`, isBibliographic);
+        isBibliographicUpdate(contributor, isBibliographic) {
+            this.set(`updatedContributorIsBibliographic.${contributor.id}`, isBibliographic);
         },
         updateContributors() {
+            // TODO:10 Should test PUT or PATCH
             this.sendAction(
                 'editContributors',
                 this.get('contributors'),
-                this.get('permissionChanges'),
-                this.get('bibliographicChanges')
+                this.get('updatedContributorPermissions'),
+                this.get('updatedContributorIsBibliographic')
             );
-        }
-    }
+        },
+        addContributor(userId, permission, isBibliographic, sendMail) {
+            console.log('2', userId, permission, isBibliographic, sendMail);
+            this.sendAction('addContributor', userId, permission, isBibliographic, sendMail);
+        },
+    },
 });

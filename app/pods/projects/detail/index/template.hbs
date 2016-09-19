@@ -29,9 +29,8 @@
 {{project-summary addATag="addATag" removeATag="removeATag" model=model}}
 
 {{!-- Contributors --}}
-{{contrib-manager contributors=model.contributors addContributor=(action 'addContributor')
-                          removeContributor=(action 'removeContributor')
-                          editContributors=(action 'updateContributors')}}
+{{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
+    editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
 
 {{!-- Recent Activity --}}
 {{log-detail model-logs=model.logs}}

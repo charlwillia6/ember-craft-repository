@@ -49,7 +49,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     },
     willUpdate: function() {
         this.set('isLoading', false);
-        console.log(this.get('isLoading', false));
+        // console.log(this.get('isLoading', false));
     },
     actions: {
         next: function() {

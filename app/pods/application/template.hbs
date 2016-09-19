@@ -3,8 +3,7 @@
 {{!-- <div class="context"> --}}
     {{!-- {{partial 'sidebar'}} --}}
     {{!-- <div class="pusher"> --}}
-        {{!-- {{partial 'navbar'}} --}}
-        {{navbar-main}}
+        {{navbar-main loginAction=(action 'login')}}
         <div class="ui basic page segment" role="main">
             {{outlet}}
         </div>

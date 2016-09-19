@@ -37,6 +37,6 @@
         </button> --}}
     </div>
     <div class="ui segment">
-        {{tags-widget addATag=(action 'addATag') removeATag=(action 'removeATag') tags=model.tags}}
+        {{tags-widget addATag=(action 'addATag' model) removeATag=(action 'removeATag' model) tags=model.tags}}
     </div>
 {{!-- </div> --}}
