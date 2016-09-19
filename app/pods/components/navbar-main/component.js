@@ -13,5 +13,17 @@ export default Ember.Component.extend({
     currentUserFullName: Ember.computed.alias('user.fullName'),
     attributeBindings:['elementId:id'],
     elementId: 'navbar-main',
-    className: ['navbar', 'main']
+    className: ['navbar', 'main'],
+    actions : {
+        toggle: function(subSidebarName) {
+            console.log(subSidebarName);
+            $('#'+subSidebarName)
+                .sidebar('setting', 'transition', 'push')
+                .sidebar('toggle')
+            ;
+        },
+        closeMenu : function() {
+            $('.sidebar').sidebar("toggle");
+        }
+    }
 });

@@ -4,10 +4,16 @@
     {{!-- {{partial 'sidebar'}} --}}
     {{!-- <div class="pusher"> --}}
         {{!-- {{partial 'navbar'}} --}}
-        {{navbar-main}}
-        <div class="ui basic page segment" role="main">
+<div class="ui pushable segment component context">
+    {{navbar-main}}
+
+    <div class="pusher">
+        <div class="main page" role="main">
             {{outlet}}
         </div>
+
         {{footer-main}}
+    </div>
+</div>
     {{!-- </div> --}}
 {{!-- </div> --}}

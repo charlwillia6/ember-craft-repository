@@ -1,60 +1,42 @@
-<!-- app/pods/components/navbar-main/template.hbs -->
-<div class="ui grid masthead segment">
-    <!-- Computer !! -->
-    <div class="three wide column logo holder">
-        <a href="/" class="craft logo link">
-            <div class="craft logo computer">
-            </div>
-        </a>
+<div class="ui inverted grid segment" style="margin: 0;">
+    <div class="one wide column">
+        <div class="ui black button item" {{action 'toggle' 'sub-sidebar'}}>
+            <i class="large white list icon"></i>
+        </div>
     </div>
-    <div class="seven wide center aligned column">
-        {{#if session.isAuthenticated}}
-            <div class="ui black user login label">
-                <div class="ui grid">
-                    <div class="twelve wide column">
-                        <div class="detailed">{{currentUserFullName}}<br>Welcome</div>
-                    </div>
-                    <div class="four wide column" style="padding-top: 12px; margin-top: 0;">
-                        <img class="ui top aligned small avatar image" src="http://semantic-ui.com/images/avatar/small/christian.jpg">
-                        <!--<img class="ui top aligned tiny avatar image" src="{{currentUser.avatar}}">-->
-                    </div>
-                </div>
-            </div>
-        {{/if}}
+
+    <div class="three wide column">
+      <div {{action 'index'}} class="ui image"><img src=''></div>
     </div>
-    <div class="right aligned six wide column">
-        <div class="ui compact inverted floating pointing fixed-width menu">
-            <div class="menu">
-                <div class="link item button">
-                    {{#link-to 'index'}}
-                        <i class="dashboard icon"></i>
-                        Dash
-                    {{/link-to}}
-                </div>
-            </div>
-            <div class="separator"></div>
-            <div class="menu">
-                {{#ui-dropdown class="item"}}
-                    <div class="default text">
-                        <i class="options icon"></i>
-                        App
-                        <i class="dropdown icon"></i>
-                    </div>
-                    <div class="menu">
-                        {{link-to 'My Projects' 'projects' class="item"}}
-                        {{link-to 'My Registrations' 'registrations' class="item"}}
-                        {{link-to 'All Institutions' 'institutions' class="item"}}
-                        {{link-to 'Users' 'users' class="item"}}
-                        {{link-to 'Collections' 'collections' class="item"}}
-                    </div>
-                {{/ui-dropdown}}
-            </div>
-            <div class="right floated item logout-button">
-                <div class="ui red button">
-                    <i class="eject icon"></i>
-                    Logout
-                </div>
+
+    <div class="twelve wide column">
+        <div class="ui inverted menu">
+            <div class="right menu">
+              <div class="item">
+                  <div class="ui icon input">
+                      <input type="text" placeholder="Search...">
+                      <i class="search link icon"></i>
+                  </div>
+              </div>
             </div>
         </div>
     </div>
- </div>
+</div>
+
+
+{{#ui-sidebar class="ui left vertical inverted sidebar labeled icon menu" context=".component.context" id="sub-sidebar"}}
+    <div class="item">
+        <div class="menu">
+            {{#link-to 'index' invokeAction=(action 'closeMenu') class="item"}}
+                <i class="home icon"></i>
+                Dashboard
+            {{/link-to}}
+        </div>
+    </div>
+    <div class="item">
+        <div class="header">Info</div>
+        <div class="menu">
+            <div class="item"></div>
+        </div>
+    </div>
+{{/ui-sidebar}}
