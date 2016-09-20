@@ -10,14 +10,14 @@
     </div>
     <div class="right menu">
         {{#if session.isAuthenticated}}
-            {{#ui-dropdown class="right item"}}
+            {{#ui-dropdown class="item"}}
                 <div class="ui black user login">
                     <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
                     {{user.fullName}}
                 </div>
                 <i class="dropdown icon"></i>
                 <div class="menu">
-                    {{#link-to 'profile' class="item"}}
+                    {{#link-to 'profile' class="right item"}}
                         <i class="user icon"></i> Profile
                     {{/link-to}}
                     <div class="item" {{action 'logout'}}>
@@ -26,9 +26,6 @@
                 </div>
             {{/ui-dropdown}}
         {{else}}
-            {{#link-to 'login' class="ui black item"}}
-                <i class="sign in icon"></i>Login
-            {{/link-to}}
         {{/if}}
     </div>
 </div>
