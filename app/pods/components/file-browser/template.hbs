@@ -6,40 +6,49 @@
         </div>
     </div>
     <div class="ui segment">
-        <div class="ui breadcrumb">
-    	    {{#each breadcrumbs as |item|}}
-                <a {{action 'navigateToItem' item}} class="section">
-                    {{file-browser-icon item=item}}
-                    {{item.itemName}}
-                </a>
-                {{#unless @last}}
-                    <span class="divider">/</span>
-                {{/unless}}
-    	    {{/each}}
-        </div>
+        <div class="ui items">
+            <div class="item">
+                <div class="content">
+                    <div class="header">
+                        <div class="ui breadcrumb">
+                    	    {{#each breadcrumbs as |item|}}
+                                <a {{action 'navigateToItem' item}} class="section">
+                                    {{file-browser-icon item=item}}
+                                    {{item.itemName}}
+                                </a>
+                                {{#unless @last}}
+                                    <span class="divider">/</span>
+                                {{/unless}}
+                    	    {{/each}}
+                        </div>
+                    </div>
 
-        {{#if selectedItems}}
-            {{! TODO: show available actions for selected files }}
-        {{/if}}
+                    {{!-- {{#if selectedItems}}
+                        {{! TODO: show available actions for selected files }}
+                    {{/if}} --}}
 
-        <div class='file-browser-list'>
-            {{#ember-collection items=items
-                cell-layout=(fixed-grid-layout itemWidth itemHeight)
-                as |item index|}}
-                {{file-browser-item item=item
-                navigateToItem=(action 'navigateToItem')
-                selectItem=(action 'selectItem')
-                openItem=(action 'openItem')
-                }}
-            {{/ember-collection}}
-            {{#unless itemsLoaded}}
-                <div class="ui active inverted dimmer">
-                    <div class="ui mini loader"></div>
-                    <p></p>
+                    <div class="description">
+                        <div class='file-browser-list'>
+                            {{#ember-collection items=items
+                                cell-layout=(fixed-grid-layout itemWidth itemHeight)
+                                as |item index|}}
+                                {{file-browser-item item=item
+                                navigateToItem=(action 'navigateToItem')
+                                selectItem=(action 'selectItem')
+                                openItem=(action 'openItem')
+                                }}
+                            {{/ember-collection}}
+                            {{#unless itemsLoaded}}
+                                <div class="ui active inverted dimmer">
+                                    <div class="ui mini loader"></div>
+                                    <p></p>
+                                </div>
+                                {{!-- {{fa-icon 'spinner' size=3 pulse=true}} --}}
+                            {{/unless}}
+                        </div>
+                    </div>
                 </div>
-
-                {{!-- {{fa-icon 'spinner' size=3 pulse=true}} --}}
-            {{/unless}}
+            </div>
         </div>
     </div>
 </div>
