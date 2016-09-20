@@ -51,7 +51,7 @@ export default Ember.Component.extend({
            // alert("Logging out !!")
             // TODO: May not work well if logging out from page that requires login- check?
             this.get('session').invalidate();
-            this.get("routing").transitionTo('login')
+            this.get("routing").transitionTo('login');
         },
         toggle: function(subSidebarName) {
             console.log(subSidebarName);
