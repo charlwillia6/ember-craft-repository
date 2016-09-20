@@ -3,7 +3,9 @@ import Ember from 'ember';
 import layout from './template';
 import config from 'ember-get-config';
 
+
 export default Ember.Component.extend({
+    routing: Ember.inject.service('-routing'),
     layout,
     session: Ember.inject.service(),
     currentUser: Ember.inject.service(),
@@ -46,8 +48,10 @@ export default Ember.Component.extend({
             this.toggleProperty('showSearch');
         },
         logout() {
+           // alert("Logging out !!")
             // TODO: May not work well if logging out from page that requires login- check?
             this.get('session').invalidate();
+            this.get("routing").transitionTo('login')
         },
         toggle: function(subSidebarName) {
             console.log(subSidebarName);
