@@ -1,0 +1,54 @@
+<div class="ui four doubling cards">
+    {{#each model as |project|}}
+        <div class="ui card">
+            <div class="content">
+                <h3 class="ui header">{{project.title}}</h3>
+            </div>
+            <div class="content">
+                <div class="ui small feed">
+                    <div class="event">
+                        <div class="content">
+                            <div class="summary">
+                                <div class="ui list">
+                                    <div class="item">
+                                        <div class="content">
+                                            <h5 class="ui blue sub header">
+                                                <i class="list layout icon"></i>Category
+                                            </h5>
+                                            <div class="description">
+                                                {{capitalize project.category}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content">
+                                            <h5 class="ui blue sub header">
+                                                <i class="calendar icon"></i>Date Created
+                                            </h5>
+                                            <div class="description">
+                                                {{moment-format project.dateCreated}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content">
+                                            <h5 class="ui blue sub header">
+                                                <i class="calendar outline icon"></i>Date Modified
+                                            </h5>
+                                            <div class="description">
+                                                {{moment-format project.dateModified}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{!-- View on OSF Button --}}
+            {{!-- <a href="{{project.links.html}}" target="_blank" class="ui blue button">View on OSF</a> --}}
+            {{link-to 'Detail' 'projects.detail' project.id class="ui bottom attached button"}}
+        </div>
+    {{/each}}
+</div>
