@@ -9,7 +9,7 @@
     </div>
 </div>
 
-{{project-cards model=model}}
+{{projects-cards model=model}}
 
 {{!-- Pagination --}}
 <div class="ui inverted black segment pagination">
@@ -25,9 +25,7 @@
 <div class="ui segments">
     {{#each publicProjects as |publicProject|}}
     <div class="segment">
-
             {{publicProject.title}}
-
     </div>
     {{/each}}
 </div>

@@ -11,7 +11,7 @@ export default Ember.Component.extend({
     currentUser: Ember.inject.service(),
     attributeBindings:['elementId:id'],
     elementId: 'navbar-main',
-    className: ['navbar', 'main'],
+    classNames: ['navbar', 'main'],
     onSearchPage: false,
     hideSearch: false,
     user: null,
