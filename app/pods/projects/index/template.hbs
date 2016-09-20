@@ -21,3 +21,13 @@
         goToPage=(action 'goToPage')
     }}
 </div>
+
+<div class="ui segments">
+    {{#each publicProjects as |publicProject|}}
+    <div class="segment">
+
+            {{publicProject.title}}
+
+    </div>
+    {{/each}}
+</div>
