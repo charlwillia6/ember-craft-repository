@@ -26,7 +26,22 @@
 </div>
 
 {{!-- Project Summary --}}
-{{project-summary addATag="addATag" removeATag="removeATag" model=model}}
+<div class="ui two column grid">
+    <div class="column">
+        {{project-summary addATag="addATag" removeATag="removeATag" model=model}}
+    </div>
+    <div class="column">
+        {{comment-pane
+            comments=comments
+            addComment=(action 'addComment')
+            editComment=(action 'editComment')
+            deleteComment=(action 'deleteComment')
+            restoreComment=(action 'restoreComment')
+            reportComment=(action 'reportComment')
+        }}
+    </div>
+</div>
+
 
 {{!-- Contributors --}}
 {{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
@@ -106,14 +121,7 @@
 {{!-- {{file-browser rootItem=node openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}} --}}
 
 <!-- TODO: Check this to make sure the ember-osf comment-pane works -->
-{{comment-pane
-    comments=comments
-    addComment=(action 'addComment')
-    editComment=(action 'editComment')
-    deleteComment=(action 'deleteComment')
-    restoreComment=(action 'restoreComment')
-    reportComment=(action 'reportComment')
-}}
+
 
 {{outlet}}
 

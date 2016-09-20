@@ -5,13 +5,11 @@
     {{!-- <div class="pusher"> --}}
         {{!-- {{partial 'navbar'}} --}}
 <div class="ui pushable segment component context">
-    {{navbar-main}}
-
     <div class="pusher">
+        {{navbar-main}}
         <div class="main page" role="main">
             {{outlet}}
         </div>
-
         {{footer-main}}
     </div>
 </div>
