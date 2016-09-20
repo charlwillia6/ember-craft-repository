@@ -5,6 +5,9 @@
 /*-------------------
       Collection
 --------------------*/
+/* Overrides by CLWJR */
+/* Original value commented out below */
+@borderRadius: 0;
 
 /* Menu */
 @verticalMargin: @medium;
@@ -17,7 +20,7 @@
 @borderWidth: 1px;
 @border: @borderWidth solid @borderColor;
 @boxShadow: @subtleShadow;
-@borderRadius: @defaultBorderRadius;
+/* @borderRadius: @defaultBorderRadius; */
 @minHeight: (@itemVerticalPadding * 2) + 1em;
 
 /* Menu Item */
