@@ -1,11 +1,11 @@
 <!-- app/pods/login/template.hbs -->
-<h3 class="ui header">{{t 'login.pageTitle'}}</h3>
-<h2 class="ui header">Welcome to the DARPA Craft Repository</h2>
-<h3 class="ui header">Login To Begin</h3>
-<button class="ui blue button" onclick={{action 'login'}}>Login</button>
+<div class="ui large centered grey header">Select Login or Register</div>
 
-<h3 class="ui header">Sign Up</h3>
-{{link-to 'Sign Up' 'signup' class="ui green button"}}
+<div class="ui three column centered grid">
+    <div class="column"></div>
+    <div class="column centered row">
+            {{shape-3d action="gotoAction" data=loginChoices}}
+    </div>
+    <div class="column"></div>
+</div>
 
-{{!-- <h3 class="ui header">Get Fancy</h3>
-{{oauth-popup authUrl=authUrl}} --}}
