@@ -11,6 +11,15 @@
                 {{projects-list}}
             </div>
         </div>
+        {{!-- <div class="ui computer only centered sixteen wide row">
+            <div class="fourteen wide column">
+                <div class="ui header">
+                    Public Projects
+                </div>
+                Project List Component
+                {{projects-public-list}}
+            </div>
+        </div> --}}
     {{else if (or media.isTablet media.isMobile)}}
         <div class="ui tablet only mobile only row">
             <div class="column">
@@ -21,6 +30,15 @@
                 {{projects-list}}
             </div>
         </div>
+        {{!-- <div class="ui tablet only mobile only row">
+            <div class="column">
+                <div class="ui header">
+                    Public Projects
+                </div>
+                Project List Component
+                {{projects-list}}
+            </div>
+        </div> --}}
     {{/if}}
 </div>
 
