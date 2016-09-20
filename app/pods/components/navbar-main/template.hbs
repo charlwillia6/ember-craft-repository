@@ -1,53 +1,37 @@
-<div class="ui inverted menu">
+<div class="ui inverted menu main navbar">
     <div class="ui black button item" {{action 'toggle' 'sub-sidebar'}}>
         <i class="white list icon"></i>
     </div>
-    <div class="header item" {{action 'index'}}>
-        CRAFT Repository
+    <div class="header item">
+        {{#link-to 'index'}}
+            <img class="ui right spaced image logo header" src="/assets/images/craft.png" alt="CRAFT Logo"/>
+            CRAFT Repository
+        {{/link-to}}
     </div>
     <div class="right menu">
         {{#if session.isAuthenticated}}
-            <div class="ui black user login label item">
-                <img class="ui tiny avatar image" src="{{gravatarUrl}}" alt="User gravatar">
-                <span>{{user.fullName}}</span>
-            </div>
-            <div {{action 'logout'}} class="ui red button item">
-                <i class="log out icon"></i> Logout
-            </div>
+            {{#ui-dropdown class="right item"}}
+                <div class="ui black user login">
+                    <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
+                    {{user.fullName}}
+                </div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    {{#link-to 'profile' class="item"}}
+                        <i class="user icon"></i> Profile
+                    {{/link-to}}
+                    <div class="item" {{action 'logout'}}>
+                        <i class="log out icon"></i> Logout
+                    </div>
+                </div>
+            {{/ui-dropdown}}
         {{else}}
             {{#link-to 'login' class="ui green button item"}}
-                <i class="log in icon"></i>Login
+                <i class="login icon"></i>Login
             {{/link-to}}
         {{/if}}
     </div>
 </div>
-{{!-- <div class="ui inverted grid segment" style="margin: 0;">
-    <div class="one wide column">
-        <div class="ui black button item" {{action 'toggle' 'sub-sidebar'}}>
-            <i class="large white list icon"></i>
-        </div>
-    </div>
-
-    <div class="three wide column">
-        <div {{action 'index'}} class="ui image"><img src=''>
-        </div>
-    </div>
-
-    <div class="twelve wide column">
-        <div class="ui inverted menu">
-            <div class="right menu">
-                <div class="item">
-                    {{#if session.isAuthenticated}}
-                        <div class="ui black user login label">
-                            <img class="ui tiny avatar image" src="{{gravatarUrl}}" alt="User gravatar">
-                            <span>{{user.fullName}}</span>
-                        </div>
-                    {{/if}}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 {{#ui-sidebar class="ui inverted left compact vertical sidebar labeled icon menu" context=".component.context" id="sub-sidebar"}}
     {{#link-to 'index' invokeAction=(action 'closeMenu') class="item"}}
