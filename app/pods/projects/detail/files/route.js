@@ -12,5 +12,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         this._super(controller, model);
         let project = this.modelFor('projects.detail');
         controller.set('project', project);
+        console.log(project);
     }
 });

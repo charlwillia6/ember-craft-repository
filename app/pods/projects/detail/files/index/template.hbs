@@ -1,9 +1,12 @@
 <!-- app/pods/projects/detail/files/index/template.hbs -->
-<div class="panel">
-    <h2>Files</h2>
-    {{#each model as |provider|}}
+{{!-- <div class="segments">
+    <div class="segment">
+        <h2 class="ui header">Files</h2>
+    </div>
+
+    {{!-- {{#each model as |provider|}}
         {{file-tree root=provider project=provider.node}}
-    {{/each}}
-</div>
+    {{/each}} --}}
+{{!-- </div> --}}
 
 {{file-browser rootItem=project openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}}
