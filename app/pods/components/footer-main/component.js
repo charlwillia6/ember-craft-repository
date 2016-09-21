@@ -6,5 +6,5 @@ export default Ember.Component.extend({
     layout,
     attributeBindings:['elementId:id'],
     elementId: 'footer-main',
-    className: ['footer', 'main']
+    classNames: ['footer', 'main']
 });

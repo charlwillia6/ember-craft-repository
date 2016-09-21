@@ -7,8 +7,10 @@
                 <div class="ui header">
                     Dashboard
                 </div>
-                {{!-- Project List Component --}}
-                {{projects-list}}
+                {{!-- Projects List Component --}}
+                {{!-- {{projects-list}} --}}
+                {{!-- Projects Cards Component --}}
+                {{projects-cards model=model}}
             </div>
         </div>
         {{!-- <div class="ui computer only centered sixteen wide row">
@@ -27,7 +29,9 @@
                     Dashboard
                 </div>
                 {{!-- Project List Component --}}
-                {{projects-list}}
+                {{!-- {{projects-list}} --}}
+                {{!-- Projects Cards Component --}}
+                {{projects-cards model=model}}
             </div>
         </div>
         {{!-- <div class="ui tablet only mobile only row">
@@ -36,10 +40,29 @@
                     Public Projects
                 </div>
                 Project List Component
-                {{projects-list}}
+                {{projects-public-list}}
             </div>
         </div> --}}
     {{/if}}
+</div>
+
+{{!-- Pagination --}}
+<div class="ui inverted black segment pagination">
+    {{pagination-control-ui
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
+    }}
+</div>
+
+<div class="ui segments">
+    {{#each publicProjects as |publicProject|}}
+    <div class="segment">
+            {{publicProject.title}}
+    </div>
+    {{/each}}
 </div>
 
 {{!-- OSF File-Widget Component --}}

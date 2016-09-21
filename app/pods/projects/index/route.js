@@ -16,12 +16,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
             }
         };
 
-        // var publicParams = {
-        //     filter: {
-        //         public: ''
-        //     }
-        // };
-
         if(user) {
             userParams['filter']['contributors'] = user.id;
             // publicParams['filter']['public'] = true;

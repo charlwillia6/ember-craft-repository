@@ -14,9 +14,9 @@ Router.map(function() {
     this.route('login');
     this.route('cookielogin');
     this.route('projects', function() {
-        this.route('index', {
-            path: '/'
-        });
+        // this.route('index', {
+        //     path: '/'
+        // });
         this.route('detail', {
             path: '/:node_id'
         }, function() {

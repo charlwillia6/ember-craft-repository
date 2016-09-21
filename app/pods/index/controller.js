@@ -1,8 +1,9 @@
 // app/pods/index/controller.js
 import Ember from 'ember';
 import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-controller';
+import PaginatedControllerMixin from  'ember-osf/mixins/paginated-controller';
 
-export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
+export default Ember.Controller.extend(OsfTokenLoginControllerMixin, PaginatedControllerMixin, {
     _url: null,
     // TODO: Comeback to the dropzone later
     dropzoneOptions: {
