@@ -20,30 +20,34 @@
 
             <!-- TODO: Add More Metadata? -->
             <div class="metadata">
-                {{comment.dateCreated}}
+                {{moment-from-now comment.dateCreated}}
             </div>
 
             {{#if comment.canEdit}}
-                <div class="text">
-                    {{input value=comment.content}}
+                <div class="ui form">
+                    <div class="text field">
+                        {{input value=comment.content}}
+                    </div>
                 </div>
-                <div class="actions">
-                    <a class="edit" {{action editComment comment}}>Edit</a>
-                    <a class="hide" {{action deleteComment comment}}>Delete</a>
+                <div class="field">
+                    <a class="ui tiny button" {{action editComment comment}}>Edit</a>
+                    <a class="ui tiny button" {{action deleteComment comment}}>Delete</a>
                     <!-- TODO: Add ability to reply -->
-                    <a class="reply">Reply</a>
+                    <a class="ui tiny button">Reply</a>
                 </div>
 
                 {{!-- <button {{action editComment comment}} class="ui green button">Edit</button>
                 <button {{action deleteComment comment}} class="ui red button">Delete</button> --}}
             {{else}}
-                <div class="text">
+            <div class="ui form">
+                <div class="text field">
                     {{comment.content}}
                 </div>
-                <div class="actions">
-                    <a class="hide" {{action reportComment comment}}>Report</a>
+            </div>
+                <div class="field">
+                    <a class="ui tiny button" {{action reportComment comment}}>Report</a>
                     <!-- TODO: Add ability to reply -->
-                    <a class="reply">Reply</a>
+                    <a class="ui tiny button">Reply</a>
                 </div>
 
                 {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}

@@ -7,36 +7,65 @@
             </div>
             <div class="right aligned column">
                 {{#if model.public}}
-                    <a class="ui teal label">Public</a>
+                    <a class="ui large black label">Public</a>
                 {{else}}
-                    <a class="ui red label">Private</a>
+                    <a class="ui large black label">Private</a>
                 {{/if}}
             </div>
         </div>
     </div>
     <div class="ui segment">
-        <span class="bold">Date Created: </span>{{moment-format model.dateCreated}}<br />
-        <span class="bold">Date Modified: </span>{{moment-format model.dateModified}}<br />
-        <span class="bold">Category: </span>{{capitalize model.category}}<br />
-        <span class="bold">Description: </span>{{model.description}}<br />
+            <div class="ui middle aligned divided list">
+                <div class="item">
+                    <div class="content">
+                        <span class="ui blue header">Date Created: </span>
+                        <span class="right floated">{{moment-from-now model.dateCreated}}</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <span class="ui blue header">Date Modified: </span>
+                        <span class="right floated">{{moment-from-now model.dateModified}}</span>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="content">
+                        <span class="ui blue header">Type: </span>
+                        <span class="right floated">{{capitalize model.category}}</span>
+                    </div>
+                </div>
+                {{#if model.description}}
+                <div class="item">
+                    <div class="content">
+                        <span class="ui blue header">Description: </span>
+                        <span class="right floated">{{model.description}} </span>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+            <div class="ui header">Tags</div>
+            {{tags-widget addATag=(action 'addATag' model) removeATag=(action 'removeATag' model) tags=model.tags}}
     </div>
-    <div class="ui segment">
-        {{!-- Edit Project Button --}}
-        {{project-edit project=model}}
 
-        {{!-- Create Child Project Button --}}
-        {{project-child-create}}
+    <div class="ui stackable grid segment">
+        <div class="six wide column">
+            <div class="ui header">Tools</div>
+        </div>
+        <div class="ten wide column">
+                {{!-- Edit Project Button --}}
+                {{project-edit project=model}}
+                {{!-- Create Child Project Button --}}
+                {{project-child-create}}
 
-        {{!-- Request Delete Project Button --}}
-        {{project-delete project=model transitionTo='transitionToProjectList'}}
+                {{!-- Request Delete Project Button --}}
+                {{project-delete project=model transitionTo='transitionToProjectList'}}
 
-        {{!-- Destroy Project Button --}}
-        {{!-- <button class="ui red button" {{action "destroyProject"}}>
-            <i class="trash icon"></i>
-            Destroy this Project
-        </button> --}}
+                {{!-- Destroy Project Button --}}
+                {{!-- <button class="ui red button" {{action "destroyProject"}}>
+                    <i class="trash icon"></i>
+                    Destroy this Project
+                </button> --}}
+        </div>
     </div>
-    <div class="ui segment">
-        {{tags-widget addATag=(action 'addATag' model) removeATag=(action 'removeATag' model) tags=model.tags}}
-    </div>
+
 {{!-- </div> --}}

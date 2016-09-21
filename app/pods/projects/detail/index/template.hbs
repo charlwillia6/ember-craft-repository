@@ -26,7 +26,7 @@
 </div>
 
 {{!-- Project Summary --}}
-<div class="ui two column grid">
+<div class="ui two column stackable grid">
     <div class="column">
         {{project-summary addATag="addATag" removeATag="removeATag" model=model}}
     </div>
@@ -39,16 +39,34 @@
             restoreComment=(action 'restoreComment')
             reportComment=(action 'reportComment')
         }}
+
     </div>
 </div>
 
+<div style="height:500px; overflow:scroll">
+{{!-- Recent Activity --}}
+{{log-detail model-logs=model.logs}}
+</div>
 
 {{!-- Contributors --}}
 {{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
-    editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
+                  editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
 
-{{!-- Recent Activity --}}
-{{log-detail model-logs=model.logs}}
+
+<div class="ui icon message">
+    <i class="notched circle loading icon"></i>
+    <div class="content">
+        <div class="header">
+            Just one second
+        </div>
+        <p>We're waiting for the file widget to be installed :)</p>
+    </div>
+</div>
+
+{{file-tree}}
+{{file-chooser}}
+
+
 
 {{!-- Create Child Project --}}
 {{!-- <div class="ui segments">

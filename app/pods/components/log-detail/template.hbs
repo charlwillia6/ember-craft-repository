@@ -3,7 +3,7 @@
     <h4 class="ui header">Recent Activity</h4>
 </div>
 <div class="ui segment">
-    <table class="ui table">
+    <table class="ui compact tiny celled striped inverted blue table" style="font-size: 0.9em">
         <thead>
             <tr>
                 <th>Action</th>
@@ -30,7 +30,7 @@
                         <a href="{{project-log.node.links.html}}">{{project-log.node.title}}<!--: {{project-log.node.id}}--></a>
                     </td>
                     <td>
-                        {{moment-format project-log.date}}
+                        {{moment-from-now project-log.date}}
                     </td>
                     <td>
                         {{#each-in project-log.params as |key value|}}
