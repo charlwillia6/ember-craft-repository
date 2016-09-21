@@ -1,0 +1,25 @@
+<!-- app/pods/components/projects-public-cards/template.hbs -->
+{{!-- Projects List Widget --}}
+{{!-- <div class="ui cards"> --}}
+<div class="ui three doubling cards">
+    {{#each publicProjects as |publicProject|}}
+
+        <div class="ui card">
+            <div class="content">
+                {{publicProject.title}}
+            </div>
+            <div class="content">
+                <div class="meta contributor">
+                    by
+                    {{#each publicProject.contributors as |contributor|}}
+                        <span class="contributor">
+                            {{contributor.users.fullName}}
+                        </span>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+    {{/each}}
+</div>
+{{!-- </div> --}}

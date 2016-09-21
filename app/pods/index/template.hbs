@@ -7,47 +7,25 @@
                 <div class="ui header">
                     Dashboard
                 </div>
-                {{!-- Projects List Component --}}
-                {{!-- {{projects-list}} --}}
                 {{!-- Projects Cards Component --}}
                 {{projects-cards model=model}}
             </div>
         </div>
-        {{!-- <div class="ui computer only centered sixteen wide row">
-            <div class="fourteen wide column">
-                <div class="ui header">
-                    Public Projects
-                </div>
-                Project List Component
-                {{projects-public-list}}
-            </div>
-        </div> --}}
     {{else if (or media.isTablet media.isMobile)}}
         <div class="ui tablet only mobile only row">
             <div class="column">
                 <div class="ui header">
                     Dashboard
                 </div>
-                {{!-- Project List Component --}}
-                {{!-- {{projects-list}} --}}
                 {{!-- Projects Cards Component --}}
                 {{projects-cards model=model}}
             </div>
         </div>
-        {{!-- <div class="ui tablet only mobile only row">
-            <div class="column">
-                <div class="ui header">
-                    Public Projects
-                </div>
-                Project List Component
-                {{projects-public-list}}
-            </div>
-        </div> --}}
     {{/if}}
 </div>
 
 {{!-- Pagination --}}
-<div class="ui inverted black segment pagination">
+{{!-- <div class="ui inverted black segment pagination">
     {{pagination-control-ui
         currentPage=page
         pageCount=totalPages
@@ -55,16 +33,31 @@
         previous=(action 'previous')
         goToPage=(action 'goToPage')
     }}
-</div>
+</div> --}}
 
-<div class="ui segments">
-    {{#each publicProjects as |publicProject|}}
-    <div class="segment">
-            {{publicProject.title}}
-    </div>
-    {{/each}}
+<div class="ui grid projects public cards">
+    {{#if media.isDesktop}}
+        <div class="ui computer only centered sixteen wide row">
+            <div class="fourteen wide column">
+                <div class="ui header">
+                    Public Cards
+                </div>
+                {{!-- Projects Public Cards Component --}}
+                {{projects-public-cards publicProjects=publicProjects}}
+            </div>
+        </div>
+    {{else if (or media.isTablet media.isMobile)}}
+        <div class="ui tablet only mobile only row">
+            <div class="column">
+                <div class="ui header">
+                    Public Cards
+                </div>
+                {{!-- Projects Public Cards Component --}}
+                {{projects-public-cards publicProjects=publicProjects}}
+            </div>
+        </div>
+    {{/if}}
 </div>
-
 {{!-- OSF File-Widget Component --}}
 {{!-- TODO:0 issue:3 Develop file-widget --}}
 {{!-- {{file-widget preUpload=(action 'preUpload') buildUrl=(action 'buildUrl') listeners=dropzoneOptions options=dropzoneOptions}} --}}

@@ -1,20 +1,22 @@
 // app/pods/login/controller.js
-
 import ENV from 'ember-craft-repository/config/environment';
-
-
 import Ember from 'ember';
 import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-controller';
 
 export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
+    session: Ember.inject.service(),
+    isAuthenticated: Ember.on('init', Ember.observer('session.isAuthenticated', function() {
+         this.transitionToRoute("index");
+    })),
     init: function() {
         this._super(...arguments);
+        console.log(this.get('loginSuccess'));
 
-        if (this.get('session.isAuthenticated')) {
-            this.transitionToRoute("index");
+        if(this.get('session.isAuthenticated')) {
+            this.transitionToRoute('index');
         }
     },
-    loginChoices : [
+    loginChoices: [
         {
             name: 'Login',
             image: 'login.jpg',
