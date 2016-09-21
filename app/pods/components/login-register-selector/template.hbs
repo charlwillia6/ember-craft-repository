@@ -1,8 +1,4 @@
-{{!
-  @module wholetale
-  @submodule components/shape-3d
-~}}
-
+<!-- app/pods/components/login-register-selector/template.hbs -->
 {{#ui-shape class="Choices" as |execute|}}
     <div class="shape three d controls">
         <div class="ui tiny button" title="Flip Up" {{action execute 'flip up'}}>
@@ -29,7 +25,7 @@
       {{#each data as |item|}}
           <div class="{{item.active}} side">
               <div class="ui fluid card">
-                  <div class="image" style="margin : 10px;">
+                  <div class="image login register">
                       <img src="/assets/icons/{{item.image}}">
                   </div>
                   <div class="content">
@@ -40,7 +36,7 @@
                   </div>
                   <div class="extra content">
                       <div class="ui fluid blue button" {{action "selectCard" item.name}}>
-                          <i class="chekmark icon"></i>
+                          <i class="checkmark icon"></i>
                           {{item.name}}</div>
                   </div>
 
@@ -50,4 +46,3 @@
 
     </div>
 {{/ui-shape}}
-

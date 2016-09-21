@@ -6,11 +6,13 @@ import PaginatedRouteMixin from  'ember-osf/mixins/paginated-route';
 export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+
     model(routeParams) {
         let user = this.modelFor('application');
         var userParams = {
             filter: {
-                contributors: ''
+                contributors: '',
+                public: ''
             }
         };
 
@@ -21,6 +23,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
 
         if(user) {
             userParams['filter']['contributors'] = user.id;
+            userParams['filter']['public'] = false;
             this.set('routeParams', routeParams);
 
             return this.queryForPage('node', routeParams, userParams);
@@ -36,6 +39,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     setupController: function(controller, model) {
         var publicParams = {
             filter: {
+                contributors: '',
                 public: ''
             }
         };
@@ -46,7 +50,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
             page: 1,
             page_size: 6
         }
+        console.log(this);
         publicParams['filter']['public'] = true;
+        publicParams['filter']['contributors'] = this.get('user.id');
 
         controller.set('publicProjects', this.queryForPage('node', routeParams, publicParams));
         controller.set('model', model);
