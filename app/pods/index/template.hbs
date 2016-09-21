@@ -4,30 +4,24 @@
         <div class="two wide column"></div>
         <div class="twelve wide column">
             <div class="ui grid">
-                <div class="eight wide column">
-                    <div class="ui header">DASHBOARD</div>
+                <div class="row">
+                    <div class="eight wide column">
+                        <div class="ui header">DASHBOARD</div>
+                    </div>
+                    <div class="eight wide right aligned column">
+                        <div class="right aligned column ">
+                            {{project-create reloadRoute='reloadProjectListRoute'}}
+                        </div>
+                    </div>
                 </div>
-                <div class="eight wide right aligned column">
-                    <div class="right aligned column ">
-                        {{project-create reloadRoute='reloadProjectListRoute'}}
+                <div class="row">
+                    <div class="sixteen wide column">
+                        {{projects-search}}
                     </div>
                 </div>
             </div>
-            {{projects-search}}
             <div class="ui header">Private Projects</div>
-            {{projects-cards model=model}}
-
-            {{!-- Pagination --}}
-            <div class="ui segment pagination">
-                {{pagination-control-ui
-                    currentPage=page
-                    pageCount=totalPages
-                    next=(action 'next')
-                    previous=(action 'previous')
-                    goToPage=(action 'goToPage')
-                }}
-            </div>
-
+            {{projects-cards}}
         </div>
         <div class="two wide column"></div>
     </div>
@@ -38,7 +32,6 @@
 </div>
 
 <div class="ui inverted grey segment" style="background-color: #666666">
-
     <div class="ui grid">
         <div class="ui stackable grid">
             <div class="two wide column"></div>

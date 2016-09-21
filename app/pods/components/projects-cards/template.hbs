@@ -1,6 +1,21 @@
-
+<!-- app/pods/components/projects-cards/template.hbs -->
 <div class="ui three doubling cards">
-    {{#each model as |project|}}
+    {{!-- Initialize Loader --}}
+    {{#if isLoading}}
+        <div class="ui active inverted dimmer">
+            <div class="ui big text loader">
+                Loading...
+            </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    {{/if}}
+    {{#each list as |project|}}
         <div class="ui fluid card">
             <div class="fluid image">
                 <img src="/assets/images/chip.jpg">
@@ -20,8 +35,17 @@
                  Detail <i class="expand icon"></i>
                 {{/link-to}}
             </div>
-
         </div>
     {{/each}}
 </div>
 
+{{!-- Pagination --}}
+<div class="ui segment pagination">
+    {{pagination-control-ui
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
+    }}
+</div>
