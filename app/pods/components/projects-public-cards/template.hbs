@@ -1,25 +1,30 @@
 <!-- app/pods/components/projects-public-cards/template.hbs -->
 {{!-- Projects List Widget --}}
-{{!-- <div class="ui cards"> --}}
-<div class="ui three doubling cards">
-    {{#each publicProjects as |publicProject|}}
 
-        <div class="ui card">
-            <div class="content">
-                {{publicProject.title}}
+<div class="ui two doubling cards">
+    {{#each publicProjects as |project|}}
+            <div class="ui fluid card" style="min-height: 200px">
+                    <div class="content">
+                        <div class="header">{{project.title}}</div>
+                        <div class="description">
+                            {{project.description}}
+                        </div>
+                        <div class="meta contributor">
+                            by
+                            {{#each project.contributors as |contributor|}}
+                                <span class="contributor">
+                                    {{contributor.users.fullName}}
+                                </span>
+                            {{/each}}
+                        </div>
+                    </div>
+                    <div class="extra content">
+                        {{#link-to 'projects.detail' project.id class="ui bottom attached labeled icon button"}}
+                            Detail <i class="expand icon"></i>
+                        {{/link-to}}
+                    </div>
             </div>
-            <div class="content">
-                <div class="meta contributor">
-                    by
-                    {{#each publicProject.contributors as |contributor|}}
-                        <span class="contributor">
-                            {{contributor.users.fullName}}
-                        </span>
-                    {{/each}}
-                </div>
-            </div>
-        </div>
 
     {{/each}}
 </div>
-{{!-- </div> --}}
+

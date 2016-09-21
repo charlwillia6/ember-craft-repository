@@ -1,75 +1,61 @@
 <!-- app/pods/index/template.hbs -->
-{{title "Dashboard"}}
+
 <div class="ui grid">
-    {{#if media.isDesktop}}
-        <div class="ui computer only centered sixteen wide row">
-            <div class="fourteen wide column">
-                <div class="ui header">
-                    Dashboard
+    <div class="ui stackable grid">
+        <div class="two wide column"></div>
+        <div class="twelve wide column">
+            <div class="ui grid">
+                <div class="eight wide column">
+                    <div class="ui header">DASHBOARD</div>
                 </div>
-                {{!-- Projects Search Component --}}
-                {{projects-search}}
-            </div>
-        </div>
-        <div class="ui computer only centered sixteen wide row">
-            <div class="fourteen wide column">
-                {{!-- Projects Cards Component --}}
-                {{projects-cards model=model}}
-            </div>
-        </div>
-    {{else if (or media.isTablet media.isMobile)}}
-        <div class="ui tablet only mobile only row">
-            <div class="column">
-                <div class="ui header">
-                    Dashboard
+                <div class="eight wide right aligned column">
+                    <div class="right aligned column ">
+                        {{project-create reloadRoute='reloadProjectListRoute'}}
+                    </div>
                 </div>
-                {{!-- Projects Search Component --}}
-                {{projects-search}}
             </div>
-        </div>
-        <div class="ui tablet only mobile only row">
-            <div class="column">
-                {{!-- Projects Cards Component --}}
-                {{projects-cards model=model}}
+            <div class="ui header">Private Projects</div>
+            {{projects-cards model=model}}
+
+            {{!-- Pagination --}}
+            <div class="ui segment pagination">
+                {{pagination-control-ui
+                    currentPage=page
+                    pageCount=totalPages
+                    next=(action 'next')
+                    previous=(action 'previous')
+                    goToPage=(action 'goToPage')
+                }}
             </div>
+
         </div>
-    {{/if}}
+        <div class="two wide column"></div>
+    </div>
 </div>
 
-{{!-- Pagination --}}
-{{!-- <div class="ui inverted black segment pagination">
-    {{pagination-control-ui
-        currentPage=page
-        pageCount=totalPages
-        next=(action 'next')
-        previous=(action 'previous')
-        goToPage=(action 'goToPage')
-    }}
-</div> --}}
-
-<div class="ui grid projects public cards">
-    {{#if media.isDesktop}}
-        <div class="ui computer only centered sixteen wide row">
-            <div class="fourteen wide column">
-                <div class="ui header">
-                    Public Cards
-                </div>
-                {{!-- Projects Public Cards Component --}}
-                {{projects-public-cards publicProjects=publicProjects}}
-            </div>
-        </div>
-    {{else if (or media.isTablet media.isMobile)}}
-        <div class="ui tablet only mobile only row">
-            <div class="column">
-                <div class="ui header">
-                    Public Cards
-                </div>
-                {{!-- Projects Public Cards Component --}}
-                {{projects-public-cards publicProjects=publicProjects}}
-            </div>
-        </div>
-    {{/if}}
+<div class="ui horizontal divider">
+    OR
 </div>
+
+<div class="ui inverted grey segment" style="background-color: #666666">
+
+    <div class="ui grid">
+        <div class="ui stackable grid">
+            <div class="two wide column"></div>
+            <div class="twelve wide column">
+                <div class="ui header" style="color: #ffffff">Public Projects</div>
+                {{projects-public-cards publicProjects=publicProjects}}
+            </div>
+            <div class="two wide column"></div>
+        </div>
+    </div>
+
+</div>
+
+
+{{!-- OSF File-Widget Component --}}
+{{!-- TODO:0 issue:3 Develop file-widget --}}
+{{!-- {{file-widget preUpload=(action 'preUpload') buildUrl=(action 'buildUrl') listeners=dropzoneOptions options=dropzoneOptions}} --}}
 
 {{!-- TODO:0 issue:4 Develop Execution Dashboard as component --}}
 {{!-- Execution Dashboard Component (Needs to be developed as a component)--}}

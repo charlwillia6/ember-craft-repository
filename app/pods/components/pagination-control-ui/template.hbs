@@ -6,8 +6,9 @@
                 <div class="ui small right labeled input">
                     <label class="ui basic label">Page</label>
                         <input type="text" value={{currentPage}} onchange={{action 'goToPage' value='target.value'}}
-                        class="page-input" size="5">
-                    <label class="ui basic label"> of {{pageCount}}</label>
+                        class="page-input" size="4">
+                    <label class="ui basic label"> of </label>
+                    <label class="ui basic label">{{pageCount}}</label>
                 </div>
             </div>
         </div>
