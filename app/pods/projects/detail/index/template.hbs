@@ -1,5 +1,4 @@
 <!-- app/pods/projects/detail/index/template.hbs -->
-<!-- TODO: Compare to index.hbs in nodes/details of ember-osf dummy app -->
 {{!-- Breadcrumbs and buttons --}}
 <div class="ui two column doubling grid">
     <div class="column">
@@ -25,12 +24,14 @@
     {{!-- </div> --}}
 </div>
 
-{{!-- Project Summary --}}
 <div class="ui two column stackable grid">
     <div class="column">
+        {{!-- Project Summary Component--}}
         {{project-summary addATag="addATag" removeATag="removeATag" model=model}}
     </div>
     <div class="column">
+        <!-- TODO: Check this to make sure the ember-osf comment-pane works -->
+        {{!-- Comment Component --}}
         {{comment-pane
             comments=comments
             addComment=(action 'addComment')
@@ -63,11 +64,24 @@
     </div>
 </div>
 
+<!-- TODO: Delete this section of code after file browser is functioning. -->
+{{!-- <div class="ui segments">
+    <div class="ui segment">
+        <h4 class="ui header">Files</h4>
+    </div>
+    <div class="ui segment">
+        {{link-to 'View Files' 'projects.detail.files' model class='ui blue button'}}
+    </div>
+</div> --}}
+{{!-- File Widget Component --}}
+{{!-- File Browser --}}
+{{!-- {{file-browser rootItem=node openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}} --}}
 {{file-tree}}
 {{file-chooser}}
 
+{{outlet}}
 
-
+<!-- TODO: Delete this section of code after creating child project component is functioning. -->
 {{!-- Create Child Project --}}
 {{!-- <div class="ui segments">
     <div class="ui segment">
@@ -124,24 +138,6 @@
         <p><button {{action "addChildren" child1 child2 }}>Create</button></p>
     </div>
 </div>--}}
-
-<!-- TODO: Delete this section of code after file browser is functioning. -->
-{{!-- <div class="ui segments">
-    <div class="ui segment">
-        <h4 class="ui header">Files</h4>
-    </div>
-    <div class="ui segment">
-        {{link-to 'View Files' 'projects.detail.files' model class='ui blue button'}}
-    </div>
-</div> --}}
-
-{{!-- File Browser --}}
-{{!-- {{file-browser rootItem=node openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}} --}}
-
-<!-- TODO: Check this to make sure the ember-osf comment-pane works -->
-
-
-{{outlet}}
 
 <!-- TODO: Will work on all that follows later -->
 {{!-- <div>

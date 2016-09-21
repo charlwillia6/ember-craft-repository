@@ -5,16 +5,13 @@ import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-contr
 
 export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
     session: Ember.inject.service(),
-    isAuthenticated: Ember.on('init', Ember.observer('session.isAuthenticated', function() {
-         this.transitionToRoute("index");
-    })),
     init: function() {
-        this._super(...arguments);
-        console.log(this.get('loginSuccess'));
-
         if(this.get('session.isAuthenticated')) {
-            this.transitionToRoute('index');
+            this.loginSuccess();
         }
+    },
+    loginSuccess() {
+        this.transitionToRoute('index');
     },
     loginChoices: [
         {
@@ -31,13 +28,13 @@ export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
     ],
     actions: {
         gotoAction: function (name) {
-            if (name === "Login")
+            if (name === "Login") {
                 this.send('login');
-            else {
+            } else {
                 if (ENV.environment === 'development') {
                     window.open('https://staging.osf.io/register/');
                 }
             }
         }
     }
-    });
+});

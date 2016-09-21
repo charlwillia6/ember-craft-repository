@@ -1,24 +1,4 @@
 // app/pods/index/route.js
-// import Ember from 'ember';
-// import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
-//
-// export default Ember.Route.extend(AuthenticatedRouteMixin, {
-//     session: Ember.inject.service(),
-//     store: Ember.inject.service(),
-//     setupController: function (controller) {
-//         this._super(controller);
-//         let user = this.modelFor('application');
-//
-//         if (user) {
-//             controller.set('currentUser', user);
-//         } else {
-//             this.get('store').findRecord('user', 'me').then(function (user) {
-//                 controller.set('currentUser', user);
-//             });
-//         }
-//     }
-// });
-
 import Ember from 'ember';
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import PaginatedRouteMixin from  'ember-osf/mixins/paginated-route';
@@ -26,9 +6,7 @@ import PaginatedRouteMixin from  'ember-osf/mixins/paginated-route';
 export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, {
     store: Ember.inject.service(),
     session: Ember.inject.service(),
-    // TODO: Compare and test to ember-osf dummy app
     model(routeParams) {
-        console.log(routeParams);
         let user = this.modelFor('application');
         var userParams = {
             filter: {
@@ -43,7 +21,6 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
 
         if(user) {
             userParams['filter']['contributors'] = user.id;
-            // publicParams['filter']['public'] = true;
             this.set('routeParams', routeParams);
 
             return this.queryForPage('node', routeParams, userParams);
@@ -80,3 +57,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
         }
     }
 });
+
+// export default Ember.Route.extend(AuthenticatedRouteMixin, {
+//     session: Ember.inject.service(),
+//     store: Ember.inject.service(),
+//     setupController: function (controller) {
+//         this._super(controller);
+//         let user = this.modelFor('application');
+//
+//         if (user) {
+//             controller.set('currentUser', user);
+//         } else {
+//             this.get('store').findRecord('user', 'me').then(function (user) {
+//                 controller.set('currentUser', user);
+//             });
+//         }
+//     }
+// });

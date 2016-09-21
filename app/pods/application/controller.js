@@ -8,12 +8,17 @@ export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
     toast: Ember.inject.service(),
     authUrl: getAuthUrl(),
     actions: {
-        loginSuccess() {
-            this.transitionToRoute('projects');
-            alert("Transitioning to the index!!!");
-        },
+        // TODO: Not being used - Find a way to use it.
         loginFail(/* err */) {
             this.get('toast').error('Login failed');
-        }
+        },
+        // toggleSidebar: function(subSidebarName) {
+        //     $('#'+subSidebarName)
+        //         .sidebar('setting', 'transition', 'push')
+        //         .sidebar('toggle');
+        // },
+        // closeMenu: function() {
+        //     $('.sidebar').sidebar("toggle");
+        // }
     }
 });

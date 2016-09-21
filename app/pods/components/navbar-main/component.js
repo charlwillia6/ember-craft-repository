@@ -3,12 +3,12 @@ import Ember from 'ember';
 import layout from './template';
 import config from 'ember-get-config';
 
-
 export default Ember.Component.extend({
-    routing: Ember.inject.service('-routing'),
     layout,
     session: Ember.inject.service(),
     currentUser: Ember.inject.service(),
+    routing: Ember.inject.service('-routing'),
+    tagName: '',
     attributeBindings:['elementId:id'],
     elementId: 'navbar-main',
     classNames: ['navbar', 'main'],
@@ -29,17 +29,6 @@ export default Ember.Component.extend({
         this.get('currentUser').load().then(user => this.set('user', user));
     })),
     showSearch: false,
-    // _loadCurrentUser() {
-    //     this.get('currentUser').load().then((user) => this.set('user', user));
-    // },
-    // init() {
-    //     this._super(...arguments);
-    //     // TODO: React to changes in service/ event?
-    //     if (this.get('session.isAuthenticated')) {
-    //         this._loadCurrentUser();
-    //     }
-    // },
-    // currentUserFullName: Ember.computed.alias('user.fullName'),
     // TODO: These parameters are defined in osf settings.py; make sure ember config matches.
     allowLogin: true,
     enableInstitutions: true,
@@ -48,20 +37,16 @@ export default Ember.Component.extend({
             this.toggleProperty('showSearch');
         },
         logout() {
-           // alert("Logging out !!")
             // TODO: May not work well if logging out from page that requires login- check?
+            // TODO: Remove cookies on logout should be implemented
             this.get('session').invalidate();
             this.get("routing").transitionTo('login');
         },
-        toggle: function(subSidebarName) {
-            console.log(subSidebarName);
+        toggleSidebar: function(subSidebarName) {
+            // this.sendAction(...arguments);
             $('#'+subSidebarName)
                 .sidebar('setting', 'transition', 'push')
-                .sidebar('toggle')
-            ;
-        },
-        closeMenu : function() {
-            $('.sidebar').sidebar("toggle");
+                .sidebar('toggle');
         }
     }
 });

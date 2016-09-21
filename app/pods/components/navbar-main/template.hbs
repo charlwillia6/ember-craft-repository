@@ -1,5 +1,6 @@
+<!-- app/pods/components/navbar-main/template.hbs -->
 <div class="ui inverted menu main navbar">
-    <div class="ui big black button item" {{action 'toggle' 'sub-sidebar'}}>
+    <div class="ui big black button item" {{action 'toggleSidebar' 'sub-sidebar'}}>
         <i class="white list icon"></i>
     </div>
     <div class="header item">
@@ -32,22 +33,3 @@
         {{/if}}
     </div>
 </div>
-
-{{#ui-sidebar class="ui inverted left compact vertical sidebar labeled icon menu" context=".component.context" id="sub-sidebar"}}
-    {{#link-to 'index' invokeAction=(action 'closeMenu') class="item"}}
-        <i class="dashboard icon"></i>
-        Dashboard
-    {{/link-to}}
-    {{#link-to 'projects' invokeAction=(action 'closeMenu') class="item"}}
-        <i class="list icon"></i>
-        My Projects
-    {{/link-to}}
-    {{#link-to 'users' invokeAction=(action 'closeMenu') class="item"}}
-        <i class="users icon"></i>
-        Users
-    {{/link-to}}
-    {{#link-to 'registrations' invokeAction=(action 'closeMenu') class="item"}}
-        <i class="users icon"></i>
-        My Registrations
-    {{/link-to}}
-{{/ui-sidebar}}

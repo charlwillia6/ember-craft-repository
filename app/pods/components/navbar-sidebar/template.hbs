@@ -1,0 +1,20 @@
+<!-- app/pods/components/navbar-sidebar/template.hbs -->
+{{#ui-sidebar class="ui inverted left compact vertical sidebar labeled icon menu" context=".component.context"
+    id="sub-sidebar"}}
+    {{#link-to 'index' invokeAction=(action 'closeMenu') class="item"}}
+        <i class="dashboard icon"></i>
+        Dashboard
+    {{/link-to}}
+    {{#link-to 'projects' invokeAction=(action 'closeMenu') class="item"}}
+        <i class="list icon"></i>
+        My Projects
+    {{/link-to}}
+    {{#link-to 'users' invokeAction=(action 'closeMenu') class="item"}}
+        <i class="users icon"></i>
+        Users
+    {{/link-to}}
+    {{#link-to 'registrations' invokeAction=(action 'closeMenu') class="item"}}
+        <i class="users icon"></i>
+        My Registrations
+    {{/link-to}}
+{{/ui-sidebar}}

@@ -1,10 +1,8 @@
 <!-- app/pods/application/template.hbs -->
 {{title "Craft Repository"}}
-{{!-- <div class="context"> --}}
-    {{!-- {{partial 'sidebar'}} --}}
-    {{!-- <div class="pusher"> --}}
-        {{!-- {{partial 'navbar'}} --}}
+
 <div class="ui pushable segment component context">
+    {{navbar-sidebar}}
     <div class="pusher">
         {{navbar-main}}
         <div class="main page" role="main">
@@ -13,5 +11,3 @@
         {{footer-main}}
     </div>
 </div>
-    {{!-- </div> --}}
-{{!-- </div> --}}
