@@ -1,30 +1,28 @@
 <!-- app/pods/index/template.hbs -->
-<div class="ui grid">
-    <div class="ui stackable grid">
-        <div class="two wide column"></div>
-        <div class="twelve wide column">
-            <div class="ui grid">
-                <div class="row">
-                    <div class="eight wide column">
-                        <div class="ui header">DASHBOARD</div>
-                    </div>
-                    <div class="eight wide right aligned column">
-                        <div class="right aligned column ">
-                            {{project-create reloadRoute='reloadProjectListRoute'}}
-                        </div>
-                    </div>
+<div class="ui stackable grid">
+    <div class="two wide column"></div>
+    <div class="twelve wide column">
+        <div class="ui grid">
+            <div class="row">
+                <div class="eight wide column">
+                    <h2 class="ui header">DASHBOARD</h2>
                 </div>
-                <div class="row">
-                    <div class="sixteen wide column">
-                        {{projects-search}}
+                <div class="eight wide right aligned column">
+                    <div class="right aligned column ">
+                        {{project-create reloadRoute='reloadProjectListRoute'}}
                     </div>
                 </div>
             </div>
-            <div class="ui header">Private Projects</div>
-            {{projects-cards}}
+            <div class="row">
+                <div class="sixteen wide column">
+                    {{projects-search}}
+                </div>
+            </div>
         </div>
-        <div class="two wide column"></div>
+        <div class="ui header">Private Projects</div>
+        {{projects-cards pageSize=3 isPublic=false}}
     </div>
+    <div class="two wide column"></div>
 </div>
 
 <div class="ui horizontal divider">
@@ -32,17 +30,14 @@
 </div>
 
 <div class="ui inverted grey segment" style="background-color: #666666">
-    <div class="ui grid">
-        <div class="ui stackable grid">
-            <div class="two wide column"></div>
-            <div class="twelve wide column">
-                <div class="ui header" style="color: #ffffff">Public Projects</div>
-                {{projects-public-cards publicProjects=publicProjects}}
-            </div>
-            <div class="two wide column"></div>
+    <div class="ui stackable grid">
+        <div class="two wide column"></div>
+        <div class="twelve wide column">
+            <div class="ui header" style="color: #ffffff">Public Projects</div>
+            {{projects-public-cards pageSize=3 isPublic=true}}
         </div>
+        <div class="two wide column"></div>
     </div>
-
 </div>
 
 

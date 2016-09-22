@@ -1,20 +1,8 @@
 <!-- app/pods/components/projects-cards/template.hbs -->
 <div class="ui three doubling cards">
     {{!-- Initialize Loader --}}
-    {{#if isLoading}}
-        <div class="ui active inverted dimmer">
-            <div class="ui big text loader">
-                Loading...
-            </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-    {{/if}}
+    {{loading-widget isPrivate=true}}
+
     {{#each list as |project|}}
         <div class="ui fluid card">
             <div class="fluid image">

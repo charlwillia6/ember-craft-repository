@@ -5,8 +5,7 @@ import permissions from 'ember-osf/const/permissions';
 
 export default Ember.Component.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'contributor-manager',
+    tagName: '',
     classNames: ['contributor', 'manager', 'ui', 'segments'],
     toast: Ember.inject.service(),
     READ: permissions.READ,

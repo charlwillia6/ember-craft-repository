@@ -2,28 +2,41 @@
 
 {{!-- Projects Public Card Component --}}
 <div class="ui two doubling cards">
-    {{#each publicProjects as |project|}}
-            <div class="ui fluid card" style="min-height: 200px">
-                    <div class="content">
-                        <div class="header">{{project.title}}</div>
-                        <div class="description">
-                            {{project.description}}
-                        </div>
-                        <div class="meta contributor">
-                            by
-                            {{#each project.contributors as |contributor|}}
-                                <span class="contributor">
-                                    {{contributor.users.fullName}}
-                                </span>
-                            {{/each}}
-                        </div>
-                    </div>
-                    <div class="extra content">
-                        {{#link-to 'projects.detail' project.id class="ui bottom attached labeled icon button"}}
-                            Detail <i class="expand icon"></i>
-                        {{/link-to}}
-                    </div>
-            </div>
+    {{!-- Initialize Loader --}}
+    {{loading-widget isPublic=true}}
 
+    {{#each list as |project|}}
+        <div class="ui fluid card" style="min-height: 200px">
+            <div class="content">
+                <div class="header">{{project.title}}</div>
+                <div class="description">
+                    {{project.description}}
+                </div>
+                <div class="meta contributor">
+                    by
+                    {{#each project.contributors as |contributor|}}
+                        <span class="contributor">
+                            {{contributor.users.fullName}}
+                        </span>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="extra content">
+                {{#link-to 'projects.detail' project.id class="ui bottom attached labeled icon button"}}
+                    Detail <i class="expand icon"></i>
+                {{/link-to}}
+            </div>
+        </div>
     {{/each}}
+</div>
+
+{{!-- Pagination --}}
+<div class="ui segment pagination">
+    {{pagination-control-ui
+        currentPage=page
+        pageCount=totalPages
+        next=(action 'next')
+        previous=(action 'previous')
+        goToPage=(action 'goToPage')
+    }}
 </div>

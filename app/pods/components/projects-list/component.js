@@ -7,8 +7,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
     currentUser: Ember.inject.service(),
     user: null,
-    attributeBindings:['elementId:id'],
-    elementId: 'projects-list',
+    tagName: '',
     classNames: ['projects', 'list'],
     isLoading: true,
     init() {

@@ -11,6 +11,8 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     elementId: 'projects-cards',
     classNames: ['projects', 'cards'],
     isLoading: true,
+    pageSize: null,
+    isPublic: false,
     init() {
         this._super(...arguments);
 
@@ -34,37 +36,50 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
             this.set('user', user);
         }
 
-        console.log(this.get('page'));
         var routeParams = {
             page: this.get('page'),
-            page_size: 3
+            page_size: this.get('pageSize')
         };
 
         var userParams = {
             filter: {
                 contributors: this.get('user.id'),
-                public: false
+                public: this.get('isPublic')
             }
         };
 
-        this.queryForComponent('node', routeParams, userParams);
-    },
-    willUpdate: function() {
-        this.set('isLoading', false);
-        // console.log(this.get('isLoading', false));
+        console.log('Page: ', this.get('page'));
+        this.queryForComponent('node', routeParams, userParams).then(() => {
+            this.send('hideLoading');
+        });
     },
     actions: {
         next: function() {
+            this.send('showLoading');
             this.incrementProperty('page', 1);
             this.loadProfileList();
         },
         previous: function() {
+            this.send('showLoading');
             this.decrementProperty('page', 1);
             this.loadProfileList();
         },
         goToPage: function(pageNumber) {
+            this.send('showLoading');
             this.set('page', pageNumber);
             this.loadProfileList();
+        },
+        hideLoading: function() {
+            this.set('isLoading', false);
+            if(!(this.get('isLoading'))) {
+                $('.loading.widget.private').hide();
+            }
+        },
+        showLoading: function() {
+            this.set('isLoading', true);
+            if(this.get('isLoading')) {
+                $('.loading.widget.private').show();
+            }
         }
     }
 });

@@ -4,7 +4,6 @@ import layout from './template';
 
 export default CommentForm.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'comment-form',
+    tagName: '',
     classNames: ['comment', 'form']
 });

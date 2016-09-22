@@ -5,8 +5,6 @@ import permissions from 'ember-osf/const/permissions';
 
 export default Ember.Component.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'contrib-add',
     tagName: '',
     classNames: ['contrib', 'add'],
     toast: Ember.inject.service(),

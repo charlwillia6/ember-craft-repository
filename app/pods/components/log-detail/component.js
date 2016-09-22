@@ -4,7 +4,6 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'log-detail',
+    tagName: '',
     classNames: ['ui', 'segments', 'log', 'detail']
 });

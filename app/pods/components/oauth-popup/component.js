@@ -4,7 +4,6 @@ import layout from './template';
 
 export default OauthPopup.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'oauth-popup',
+    tagName: '',
     classNames: ['oauth']
 });

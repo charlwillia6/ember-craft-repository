@@ -4,4 +4,5 @@ import layout from './template';
 
 export default FileChooser.extend({
     layout,
+    tagName: '',
 });

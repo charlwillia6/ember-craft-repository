@@ -5,7 +5,6 @@ import layout from './template';
 // TODO:0 issue:3 Develop file-widget
 export default FileWidget.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'file-widget',
+    tagName: '',
     classNames: ['file', 'widget']
 });

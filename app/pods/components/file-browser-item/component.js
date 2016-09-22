@@ -4,4 +4,5 @@ import layout from 'ember-osf/components/file-browser-item/template';
 
 export default FileChooser.extend({
     layout,
+    tagName: '',
 });

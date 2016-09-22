@@ -4,7 +4,6 @@ import layout from './template';
 
 export default CommentDetail.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: '',
+    tagName: '',
     classNames: ['comment', 'detail']
 });

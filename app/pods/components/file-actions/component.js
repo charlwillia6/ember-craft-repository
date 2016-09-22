@@ -6,8 +6,7 @@ export default Ember.Component.extend({
     layout,
     fileManager: Ember.inject.service(),
     store: Ember.inject.service(),
-    attributeBindings:['elementId:id'],
-    elementId: 'file-actions',
+    tagName: '',
     classNames: ['file', 'actions'],
     actions: {
         download() {

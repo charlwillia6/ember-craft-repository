@@ -5,7 +5,6 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'execution-dashboard',
+    tagName: '',
     classNames: ['execution', 'dashboard']
 });

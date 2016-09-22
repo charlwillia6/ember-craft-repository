@@ -5,7 +5,6 @@ import layout from './template';
 export default PaginationControl.extend({
     // TODO:0 ember-issue:11678 Cannot use input helper with onchange attribute issue:2
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'pagination-control-ui',
+    tagName: '',
     classNames: ['pagination']
 });
