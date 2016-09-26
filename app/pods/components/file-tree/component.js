@@ -4,6 +4,7 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    tagName: '',
+    attributeBindings:['elementId:id'],
+    elementId: 'file-tree', 
     classNames: ['file', 'tree']
 });

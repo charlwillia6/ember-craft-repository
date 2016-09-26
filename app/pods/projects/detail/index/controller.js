@@ -8,6 +8,7 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
     responseSuccess: '',
     responseError: '',
     selectedModel: '',
+    files: null,
     actions: {
         requestDelete(project, name) { // jshint ignore:line
             this.set('selectedModel', project);
@@ -27,17 +28,13 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
             this.set('responseSuccess', '');
             this.set('responseError', '');
         },
-        
-        // TODO: Put these actions in file component
         fileDetail(file) {
-            console.log("this.get('node'); ", this.get('node'));
-            console.log("file.get('provider'); ", file.get('provider'));
             this.transitionToRoute('projects.detail.files.provider.file',
-                                   this.get('node'),
+                                   this.get('project'),
                                    file.get('provider'),
                                    file);
         },
-        nodeDetail(project) {
+        projectDetail(project) {
             this.transitionToRoute('projects.detail', project);
         }
     }

@@ -48,7 +48,7 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
             }
         };
 
-        console.log('Page: ', this.get('page'));
+        // console.log('Page: ', this.get('page'));
         this.queryForComponent('node', routeParams, userParams).then(() => {
             this.send('hideLoading');
         });

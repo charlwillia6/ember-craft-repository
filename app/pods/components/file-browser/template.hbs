@@ -1,50 +1,67 @@
 <!-- app/pods/components/file-browser/template.hbs -->
-<div class="ui segments">
-    <div class="ui segment">
-        <div class='file-browser-header'>
-            <h3 class="ui header">Files</h3>
-        </div>
-    </div>
-    <div class="ui segment">
-        <div class="ui items">
-            <div class="item">
-                <div class="content">
-                    <div class="header">
-                        <div class="ui breadcrumb">
-                    	    {{#each breadcrumbs as |item|}}
-                                <a {{action 'navigateToItem' item}} class="section">
-                                    {{file-browser-icon item=item}}
-                                    {{item.itemName}}
-                                </a>
-                                {{#unless @last}}
-                                    <span class="divider">/</span>
-                                {{/unless}}
-                    	    {{/each}}
-                        </div>
-                    </div>
-
-                    {{!-- {{#if selectedItems}}
-                        {{! TODO: show available actions for selected files }}
-                    {{/if}} --}}
-
-                    <div class="description">
-                        <div class='file-browser-list'>
-                            {{#ember-collection items=items
-                                cell-layout=(fixed-grid-layout itemWidth itemHeight)
-                                as |item index|}}
-                                {{file-browser-item item=item
-                                navigateToItem=(action 'navigateToItem')
-                                selectItem=(action 'selectItem')
-                                openItem=(action 'openItem')
-                                }}
-                            {{/ember-collection}}
-                            {{#unless itemsLoaded}}
-                                <div class="ui active inverted dimmer">
-                                    <div class="ui mini loader"></div>
-                                    <p></p>
+<div class="ui stackable grid">
+    <div class="column">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class='file-browser-header'>
+                    <h3 class="ui header">Files</h3>
+                </div>
+            </div>
+            <div class="ui segment">
+                <div class="ui items">
+                    <div class="item">
+                        <div class="content">
+                            <div class="ui breadcrumb">
+                                <div class="header">
+                                    {{#each breadcrumbs as |item|}}
+                                        <a {{action 'navigateToItem' item}} class="section">
+                                            {{file-browser-icon item=item}}{{item.itemName}}
+                                        </a>
+                                        {{#unless @last}}
+                                            <span class="divider">/</span>
+                                        {{/unless}}
+                                    {{/each}}
                                 </div>
-                                {{!-- {{fa-icon 'spinner' size=3 pulse=true}} --}}
-                            {{/unless}}
+                            </div>
+                            <div class="ui segments">
+                                <div class="ui segment">
+                                    <div class="description">
+                                        <div class='file-browser-list'>
+                                            {{#each items as |item index|}}
+                                                {{file-browser-item item=item
+                                                navigateToItem=(action 'navigateToItem')
+                                                selectItem=(action 'selectItem')
+                                                openItem=(action 'openItem')}}
+                                            {{/each}}
+                                            {{#unless itemsLoaded}}
+                                                <div class="ui active inverted dimmer">
+                                                    <div class="ui mini loader"></div>
+                                                    <p></p>
+                                                </div>
+                                            {{/unless}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui segment">
+                                <div class="ui items">
+                                    <div class="item">
+                                        <div class="content">
+                                            {{file-chooser files=filesToUpload}}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content">
+                                            <button {{action "uploadFiles" filesToUpload}} class="ui blue button">
+                                                Upload
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- {{#if selectedItems}}
+                                {{! TODO: show available actions for selected files }}
+                            {{/if}} --}}
                         </div>
                     </div>
                 </div>

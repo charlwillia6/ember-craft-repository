@@ -54,7 +54,6 @@ export default Ember.Component.extend({
             );
         },
         addContributor(userId, permission, isBibliographic, sendMail) {
-            console.log('2', userId, permission, isBibliographic, sendMail);
             this.sendAction('addContributor', userId, permission, isBibliographic, sendMail);
         },
     },

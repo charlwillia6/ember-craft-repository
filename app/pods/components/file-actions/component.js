@@ -6,7 +6,6 @@ export default Ember.Component.extend({
     layout,
     fileManager: Ember.inject.service(),
     store: Ember.inject.service(),
-    tagName: '',
     classNames: ['file', 'actions'],
     actions: {
         download() {
@@ -29,8 +28,10 @@ export default Ember.Component.extend({
         uploadFiles(files) {
             let fm = this.get('fileManager');
             let folder = this.get('file');
+
             while (files && files.length) {
                 let file = files.pop();
+                console.log(file.name);
                 fm.uploadFile(folder, file.name, file);
             }
         },

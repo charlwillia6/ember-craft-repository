@@ -8,4 +8,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
         let project = this.modelFor('projects.detail');
         controller.set('project', project);
     },
+    actions: {
+        refreshModel: function() {
+            this.modelFor('projects.detail.files.index').reload();
+            this.refresh();
+            console.log(this);
+            console.log('Model reloaded.');
+        }
+    }
 });

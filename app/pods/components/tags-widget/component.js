@@ -4,6 +4,5 @@ import layout from './template';
 
 export default TagsWidget.extend({
     layout,
-    tagName: '',
     classNames: ['tags', 'widget'],
 });

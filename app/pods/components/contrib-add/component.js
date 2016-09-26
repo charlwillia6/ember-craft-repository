@@ -22,9 +22,8 @@ export default Ember.Component.extend({
         },
         addContributor(userId, permission, isBibliographic, sendMail) {
             // TODO: Reset values after you addContributor and refresh
-            console.log('1', userId, permission, isBibliographic, sendMail);
+            // console.log('1', userId, permission, isBibliographic, sendMail);
             this.sendAction('addContributor', userId, permission, isBibliographic, sendMail);
-            console.log(this);
         },
         cancelContribAdd(name) { // jshint ignore:line
             this.set('newContributorId', '');

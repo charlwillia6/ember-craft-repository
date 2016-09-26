@@ -17,7 +17,7 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, {
     actions: {
         fileDetail(file) {
             this.transitionToRoute('projects.detail.files.provider.file',
-                                   this.get('node'),
+                                   this.get('project'),
                                    file.get('provider'),
                                    file);
         },

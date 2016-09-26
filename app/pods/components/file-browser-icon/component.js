@@ -19,18 +19,7 @@ export default Ember.Component.extend({
         if (this.get('item.isFolder')) {
             return 'folder outline';
         }
-        // TODO file types
+        // TODO: More file types
         return 'file outline';
     })
-    // attributeBindings:['elementId:id'],
-    // elementId: 'file-browser',
-    // classNames: ['file', 'browser'],
-    // actions: {
-    //     openNode() {
-    //         this.sendAction(...arguments);
-    //     },
-    //     openFile() {
-    //         this.sendAction(...arguments);
-    //     }
-    // }
 });

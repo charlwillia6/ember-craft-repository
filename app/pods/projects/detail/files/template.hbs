@@ -1,18 +1,18 @@
 <!-- app/pods/projects/detail/files/template.hbs -->
 {{title "| Files"}}
 <div class="ui two column doubling grid">
-    <div class="ui column">
+    <div class="column">
         <div class="ui breadcrumb">
             <i class="left angle icon divider"></i>
             {{#link-to 'projects.detail' class="section"}}
                 Back to Project: {{project.title}}
             {{/link-to}}
-        {{#if project.parent}}
-        <i class="up angle icon divider"></i>
-            {{#link-to 'projects.detail' model.parent class="section"}}
-            Parent: {{project.parent.title}}
-            {{/link-to}}
-        {{/if}}
+            {{#if project.parent}}
+                <i class="up angle icon divider"></i>
+                {{#link-to 'projects.detail' model.parent class="section"}}
+                    Parent: {{project.parent.title}}
+                {{/link-to}}
+            {{/if}}
         </div>
     </div>
 </div>

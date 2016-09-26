@@ -1,12 +1,19 @@
 <!-- app/pods/projects/detail/files/index/template.hbs -->
-{{!-- <div class="segments">
-    <div class="segment">
-        <h2 class="ui header">Files</h2>
+{{!-- TODO: Work on file-tree.  File browser is not the same as the file-tree component --}}
+{{!-- <div class="ui stackable grid">
+    <div class="column">
+        <div class="ui segments">
+            <div class="ui segment">
+                <div class="ui header">Files</div>
+            </div>
+            <div class="ui segment">
+                {{#each model as |provider|}}
+                    {{file-tree root=provider project=provider.node}}
+                {{/each}}
+            </div>
+        </div>
     </div>
+</div> --}}
 
-    {{!-- {{#each model as |provider|}}
-        {{file-tree root=provider project=provider.node}}
-    {{/each}} --}}
-{{!-- </div> --}}
-
-{{file-browser rootItem=project openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}}
+{{file-browser files=model rootItem=project openFile=(action 'fileDetail')
+    openNode=(action 'projectDetail') refreshModel='refreshModel'}}

@@ -7,12 +7,12 @@
             {{#link-to 'projects' class="section"}}
                 Back to Projects List
             {{/link-to}}
-	    {{#if model.parent}}
-		<i class="up angle icon divider"></i>
-	        {{#link-to 'projects.detail' model.parent class="section"}}
-		    Parent: {{model.parent.title}}
-	        {{/link-to}}
-	    {{/if}}
+            {{#if model.parent}}
+                <i class="up angle icon divider"></i>
+                {{#link-to 'projects.detail' model.parent class="section"}}
+                    Parent: {{model.parent.title}}
+                {{/link-to}}
+            {{/if}}
         </div>
     </div>
 
@@ -40,7 +40,6 @@
             restoreComment=(action 'restoreComment')
             reportComment=(action 'reportComment')
         }}
-
     </div>
 </div>
 
@@ -54,7 +53,7 @@
                   editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
 
 
-<div class="ui icon message">
+{{!-- <div class="ui icon message">
     <i class="notched circle loading icon"></i>
     <div class="content">
         <div class="header">
@@ -62,7 +61,7 @@
         </div>
         <p>We're waiting for the file widget to be installed :)</p>
     </div>
-</div>
+</div> --}}
 
 <!-- TODO: Delete this section of code after file browser is functioning. -->
 {{!-- <div class="ui segments">
@@ -75,9 +74,8 @@
 </div> --}}
 {{!-- File Widget Component --}}
 {{!-- File Browser --}}
-{{!-- {{file-browser rootItem=node openFile=(action 'fileDetail') openNode=(action 'nodeDetail')}} --}}
-{{file-tree}}
-{{file-chooser}}
+{{file-browser files=files rootItem=model openFile=(action 'fileDetail')
+    openNode=(action 'projectDetail')}}
 
 {{outlet}}
 
@@ -169,7 +167,7 @@
     <h2>Affiliated Institutions</h2>
     <p>
         <table class="table">
-            {{#each model.affiliatedInstitutions as |inst|}}
+            {{#each project.affiliatedInstitutions as |inst|}}
                 <tr>
                     <td>
                         {{inst.name}}

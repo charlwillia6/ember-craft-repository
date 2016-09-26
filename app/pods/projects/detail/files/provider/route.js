@@ -5,6 +5,8 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model(params) {
         let fileProviders = this.modelFor('projects.detail.files');
+        console.log(params);
+        console.log(fileProviders);
         return fileProviders.findBy('provider', params.provider);
     },
 });

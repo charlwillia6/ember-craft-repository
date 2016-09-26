@@ -2,17 +2,18 @@
 import Ember from 'ember';
 // TODO:50 refactor permissions strings when https://github.com/CenterForOpenScience/ember-osf/pull/23/files#diff-7fd0bf247bef3c257e0fcfd7e544a338R5 is merged
 import permissions from 'ember-osf/const/permissions';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
     model(params) {
         return this.store.findRecord('node', params.node_id);
     },
     setupController(controller, model) {
+        this._super(controller, model);
         controller.set('editedTitle', model.get('title'));
         controller.set('editedCategory', model.get('category'));
         controller.set('editedDescription', model.get('description'));
         controller.set('editedIsPublic', model.get('public'));
-        this._super(...arguments);
     },
     actions: {
         affiliateProject(instId) {
@@ -103,15 +104,14 @@ export default Ember.Route.extend({
             // var commentText = addCommentTextarea.val();
             console.log('Add Comment Test', commentText);
             var project = this.modelFor(this.routeName);
+            console.log(this.routeName);
 
             if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
                 var comment = this.get('store').createRecord('comment', {
                     content: commentText,
                     page: 'node',
-
                     type: 'nodes',
                     target: project.id,
-
                     dateCreated: new Date(),
                     dateModified: new Date(),
                     user: currentUser

@@ -1,7 +1,7 @@
 <!-- app/pods/projects/detail/files/provider/file/template.hbs -->
 {{title "OSF | " model.name replace=true}}
 <div>
-    {{#link-to 'nodes.detail.files.provider' node model.provider class='ui button'}}
+    {{#link-to 'projects.detail.files.provider' node model.provider class='ui button'}}
         Back to {{model.provider}}
     {{/link-to}}
 </div>
@@ -36,11 +36,11 @@
                 Download
             </button>
             {{link-to 'View'
-                'nodes.detail.files.provider.file.index'
+                'projects.detail.files.provider.file.index'
                 node model.provider model
                 class='btn btn-sm btn-primary'}}
             {{link-to 'Revisions'
-                'nodes.detail.files.provider.file.revisions'
+                'projects.detail.files.provider.file.revisions'
                 node model.provider model
                 class='btn btn-sm btn-primary'}}
         </div>
@@ -52,7 +52,7 @@
         {{file-browser rootItem=node
         selectedFile=model
         openFile=(action 'fileDetail')
-        openNode=(action 'nodeDetail')
+        openNode=(action 'projectDetail')
         }}
         <div>
             <p><label> Tags </label></p>
