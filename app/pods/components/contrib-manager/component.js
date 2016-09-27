@@ -45,16 +45,20 @@ export default Ember.Component.extend({
             this.set(`updatedContributorIsBibliographic.${contributor.id}`, isBibliographic);
         },
         updateContributors() {
-            // TODO:10 Should test PUT or PATCH
+            // TODO:10 Should test PUT or PATCH and errors for not being admin
             this.sendAction(
                 'editContributors',
                 this.get('contributors'),
                 this.get('updatedContributorPermissions'),
                 this.get('updatedContributorIsBibliographic')
             );
+            // TODO: Called even it it isn't updated successfully.  No error check.
+            this.get('toast').success('Contributor updated successfully!');
         },
         addContributor(userId, permission, isBibliographic, sendMail) {
             this.sendAction('addContributor', userId, permission, isBibliographic, sendMail);
+            // TODO: Called even it it isn't updated successfully.  No error check.
+            this.get('toast').success('Contributor added successfully!');
         },
     },
 });

@@ -11,6 +11,9 @@ export default CommentDetail.extend({
     commentUserFullName: Ember.computed('comment', function() {
         this.get('comment.user').then(user => {
             // console.log(user.get('fullName'));
+            if(this.isDestroyed) {
+                return;
+            }
             this.set('commentUserFullName', user.get('fullName'));
         });
     }),
@@ -21,6 +24,9 @@ export default CommentDetail.extend({
             // console.log(imgLink);
             if (imgLink) {
                 imgLink += '&s=25';
+            }
+            if(this.isDestroyed) {
+                return;
             }
             this.set('gravatarUrl', imgLink);
         });

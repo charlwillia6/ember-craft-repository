@@ -8,6 +8,7 @@ export default Ember.Component.extend({
     classNames: ['project', 'child', 'create'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
+    toast: Ember.inject.service(),
     responseError: '',
     responseSuccess: '',
     actions: {
@@ -29,6 +30,7 @@ export default Ember.Component.extend({
                 self.set('title', '');
                 self.set('description', '');
                 Ember.run.later(name, function () {
+                    
                     $('.ui.modal.response.message').modal().modal('show'); // jshint ignore:line
                     Ember.run.later(function () {
                         $('.ui.modal.response.message').modal().modal('hide'); // jshint ignore:line
