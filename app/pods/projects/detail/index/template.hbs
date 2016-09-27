@@ -27,7 +27,7 @@
 <div class="ui two column stackable grid">
     <div class="column">
         {{!-- Project Summary Component--}}
-        {{!-- {{project-summary addATag="addATag" removeATag="removeATag" model=model}} --}}
+        {{project-summary addATag="addATag" removeATag="removeATag" model=model}}
     </div>
     <div class="column">
         <!-- TODO: Check this to make sure the ember-osf comment-pane works -->
@@ -45,12 +45,12 @@
 
 <div style="height:500px; overflow-y:scroll">
 {{!-- Recent Activity --}}
-{{!-- {{log-detail model-logs=model.logs}} --}}
+{{log-detail model-logs=model.logs}}
 </div>
 
 {{!-- Contributors --}}
-{{!-- {{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor') --}}
-                  {{!-- editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}} --}}
+{{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
+                  editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
 
 
 {{!-- <div class="ui icon message">
@@ -74,8 +74,8 @@
 </div> --}}
 {{!-- File Widget Component --}}
 {{!-- File Browser --}}
-{{!-- {{file-browser files=files rootItem=model openFile=(action 'fileDetail') --}}
-    {{!-- openNode=(action 'projectDetail')}} --}}
+{{file-browser files=files rootItem=model openFile=(action 'fileDetail')
+    openNode=(action 'projectDetail')}}
 
 {{outlet}}
 
