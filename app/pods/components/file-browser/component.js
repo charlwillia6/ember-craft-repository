@@ -13,7 +13,6 @@ export default FileBrowser.extend({
     selectedFolder: null,
     init: function() {
         this._super(...arguments);
-
         this.loadFileBrowser();
     },
     loadFileBrowser: function () {
@@ -37,8 +36,28 @@ export default FileBrowser.extend({
                 console.log(fm, folder, file.name, file);
                 fm.uploadFile(folder, file.name, file).then(() => {
                     this.get('toast').success('File uploaded successfully');
+                    this.sendAction('refreshModel');
                 });
             }
-        }
+        },
+        openItem(item) {
+            console.log(this);
+            this.sendAction('openItem', item);
+        },
+        selectItem(item) {
+            console.log(item.get('kind'));
+            console.log(item);
+            console.log(item.get)
+            if(item.get('kind') === "file") {
+                this.sendAction('download', item);
+            } else {
+                this.sendAction('selectItem', item);
+            }
+        },
+        download(item) {
+            let file = item;
+            let url = file.get('links').download;
+            window.open(url);
+        },
     }
 });

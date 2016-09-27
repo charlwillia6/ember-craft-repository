@@ -10,12 +10,14 @@
     {{else}}
         <a class="avatar">
             <!-- TODO: Add customer avatar helper -->
-            <img src="http://semantic-ui.com/images/avatar/small/christian.jpg">
+            {{!-- <img src="http://semantic-ui.com/images/avatar/small/christian.jpg"> --}}
+            <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
+
         </a>
         <div class="content">
             <!-- TODO: Add Author Helper -->
             <a class="author">
-                Name of User
+                {{commentUserFullName}}
             </a>
 
             <!-- TODO: Add More Metadata? -->
