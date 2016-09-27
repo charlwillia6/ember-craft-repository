@@ -10,7 +10,7 @@ export default CommentDetail.extend({
     // TODO: Very slot finding username and gravatarUrl.  Needs reworked.
     commentUserFullName: Ember.computed('comment', function() {
         this.get('comment.user').then(user => {
-            console.log(user.get('fullName'));
+            // console.log(user.get('fullName'));
             this.set('commentUserFullName', user.get('fullName'));
         });
     }),
@@ -18,7 +18,7 @@ export default CommentDetail.extend({
         var imgLink = '';
         this.get('comment.user').then(user => {
             imgLink = user.get('links.profile_image');
-            console.log(imgLink);
+            // console.log(imgLink);
             if (imgLink) {
                 imgLink += '&s=25';
             }

@@ -41,12 +41,12 @@
             reportComment=(action 'reportComment')
         }}
     </div>
+    <div class="row">
+        {{!-- Recent Activity --}}
+        {{log-detail model-logs=model.logs}}
+    </div>
 </div>
 
-<div style="height:500px; overflow-y:scroll">
-{{!-- Recent Activity --}}
-{{log-detail model-logs=model.logs}}
-</div>
 
 {{!-- Contributors --}}
 {{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
