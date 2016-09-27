@@ -24,5 +24,16 @@ export default CommentDetail.extend({
             }
             this.set('gravatarUrl', imgLink);
         });
-    })
+    }),
+    actions: {
+        reportComment(comment) {
+            this.sendAction('reportComment', comment);
+        },
+        editComment(comment) {
+            this.sendAction('editComment', comment);
+        },
+        deleteComment(comment) {
+            this.sendActiom('delete', comment);
+        }
+    }
 });

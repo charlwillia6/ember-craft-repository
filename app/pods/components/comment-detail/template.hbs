@@ -32,14 +32,11 @@
                     </div>
                 </div>
                 <div class="field">
-                    <a class="ui tiny button" {{action editComment comment}}>Edit</a>
-                    <a class="ui tiny button" {{action deleteComment comment}}>Delete</a>
+                    <a class="ui tiny button" {{action 'editComment' comment}}>Edit</a>
+                    <a class="ui tiny button" {{action 'deleteComment' comment}}>Delete</a>
                     <!-- TODO: Add ability to reply -->
                     <a class="ui tiny button">Reply</a>
                 </div>
-
-                {{!-- <button {{action editComment comment}} class="ui green button">Edit</button>
-                <button {{action deleteComment comment}} class="ui red button">Delete</button> --}}
             {{else}}
             <div class="ui form">
                 <div class="text field">
@@ -47,9 +44,10 @@
                 </div>
             </div>
                 <div class="field">
-                    <a class="ui tiny button" {{action reportComment comment}}>Report</a>
+                    <!-- TODO: reportComment not yet possible -->
+                    {{!-- <a class="ui tiny button" {{action 'reportComment' comment}}>Report</a> --}}
                     <!-- TODO: Add ability to reply -->
-                    <a class="ui tiny button">Reply</a>
+                    {{!-- <a class="ui tiny button">Reply</a> --}}
                 </div>
 
                 {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}
