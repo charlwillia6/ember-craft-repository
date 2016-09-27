@@ -1,72 +1,74 @@
 <!-- app/pods/components/contrib-manager/template.hbs -->
 {{!-- Project Contributors --}}
-<div class="ui segment">
-    <div class="ui two column grid">
-        <div class="column">
-            <h4 class="ui header">Contributors</h4>
-        </div>
-        <div class="right aligned column">
-            <!-- For Add Contributor Button -->
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="ui two column grid">
+            <div class="column">
+                <h4 class="ui header">Contributors</h4>
+            </div>
+            <div class="right aligned column">
+                <!-- For Add Contributor Button -->
+            </div>
         </div>
     </div>
-</div>
-<div class="ui segment">
-    <table class="ui table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Permissions</th>
-            <th>Bibiographic</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        {{#each contributors as |contributor|}}
+    <div class="ui segment">
+        <table class="ui table">
+            <thead>
             <tr>
-                <td>
-                    {{contributor.id}}
-                </td>
-                <td>
-                    {{if contributor.unregisteredContributor contributors.unregisteredContributor
-                        contributor.users.fullName}}
-                </td>
-                <td>
-                    {{#ui-dropdown class="selection" selected=contributor.permission
-                        onChange=(action 'permissionsUpdate' contributor) as |execute mapper|}}
-                        <div class="default text">
-                            {{contributor.permission}}
-                        </div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            {{#each permissions as |permission|}}
-                                <div class="item" data-value="{{map-value mapper permission.value}}">
-                                    {{permission.description}}
-                                </div>
-                            {{/each}}
-                        </div>
-                    {{/ui-dropdown}}
-                </td>
-                <td>
-                    {{ui-checkbox class="ui checkbox" onChange=(action 'isBibliographicUpdate' contributor
-                        value=target.checked) name="bibliographic"
-                        label="Bibliographic" checked=contributor.bibliographic}}
-                </td>
-                <td>
-                    <button {{action 'removeContributor' contributor}} class="ui red button">
-                        Remove
+                <th>ID</th>
+                <th>Name</th>
+                <th>Permissions</th>
+                <th>Bibiographic</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each contributors as |contributor|}}
+                <tr>
+                    <td>
+                        {{contributor.id}}
+                    </td>
+                    <td>
+                        {{if contributor.unregisteredContributor contributors.unregisteredContributor
+                            contributor.users.fullName}}
+                    </td>
+                    <td>
+                        {{#ui-dropdown class="selection" selected=contributor.permission
+                            onChange=(action 'permissionsUpdate' contributor) as |execute mapper|}}
+                            <div class="default text">
+                                {{contributor.permission}}
+                            </div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                {{#each permissions as |permission|}}
+                                    <div class="item" data-value="{{map-value mapper permission.value}}">
+                                        {{permission.description}}
+                                    </div>
+                                {{/each}}
+                            </div>
+                        {{/ui-dropdown}}
+                    </td>
+                    <td>
+                        {{ui-checkbox class="ui checkbox" onChange=(action 'isBibliographicUpdate' contributor
+                            value=target.checked) name="bibliographic"
+                            label="Bibliographic" checked=contributor.bibliographic}}
+                    </td>
+                    <td>
+                        <button {{action 'removeContributor' contributor}} class="ui red button">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            {{/each}}
+            <tr>
+                <td colspan="5">
+                    <button {{action 'updateContributors'}} class="ui green button">
+                        <i class="checkmark icon"></i>Save changes
                     </button>
+                    {{contrib-add model=model addContributor=(action 'addContributor')}}
                 </td>
             </tr>
-        {{/each}}
-        <tr>
-            <td colspan="5">
-                <button {{action 'updateContributors'}} class="ui green button">
-                    <i class="checkmark icon"></i>Save changes
-                </button>
-                {{contrib-add model=model addContributor=(action 'addContributor')}}
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 </div>

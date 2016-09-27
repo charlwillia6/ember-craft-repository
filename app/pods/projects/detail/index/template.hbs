@@ -41,17 +41,28 @@
             reportComment=(action 'reportComment')
         }}
     </div>
-    <div class="row">
-        {{!-- Recent Activity --}}
-        {{log-detail model-logs=model.logs}}
+    <div class="ui one column row">
+        <div class="column">
+            {{!-- Recent Activity --}}
+            {{log-detail model-logs=model.logs}}
+        </div>
+    </div>
+    <div class="ui one column row">
+        <div class="column">
+            {{!-- Contributors --}}
+            {{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
+                editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
+        </div>
+    </div>
+    <div class="ui one column row">
+        <div class="column">
+            {{!-- File Widget Component --}}
+            {{!-- File Browser --}}
+            {{file-browser files=files rootItem=model openFile=(action 'fileDetail')
+                openNode=(action 'projectDetail')}}
+        </div>
     </div>
 </div>
-
-
-{{!-- Contributors --}}
-{{contrib-manager contributors=model.contributors removeContributor=(action 'removeContributor')
-                  editContributors=(action 'updateContributors') addContributor=(action 'addContributor')}}
-
 
 {{!-- <div class="ui icon message">
     <i class="notched circle loading icon"></i>
@@ -62,20 +73,6 @@
         <p>We're waiting for the file widget to be installed :)</p>
     </div>
 </div> --}}
-
-<!-- TODO: Delete this section of code after file browser is functioning. -->
-{{!-- <div class="ui segments">
-    <div class="ui segment">
-        <h4 class="ui header">Files</h4>
-    </div>
-    <div class="ui segment">
-        {{link-to 'View Files' 'projects.detail.files' model class='ui blue button'}}
-    </div>
-</div> --}}
-{{!-- File Widget Component --}}
-{{!-- File Browser --}}
-{{file-browser files=files rootItem=model openFile=(action 'fileDetail')
-    openNode=(action 'projectDetail')}}
 
 {{outlet}}
 
