@@ -94,6 +94,7 @@ export default Ember.Component.extend(NodeActionsMixin, {
             } else {
                 this.set('isSaving', false);
                 this.selectedModel.rollbackAttributes();
+                this.get('toast').error('You do not have permission to edit this project');
                 console.log("You do not have permission to edit this project");
             }
         },

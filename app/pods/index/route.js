@@ -19,7 +19,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
     actions: {
         reloadProjectListRoute: function() {
-            this.refresh();
+            window.location.reload(true);
         }
     }
 });

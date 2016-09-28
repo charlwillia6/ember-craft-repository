@@ -30,17 +30,17 @@
         <button class="ui black cancel button" {{action 'cancelProjectChildCreate' 'project-create'}}>
             <i class="close icon"></i>Cancel
         </button>
-        <button class="ui green approve right labeled icon button" {{action 'confirmProjectChildCreate' 'response-message'}}>
+        <button class="ui green approve right labeled icon button" {{action 'confirmProjectChildCreate'}}>
             <i class="checkmark icon"></i>Create
         </button>
     </div>
 {{/ui-modal}}
 
 {{!-- Response Message Modal Widget --}}
-{{#ui-modal name="response-message" class="response message"}}
-    <i class="close icon"></i>
+{{!-- {{#ui-modal name="response-message" class="response message"}}
+    <i class="close icon"></i> --}}
     {{!-- Response Messages --}}
-    {{#if responseSuccess}}
+    {{!-- {{#if responseSuccess}}
         <div class="ui green header">
             Success!
         </div>
@@ -54,5 +54,5 @@
         <div class="content">
             {{responseError}}
         </div>
-    {{/if}}
-{{/ui-modal}}
+    {{/if}} --}}
+{{!-- {{/ui-modal}} --}}

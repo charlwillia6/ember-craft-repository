@@ -1,21 +1,27 @@
 <!-- app/pods/projects/index/template.hbs -->
 {{title "Projects"}}
-<div class="ui two column grid">
-    <div class="row">
-        <div class="column">
-            <h2 class="ui header">Private Projects</h2>
+<div class="ui stackable grid">
+    <div class="two wide column"></div>
+    <div class="twelve wide column">
+        <div class="ui stackable grid">
+            <div class="row">
+                <div class="eight wide column">
+                    <h2 class="ui header">Private Projects</h2>
+                </div>
+                <div class="eight wide right aligned column">
+                    {{project-create reloadRoute='reloadProjectListRoute'}}
+                </div>
+            </div>
         </div>
-        <div class="right aligned column ">
-            {{project-create reloadRoute='reloadProjectListRoute'}}
-        </div>
-    </div>
-    <div class="sixteen column wide row">
         {{projects-cards pageSize=10 isPubic=false}}
     </div>
-    <div class="sixteen column wide row">
+    <div class="two wide column"></div>
+</div>
+<div class="ui stackable grid">
+    <div class="two wide column"></div>
+    <div class="twelve wide column">
         <h3 class="ui header">Public Projects</h3>
-    </div>
-    <div class="sixteen column wide row">
         {{projects-public-cards pageSize=6 isPublic=true}}
     </div>
+    <div class="two wide column"></div>
 </div>

@@ -17,7 +17,7 @@ export default FileBrowser.extend({
     },
     loadFileBrowser: function () {
         let fileProviders = this.get('files');
-        console.log(this.get('files'));
+        // console.log(this.get('files'));
         let params = {provider: "osfstorage"};
         let provider = fileProviders.findBy('provider', params.provider);
 
@@ -33,7 +33,7 @@ export default FileBrowser.extend({
 
             while(files && files.length) {
                 let file = files.pop();
-                console.log(fm, folder, file.name, file);
+                // console.log(fm, folder, file.name, file);
                 fm.uploadFile(folder, file.name, file).then(() => {
                     this.get('toast').success('File uploaded successfully');
                     this.sendAction('refreshModel');
@@ -41,23 +41,27 @@ export default FileBrowser.extend({
             }
         },
         openItem(item) {
-            console.log(this);
+            // console.log(item);
             this.sendAction('openItem', item);
         },
         selectItem(item) {
             console.log(item.get('kind'));
             console.log(item);
-            console.log(item.get)
             if(item.get('kind') === "file") {
-                this.sendAction('download', item);
+                console.log('Downloading...');
+                this.send('downloadFile', item);
             } else {
+                console.log('Selecting...');
                 this.sendAction('selectItem', item);
             }
         },
-        download(item) {
+        downloadFile(item) {
+            console.log('...and still downloading...');
             let file = item;
             let url = file.get('links').download;
+            console.log(url);
             window.open(url);
+            console.log('Done!');
         },
     }
 });

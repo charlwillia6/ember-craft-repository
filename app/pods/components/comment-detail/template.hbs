@@ -1,97 +1,118 @@
 <!-- app/pods/components/comment-detail/template.hbs -->
-<div class="comment">
-    {{#if comment.deleted}}
-        <div>
-            Comment deleted
-            {{# if comment.canEdit}}
-                <button {{action restoreComment comment}} class="ui yellow button">Restore</button>
-            {{/if}}
-        </div>
-    {{else}}
-        <a class="avatar">
-            <!-- TODO: Add customer avatar helper -->
-            {{!-- <img src="http://semantic-ui.com/images/avatar/small/christian.jpg"> --}}
-            <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
-
-        </a>
-        <div class="content">
-            <!-- TODO: Add Author Helper -->
-            <a class="author">
-                {{commentUserFullName}}
+<div class="ui comments">
+    <div class="comment">
+        {{#if comment.deleted}}
+            <div>
+                Comment deleted
+                {{# if comment.canEdit}}
+                    <button {{action restoreComment comment}} class="ui yellow button">Restore</button>
+                {{/if}}
+            </div>
+        {{else}}
+            <a class="avatar">
+                <!-- TODO: Add customer avatar helper -->
+                {{!-- <img src="http://semantic-ui.com/images/avatar/small/christian.jpg"> --}}
+                <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
             </a>
-
-            <!-- TODO: Add More Metadata? -->
-            <div class="metadata">
-                {{moment-from-now comment.dateCreated}}
-            </div>
-
-            {{#if comment.canEdit}}
-                <div class="ui form">
-                    <div class="text field">
-                        {{input value=comment.content}}
-                    </div>
-                </div>
-                <div class="field">
-                    <a class="ui tiny button" {{action 'editComment' comment}}>Save Edit</a>
-                    <a class="ui tiny button" {{action 'deleteComment' comment}}>Delete</a>
-                    <!-- TODO: Add ability to reply -->
-                    {{!-- <a class="ui tiny button">Reply</a> --}}
-                </div>
-            {{else}}
-            <div class="ui form">
-                <div class="text field">
-                    {{comment.content}}
-                </div>
-            </div>
-                <div class="field">
-                    <!-- TODO: reportComment not yet possible -->
-                    {{!-- <a class="ui tiny button" {{action 'reportComment' comment}}>Report</a> --}}
-                    <!-- TODO: Add ability to reply -->
-                    {{!-- <a class="ui tiny button">Reply</a> --}}
+            <div class="content">
+                <!-- TODO: Add Author Helper -->
+                <a class="author">{{commentUserFullName}}</a>
+                <!-- TODO: Add More Metadata? -->
+                <div class="metadata">
+                    {{moment-from-now comment.dateCreated}}
                 </div>
 
-                {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}
-            {{/if}}
-            <!-- TODO: Add Logic to have nested comments when user replies (See Semantic "Threaded Comments") -->
-            {{!-- {{#if some kind of logic}}
-                <div class="comments">
-                    <div class="comment">
-                        <a class="avatar">
-                            <!-- TODO: Add customer avatar helper -->
-                            <img src="http://semantic-ui.com/images/avatar/small/christian.jpg">
-                        </a>
-                        <div class="content">
-                            <a class="author">
-                                Name of User
-                            </a>
-                            <!-- TODO: Add More Metadata? -->
-                            <div class="metadata">
-                                {{comment.dateCreated}}
-                            </div>
-                            {{#if comment.canEdit}}
-                                <div class="text">
-                                    {{input value=comment.content}}
-                                </div>
-                                <div class="actions">
-                                    <a class="edit" {{action editComment comment}}>Edit</a>
-                                    <a class="hide" {{action deleteComment comment}}>Delete</a>
-                                    <!-- TODO: Add ability to reply -->
-                                    <a class="reply">Reply</a>
-                                </div>
-                            {{else}}
-                                <div class="text">
-                                    {{comment.content}}
-                                </div>
-                                <div class="actions">
-                                    <a class="hide" {{action reportComment comment}}>Report</a>
-                                    <!-- TODO: Add ability to reply -->
-                                    <a class="reply">Reply</a>
-                                </div>
-                            {{/if}}
+                {{#if comment.canEdit}}
+                    {{#if isEditable}}
+                        <div class="text">
+                            {{input value=comment.content}}
                         </div>
+                        <div class="actions">
+                            <a class="ui tiny button" {{action 'editComment' comment}}>Save</a>
+                        </div>
+                    {{else}}
+                        <div class="text">
+                            {{comment.content}}
+                        </div>
+                        <div class="actions">
+                            <a class="ui tiny button" {{action 'toggleEdit'}}>Edit</a>
+                            <a class="ui tiny button" {{action 'deleteComment' comment}}>Delete</a>
+                            <!-- TODO: Add ability to reply -->
+                            {{!-- <a class="ui tiny button">Reply</a> --}}
+                        </div>
+                    {{/if}}
+                {{else}}
+                    <div class="text">
+                        {{comment.content}}
                     </div>
-                </div>
-            {{/if}} --}}
-        </div>
-    {{/if}}
+                    <div class="actions">
+                        <!-- TODO: reportComment not yet possible -->
+                        {{!-- <a class="ui tiny button" {{action 'reportComment' comment}}>Report</a> --}}
+                        <!-- TODO: Add ability to reply -->
+                        {{!-- <a class="ui tiny button">Reply</a> --}}
+                    </div>
+                    {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}
+                {{/if}}
+                <!-- TODO: Add Logic to have nested comments when user replies (See Semantic "Threaded Comments") -->
+                {{!-- <div class="ui comments">
+                    <div class="comment">
+                        {{#if comment.deleted}}
+                            <div>
+                                Comment deleted
+                                {{# if comment.canEdit}}
+                                    <button {{action restoreComment comment}} class="ui yellow button">Restore</button>
+                                {{/if}}
+                            </div>
+                        {{else}}
+                            <a class="avatar">
+                                <!-- TODO: Add customer avatar helper --> --}}
+                                {{!-- <img src="http://semantic-ui.com/images/avatar/small/christian.jpg"> --}}
+                                {{!-- <img class="ui avatar image" src="{{gravatarUrl}}" alt="User gravatar" width="25px">
+                            </a>
+                            <div class="content">
+                                <!-- TODO: Add Author Helper -->
+                                <a class="author">{{commentUserFullName}}</a>
+                                <!-- TODO: Add More Metadata? -->
+                                <div class="metadata">
+                                    {{moment-from-now comment.dateCreated}}
+                                </div>
+
+                                {{#if comment.canEdit}}
+                                    {{#if isEditable}}
+                                        <div class="text">
+                                            {{input value=comment.replies}}
+                                        </div>
+                                        <div class="actions">
+                                            <a class="ui tiny button" {{action 'editComment' comment}}>Save</a>
+                                        </div>
+                                    {{else}}
+                                        <div class="text">
+                                            {{comment.replies}}
+                                        </div>
+                                        <div class="actions">
+                                            <a class="ui tiny button" {{action 'toggleEdit'}}>Edit</a>
+                                            <a class="ui tiny button" {{action 'deleteComment' comment}}>Delete</a>
+                                            <!-- TODO: Add ability to reply -->
+                                            {{!-- <a class="ui tiny button">Reply</a> --}}
+                                        {{!-- </div>
+                                    {{/if}}
+                                {{else}}
+                                    <div class="text">
+                                        {{comment.replies}}
+                                    </div>
+                                    <div class="actions"> --}}
+                                        <!-- TODO: reportComment not yet possible -->
+                                        {{!-- <a class="ui tiny button" {{action 'reportComment' comment}}>Report</a> --}}
+                                        <!-- TODO: Add ability to reply -->
+                                        {{!-- <a class="ui tiny button">Reply</a> --}}
+                                    {{!-- </div> --}}
+                                    {{!-- <button {{action reportComment comment}} class="ui yellow button">Report</button> --}}
+                                {{!-- {{/if}}
+                            </div>
+                        {{/if}} --}}
+                    {{!-- </div>
+                </div> --}}
+            </div>
+        {{/if}}
+    </div>
 </div>

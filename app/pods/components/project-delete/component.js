@@ -6,8 +6,8 @@ export default Ember.Component.extend({
     layout,
     tagName: '',
     classNames: ['project', 'delete'],
-    responseError: '',
-    responseSuccess: '',
+    toast: Ember.inject.service(),
+    routing: Ember.inject.service('-routing'),
     selectedModel: '',
     actions: {
         requestDelete(name) {
@@ -19,11 +19,12 @@ export default Ember.Component.extend({
             // TODO: Need to add error handling
             var self = this;
             this.selectedModel.save().then(function () {
-                self.sendAction('transitionTo');
+                self.get('toast').success('Project deleted successfully');
+                self.get('routing').transitionTo('projects.index');
             });
         },
         cancelDelete() {
             this.selectedModel.rollbackAttributes();
-        }
+        },
     }
 });
