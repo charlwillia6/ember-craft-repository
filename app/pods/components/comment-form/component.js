@@ -5,5 +5,10 @@ import layout from './template';
 export default CommentForm.extend({
     layout,
     tagName: '',
-    classNames: ['comment', 'form']
+    classNames: ['comment', 'form'],
+    actions: {
+        addComment(comment) {
+            this.sendAction('addComment', comment);
+        }
+    }
 });

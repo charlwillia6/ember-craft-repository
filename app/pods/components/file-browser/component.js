@@ -41,13 +41,13 @@ export default FileBrowser.extend({
                 });
             }
         },
-        openItem(item) {
-            // console.log(item);
-            this.sendAction('openItem', item);
-        },
+        // openItem(item) {
+        //     // console.log(item);
+        //     this.sendAction('openItem', item);
+        // },
         selectItem(item) {
-            console.log(item.get('kind'));
-            console.log(item);
+            // console.log(item.get('kind'));
+            // console.log(item);
             if(item.get('kind') === "file") {
                 console.log('Downloading...');
                 this.send('downloadFile', item);
@@ -57,10 +57,9 @@ export default FileBrowser.extend({
             }
         },
         downloadFile(item) {
-            console.log('...and still downloading...');
             let file = item;
             let url = file.get('links').download;
-            console.log(url);
+
             window.open(url);
             console.log('Done!');
         },
