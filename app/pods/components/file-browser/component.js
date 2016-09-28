@@ -25,6 +25,7 @@ export default FileBrowser.extend({
     },
     actions: {
         uploadFiles(files) {
+            var self = this;
             let fm = this.get('fileManager');
             // console.log('File Manager', fm);
 
@@ -35,8 +36,8 @@ export default FileBrowser.extend({
                 let file = files.pop();
                 // console.log(fm, folder, file.name, file);
                 fm.uploadFile(folder, file.name, file).then(() => {
-                    this.get('toast').success('File uploaded successfully');
-                    this.sendAction('refreshModel');
+                    self.get('toast').success('File uploaded successfully');
+                    self.sendAction('refreshModel');
                 });
             }
         },

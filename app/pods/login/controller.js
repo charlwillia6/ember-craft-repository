@@ -5,7 +5,9 @@ import OsfTokenLoginControllerMixin from 'ember-osf/mixins/osf-token-login-contr
 
 export default Ember.Controller.extend(OsfTokenLoginControllerMixin, {
     session: Ember.inject.service(),
-    init: function() {
+    init() {
+        this._super(...arguments);
+        
         if(this.get('session.isAuthenticated')) {
             this.loginSuccess();
         }

@@ -96,31 +96,31 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
                 console.log('You do not have permissions to delete this project link.');
             }
         },
-        addComment(commentText, currentUser) {
-            // var addCommentTextarea = $("#add-comment-textarea");
-            // var commentText = addCommentTextarea.val();
-            console.log('Add Comment Test', commentText);
-            var project = this.modelFor(this.routeName);
-            console.log(this.routeName);
-
-            if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
-                var comment = this.get('store').createRecord('comment', {
-                    content: commentText,
-                    page: 'node',
-                    type: 'nodes',
-                    target: project.id,
-                    dateCreated: new Date(),
-                    dateModified: new Date(),
-                    user: currentUser
-                });
-
-                project.get('comments').pushObject(comment);
-                project.save(comment);
-                console.log('comment', comment);
-                console.log('Comment Added.');
-            } else {
-                console.log('Error!');
-            }
-        }
+        // addComment(commentText, currentUser) {
+        //     // var addCommentTextarea = $("#add-comment-textarea");
+        //     // var commentText = addCommentTextarea.val();
+        //     console.log('Add Comment Test', commentText);
+        //     var project = this.modelFor(this.routeName);
+        //     console.log(this.routeName);
+        //
+        //     if (project.get('currentUserPermissions').indexOf(permissions.WRITE) !== -1) {
+        //         var comment = this.get('store').createRecord('comment', {
+        //             content: commentText,
+        //             page: 'node',
+        //             type: 'nodes',
+        //             target: project.id,
+        //             dateCreated: new Date(),
+        //             dateModified: new Date(),
+        //             user: currentUser
+        //         });
+        //
+        //         project.get('comments').pushObject(comment);
+        //         project.save(comment);
+        //         console.log('comment', comment);
+        //         console.log('Comment Added.');
+        //     } else {
+        //         console.log('Error!');
+        //     }
+        // }
     }
 });

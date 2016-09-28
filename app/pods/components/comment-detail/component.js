@@ -10,10 +10,14 @@ export default CommentDetail.extend({
     toast: Ember.inject.service(),
     store: Ember.inject.service(),
     isEditable: false,
+    user: null,
+    comment: null,
     // TODO: Very slot finding username and gravatarUrl.  Needs reworked.
     commentUserFullName: Ember.computed('comment', function() {
-        // console.log(this.get('comment'));
-        this.get('comment.user').then(user => {
+        console.log(this);
+        console.log(this.get('comment'));
+        this.set('user', this.get('comment.user'));
+        this.get('user').then(user => {
             // console.log(user.get('fullName'));
             if(this.isDestroyed) {
                 return;
@@ -23,7 +27,9 @@ export default CommentDetail.extend({
     }),
     gravatarUrl: Ember.computed('comment', function() {
         var imgLink = '';
-        this.get('comment.user').then(user => {
+        this.set('user', this.get('comment.user'));
+        console.log(this.get('user'));
+        this.get('user').then(user => {
             imgLink = user.get('links.profile_image');
             // console.log(imgLink);
             if (imgLink) {
@@ -43,7 +49,7 @@ export default CommentDetail.extend({
             this.set('isEditable', true);
         },
         deleteComment(comment) {
-            this.sendActiom('delete', comment);
+            this.sendAction('deleteComment', comment);
         },
         editComment(comment) {
             this.sendAction('editComment', comment);

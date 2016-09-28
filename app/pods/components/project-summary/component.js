@@ -9,9 +9,6 @@ export default Ember.Component.extend({
     classNames: ['project', 'summary', 'ui', 'segments'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
-    // init() {
-    //     this._super(...arguments);
-    // },
     actions: {
         addATag() {
             this.sendAction('addATag', ...arguments);
