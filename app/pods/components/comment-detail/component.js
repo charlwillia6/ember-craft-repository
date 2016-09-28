@@ -12,9 +12,8 @@ export default CommentDetail.extend({
     isEditable: false,
     user: null,
     comment: null,
-    // TODO: Very slot finding username and gravatarUrl.  Needs reworked.
+    // TODO: Very slow finding username and gravatarUrl.  Needs reworked.
     commentUserFullName: Ember.computed('comment', function() {
-        console.log(this);
         console.log(this.get('comment'));
         this.set('user', this.get('comment.user'));
         this.get('user').then(user => {
