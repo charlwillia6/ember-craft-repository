@@ -6,7 +6,6 @@ import NodeActionsMixin from 'ember-osf/mixins/node-actions';
 export default Ember.Component.extend(NodeActionsMixin, {
     layout,
     tagName: '',
-    classNames: ['project', 'edit'],
     toast: Ember.inject.service(),
     isSaving: false,
     editedTitle: null,

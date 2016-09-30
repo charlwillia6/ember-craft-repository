@@ -4,6 +4,5 @@ import layout from './template';
 
 export default Ember.Component.extend({
     layout,
-    tagName: '',
-    classNames: ['ui', 'segments', 'log', 'detail']
+    classNames: ['log', 'detail']
 });

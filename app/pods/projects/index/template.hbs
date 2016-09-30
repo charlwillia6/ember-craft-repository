@@ -25,3 +25,11 @@
     </div>
     <div class="two wide column"></div>
 </div>
+<div class="ui stackable grid">
+    <div class="two wide column"></div>
+    <div class="twelve wide column">
+        <h3 class="ui header">Public Projects</h3>
+        {{projects-list user=currentUser pageSize=6 isPublic=false}}
+    </div>
+    <div class="two wide column"></div>
+</div>

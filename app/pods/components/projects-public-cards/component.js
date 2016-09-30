@@ -5,8 +5,6 @@ import PaginatedComponentMixin from 'ember-craft-repository/mixins/paginated-com
 
 export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'projects-public-cards',
     classNames: ['projects', 'public', 'cards'],
     isLoading: true,
     pageSize: null,

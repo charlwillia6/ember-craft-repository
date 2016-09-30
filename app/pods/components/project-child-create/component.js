@@ -5,7 +5,6 @@ import layout from './template';
 export default Ember.Component.extend({
     layout,
     tagName: '',
-    classNames: ['project', 'child', 'create'],
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     toast: Ember.inject.service(),

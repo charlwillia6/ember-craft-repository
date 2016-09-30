@@ -5,8 +5,9 @@ import layout from './template';
 export default Ember.Component.extend({
     layout,
     classNames: ['loading', 'widget'],
-    classNameBindings: ['isPrivate:private', 'isPublic:public'],
+    classNameBindings: ['isPrivate:private', 'isPublic:public', 'isProjectList:plist'],
     isPrivate: false,
     isPublic: false,
+    isProjectList: false,
     isLoading: null
 });

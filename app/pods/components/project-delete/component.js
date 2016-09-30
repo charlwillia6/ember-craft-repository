@@ -5,7 +5,6 @@ import layout from './template';
 export default Ember.Component.extend({
     layout,
     tagName: '',
-    classNames: ['project', 'delete'],
     toast: Ember.inject.service(),
     routing: Ember.inject.service('-routing'),
     selectedModel: '',

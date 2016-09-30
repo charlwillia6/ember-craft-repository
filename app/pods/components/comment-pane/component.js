@@ -4,6 +4,5 @@ import layout from './template';
 
 export default CommentPane.extend({
     layout,
-    tagName: '',
-    classNames: ['comment', 'pane', 'ui', 'segments']
+    classNames: ['comment', 'pane']
 });

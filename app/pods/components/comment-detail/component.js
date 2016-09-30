@@ -6,7 +6,6 @@ import Ember from 'ember';
 export default CommentDetail.extend({
     layout,
     tagName: '',
-    classNames: ['comment', 'detail'],
     toast: Ember.inject.service(),
     store: Ember.inject.service(),
     isEditable: false,

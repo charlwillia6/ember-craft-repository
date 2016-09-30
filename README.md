@@ -7,7 +7,7 @@ This project is for creating a Ember Dashboard for the DARPA Craft repository on
 You will need the following things properly installed on your computer.
 
 - [Git](http://git-scm.com/)
-- [Node.js](http://nodejs.org/) (with NPM)
+- [Node.js](http://nodejs.org/) (with NPM) (Please use Node.js 6.3.0 and higher)
 - [Bower](http://bower.io/)
 - [Ember CLI](http://ember-cli.com/)
 - [PhantomJS](http://phantomjs.org/)
@@ -17,7 +17,7 @@ You will need the following things properly installed on your computer.
 
 #### Third-Party Installation
 
-These instructions are for a Linux environment.
+These instructions are for a Linux environment, specifically Arch Linux:
 
 - Download and install [Node.js](https://nodejs.org/en/download/) and NPM
 - Install Nodeenv `sudo pip install nodeenv`
@@ -136,6 +136,10 @@ all the files and move them to your production server.
 
 - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
 - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+ember-osf uses a NPM module called ember-infinity.  Please make sure that in the package.json file, in the ember-osf
+addon, that ember-infinity version 0.2.6, or higher is used.  Any version lower than this breaks the Ember inspector
+Google Chrome and Firefox extensions.
 
 #### More Documentation
 Further documentation can be found under the `documentation` directory in this project.

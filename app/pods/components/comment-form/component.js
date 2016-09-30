@@ -5,5 +5,4 @@ import layout from './template';
 export default CommentForm.extend({
     layout,
     tagName: '',
-    classNames: ['comment', 'form']
 });

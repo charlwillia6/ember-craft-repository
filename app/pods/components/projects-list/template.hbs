@@ -19,20 +19,8 @@
     </div>
     <div class="ui segment">
         {{!-- Initialize Loader --}}
-        {{#if isLoading}}
-            <div class="ui active inverted dimmer">
-                <div class="ui big text loader">
-                    Loading...
-                </div>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-        {{/if}}
+        {{loading-widget isProjectList=true}}
+
         <div class="ui two column grid vertically fluid">
             {{#each list as |project|}}
                 {{#link-to 'projects.detail' project.id class="row"}}

@@ -13,8 +13,10 @@ This document is intended for explaining the ember-craft-repository project and 
   - [Structure](#structure)
     - [Components](#structure-components)
     - [Mixins](#structure-mixins)
+  - [Project Specific Details](#project-specifics)
+    - [Components](#project-specifics-components)
 
-### Resources <a id="resources"></a>
+## Resources <a id="resources"></a>
 
 #### Links <a id="resources-links"></a>
 
@@ -39,6 +41,9 @@ This document is intended for explaining the ember-craft-repository project and 
 
   - Getting Started: <https://emberigniter.com/new-to-ember-cli-start-here-2016-tutorial/>
   - <a id="pods"></a>Pods: <http://cball.me/organize-your-ember-app-with-pods/> or <http://www.programwitherik.com/ember-pods/>
+  - Find Ember.js addons: <https://www.emberaddons.com/>
+  - Find more Ember/js addons: <https://www.npmjs.com/>
+  - Great Ember.js tutorial: <http://yoember.com/>
 
 #### Add-Ons Specific to Our Project <a id="addons-specific"></a>
 
@@ -53,7 +58,7 @@ This document is intended for explaining the ember-craft-repository project and 
   - ember-collection: <https://github.com/emberjs/ember-collection>
   - dropzone.js: <https://github.com/enyo/dropzone> or <http://www.dropzonejs.com/>
 
-Some of these addons are not implemented yet:
+Some of these addons are not implemented yet but in package.json:
 
   - ember-collection: Planned to be used for file-browser component
   - dropzone.js: Planned to be used for drag and drop file upload options
@@ -67,7 +72,7 @@ that font and icons file paths are found.  Replace the index.js file in the foll
 
 Screenshots and builds created for the production server are kept in the `_extra` directory.
 
-### ember-osf Add-On <a id="ember-osf"></a>
+## ember-osf Add-On <a id="ember-osf"></a>
 
 The ember-osf add-on is a ongoing project being developed by the OSF developers.  It is intended to be an Ember.js
 front-end for OSF.  Most of pieces that we use in their project are in the forms of "mixins" and "components" in the
@@ -84,7 +89,7 @@ features and fixes all the time to the ember-osf addon that are crucial to our d
 I would recommend starring the project in Github so you can receive notifications in regards to their development. The
 point of contact for the ember-osf project is [Sam Chrisinger](mailto:sam@cos.io) ([alternative email](mailto:s.chisinger@gmail.com)).  
 
-### Structure <a id="structure"></a>
+## Structure <a id="structure"></a>
 
 We are using a pod structure ([see links under resources](#pods)):
 
@@ -193,6 +198,10 @@ directory.  This allows a developer access to all files needed to code for a spe
 
 #### Components <a id="structure-components"></a>
 
+Components are entities or their own.  When you use a component in a template you have to pass information to them.  
+You can inject the store, the session, and other services into the component, but you have to pass the model,
+controller, or variables to the component to be able to use that data in the component template.
+
 In order to use their components we have to create our own component in our `component` directory and extend theirs,
 which means we must import theirs into our own.  All components are still in a directory under `pods/`.  If you notice,
 all component directories are named with a hyphen.  This is required by Ember.js to know that these are components and
@@ -210,4 +219,78 @@ Components are termed "widgets" in regards to our project.  Most routes will hav
 This will minimize the template structure for each route and allow us to keep a more defined template for each
 widget that we create.  We can then add the widgets to any segment or column in the route templates.
 
+For components that are buttons, always add `tagName: '',` to the component.  When you use the `tagName:` property,
+you cannot use the `classNames: ['']` property.  It is a good idea to use the `classNames: ['']` property on all other
+components.  When you are using components within components, then the child components should have the `tagName:`
+property.
+
 #### Mixins <a id="structure-mixins"></a>
+
+There is only one mixin created so far for this project (PaginatedComponentMixin).  It extends the functionality of
+certain Ember.Objects, particularly useful for adding functions to controllers, routes, and components. For naming
+conventions, it is ideal to use hyphens in the name and use "name-route-mixin", "name-controlller-mixin", etc., in
+way that represents what the mixin is to be imported into.  
+
+<http://www.cerebris.com/blog/2012/03/06/understanding-ember-object/>
+
+<https://dockyard.com/blog/2015/11/09/best-practices-extend-or-mixin>
+
+<http://blog.bigbinary.com/2012/08/27/emberjs-mixin.html>
+
+Structure should be extended to include helpers, services, initializers, and other Ember.js elements that effect
+this project (9/29/2016).
+
+## Project Specific Details <a id="project-specifics"></a>
+
+#### Components <a id="project-specifics-componenta"></a>
+
+We already have several components created for our project.  Some are extended (there is an ember-osf version we are
+importing from), and some are non-extended (specific to the ember-craft-repository project)
+
+The following components are ***working*** in our ember-craft-repository project:
+
+**Extended:**
+  - comment-detail (does not show comment replies as a tree style, reply button is commented out)
+  - comment-form (does not update gravatar and userFullName when a comment is added)
+  - comment-pane
+  - file-browser (would be ideal to not be a widget and just be for `/projects/detail/files` route)
+  - file-browser-icon (Needs more icons added for different providers, folders, and file types)
+  - file-browser-item (Download function added for temporary use.  Need to rework selecting a file)
+  - file-chooser (Needs beautification)
+  - pagination-control-ui (ember-osf version is just called pagination-control)
+  - tags-widget
+
+**Non-extended:**
+  - contrib-manager (Needs to have more functions and features added, specifically to do with current user permissions)
+  - contrib-add
+  - footer-main
+  - loading-widget (for `projects-cards`, `projects-public-cards`, and `projects-list` specifically)
+  - log-detail (Needs redone to look more like OSF)
+  - login-register-selector (Needs a register button that switches to login when transition occurs)
+  - navbar-main
+  - navbar-sidebar
+  - project-create
+  - project-delete (Needs error handling and reliable notification)
+  - project-edit (Needs error handling and reliable notification)
+  - project-summary (Needs better styling)
+  - projects-cards
+  - projects-list
+  - projects-public-cards (same as projects-cards, but has some minor differences in the template)
+
+The following components are **not working** in our ember-craft-repository project:
+
+**Extended:**
+  - dropzone-widget (for drag and drop file upload)
+  - file-actions (all parts are there, needs to work with `/projects/detail/files/provider/file` route)
+  - file-tree (More of an ideal widget for the `/projects/detail` route, vs file-browser)
+  - file-widget (contains dropzone-widget and uses `ember-power-select` with relies on Bootstrap.  Need to Replace
+    power-select with a Semantic-UI dropdown - for uploading files to a specific project)
+  - oauth-popup (not sure what this is for)
+
+**Non-extended**
+  - execution-dashboard (a project by [Ian](mailto:ian.j.taylor@gmail.com) from NDS)
+  - projects-search (non-functional search at the moment)
+
+All widgets (components) need to be reworked to improve stability and performance.  
+
+Will continue documentation after 10/3/2016

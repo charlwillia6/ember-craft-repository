@@ -5,46 +5,32 @@ import PaginatedComponentMixin from 'ember-craft-repository/mixins/paginated-com
 
 export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
-    currentUser: Ember.inject.service(),
-    user: null,
-    tagName: '',
     classNames: ['projects', 'list'],
     isLoading: true,
-    init() {
+    pageSize: null,
+    isPublic: false,
+    didRender() {
         this._super(...arguments);
-
-        if (this.get('session.isAuthenticated')) {
-            this._setCurrentUser();
-        }
-    },
-    _setCurrentUser() {
-        this.get('currentUser').load().then(user => this.set('user', user));
-    },
-    onGetCurrentUser: Ember.observer('user', function() {
         this.loadProfileList();
-    }),
+    },
     loadProfileList: function() {
         var user = this.get('user');
 
-        if(user) {
-            this.set('user', user);
-        } else {
-            user = this.get('store').findRecord('user', 'me');
-            this.set('user', user);
-        }
-
         var routeParams = {
             page: this.get('page'),
-            page_size: null
+            page_size: this.get('pageSize')
         };
 
         var userParams = {
             filter: {
-                contributors: this.get('user.id')
+                contributors: this.get('user.id'),
+                public: this.get('isPublic')
             }
         };
 
-        this.queryForComponent('node', routeParams, userParams);
+        this.queryForComponent('node', routeParams, userParams).then(() => {
+            this.send('hideLoading');
+        });
     },
     willUpdate: function() {
         this.set('isLoading', false);
@@ -52,16 +38,31 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
     },
     actions: {
         next: function() {
+            this.send('showLoading');
             this.incrementProperty('page', 1);
             this.loadProfileList();
         },
         previous: function() {
+            this.send('showLoading');
             this.decrementProperty('page', 1);
             this.loadProfileList();
         },
         goToPage: function(pageNumber) {
+            this.send('showLoading');
             this.set('page', pageNumber);
             this.loadProfileList();
+        },
+        hideLoading: function() {
+            this.set('isLoading', false);
+            if(!(this.get('isLoading'))) {
+                $('.loading.widget.plist').hide();
+            }
+        },
+        showLoading: function() {
+            this.set('isLoading', true);
+            if(this.get('isLoading')) {
+                $('.loading.widget.plist').show();
+            }
         }
     }
 });

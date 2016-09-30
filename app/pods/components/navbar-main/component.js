@@ -8,7 +8,6 @@ export default Ember.Component.extend({
     session: Ember.inject.service(),
     currentUser: Ember.inject.service(),
     routing: Ember.inject.service('-routing'),
-    tagName: '',
     attributeBindings:['elementId:id'],
     elementId: 'navbar-main',
     classNames: ['navbar', 'main'],

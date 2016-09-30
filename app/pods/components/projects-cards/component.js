@@ -5,8 +5,6 @@ import PaginatedComponentMixin from 'ember-craft-repository/mixins/paginated-com
 
 export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'projects-cards',
     classNames: ['projects', 'cards'],
     isLoading: true,
     pageSize: null,
@@ -33,6 +31,10 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
         this.queryForComponent('node', routeParams, userParams).then(() => {
             this.send('hideLoading');
         });
+    },
+    willUpdate: function() {
+        this.set('isLoading', false);
+        // console.log(this.get('isLoading', false));
     },
     actions: {
         next: function() {
