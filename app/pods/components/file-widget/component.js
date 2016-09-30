@@ -1,11 +1,4 @@
-// app/pods/components/file-widget/component.js
-import FileWidget from 'ember-osf/components/oauth-popup/component';
-import layout from './template';
+import FileWidget from 'ember-osf/components/file-widget/component';
+import Ember from 'ember';
 
-// TODO:0 issue:3 Develop file-widget
-export default FileWidget.extend({
-    layout,
-    attributeBindings:['elementId:id'],
-    elementId: 'file-widget', 
-    classNames: ['file', 'widget']
-});
+export default FileWidget.extend({});

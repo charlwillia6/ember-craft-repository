@@ -7,7 +7,6 @@ export default Ember.Component.extend({
     tagName: '',
     classNames: ['project', 'create'],
     store: Ember.inject.service(),
-    session: Ember.inject.service(),
     toast: Ember.inject.service(),
     actions: {
         requestProjectCreate(name) { // jshint ignore:line
@@ -15,6 +14,7 @@ export default Ember.Component.extend({
         },
         confirmProjectCreate(name) { // jshint ignore:line
             var self = this;
+            console.log(self.get('model'));
             var project = this.get('store').createRecord('node', {
                 title: this.get('title'),
                 category: 'project',

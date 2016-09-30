@@ -11,6 +11,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
         if (user) {
             controller.set('currentUser', user);
+            console.log(controller.get('currentUser'));
+            console.log(controller.get('currentUser').get('fullName'));
         } else {
             this.get('store').findRecord('user', 'me').then(function (user) {
                 controller.set('currentUser', user);
@@ -19,7 +21,8 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     },
     actions: {
         reloadProjectListRoute: function() {
-            window.location.reload(true);
+            this.refresh();
+            // window.location.reload(true);
         }
     }
 });

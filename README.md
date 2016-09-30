@@ -15,7 +15,9 @@ You will need the following things properly installed on your computer.
 - [Nodeenv](https://ekalinin.github.io/nodeenv/)
 - Python & pip
 
-### Third-Party Installation
+#### Third-Party Installation
+
+These instructions are for a Linux environment.
 
 - Download and install [Node.js](https://nodejs.org/en/download/) and NPM
 - Install Nodeenv `sudo pip install nodeenv`
@@ -26,9 +28,12 @@ You will need the following things properly installed on your computer.
 - Ember recommends you also install PhantomJS with `npm install -g phantomjs`
 - Use `npm install -g bower` if you haven't installed bower
 - `git clone https://github.com/crcresearch/ember-osf`
-- Read instructions on the ember-osf repository for installation and configuration. Note we use fork on CRC github, it is syncronized monthly with primary OSF repository
+- Read instructions on the ember-osf repository for installation and configuration. Note we use fork on CRC github,
+it is syncronized monthly with primary OSF repository
 
-## Ember Craft Dashboard Installation and Configuration
+## Installation
+
+#### Ember Craft Dashboard Installation
 
 - `git clone https://github.com/crcresearch/ember-craft-repository.git develop`
 - `cd` into the new app directory
@@ -36,44 +41,101 @@ You will need the following things properly installed on your computer.
 - `bower install`
 - `ember install ../ember-osf`
 - `npm link ../ember-osf`
-- Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI.
-- Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in `node_modules/semantic-ui-ember/` directory.
+- Find the `index.js` file in the _extra folder and copy and overwrite the `index.js` file in
+`node_modules/semantic-ui-ember/` directory.
 
-When you are done your basic directory structure should be like:<br>
-&nbsp;&nbsp;&nbsp;&nbsp;|--/home/username/project-folder/<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-craft-repository<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--ember-osf<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|--env-node
+When you are done your basic directory structure should be like:
+
+- /home/username/project-folder/
+  - ember-craft-repository/
+  - ember-osf/
+  - env-node/
+
+## Configuration
+
+#### OSF Account
+
+Create a OSF account on the appropriate testing server:
+- stage.osf.io
+- staging2.osf.io
+- test.osf.io
+
+Once you create an account, go to your account settings, click on `Developer apps`, and follow the instructions to
+create an OSF app.  Save the client ID.  Then click on `Personal access tokens` and create one.  Save the token. We
+are currently (9.29.16) using the following Authorization callback URL for the production site http://craftproject.org:
+
+- <http://stockpile.crc.nd.edu/?portal_slug=login>
+
+Open the config/local.yml file, uncomment the stage section and add your token, client ID, and redirect URI. Comment
+the other sections if they are not already.
+
+#### local.yml settings
+
+This file is structured like:
+```yaml
+<backend>:
+  CLIENT_ID: null
+  PERSONAL_ACCESS_TOKEN: null
+  OAUTH_SCOPES: osf.full_read osf.full_write
+  REDIRECT_URI: http://localhost:4200/login
+```
+
+You will need to fill out options for each backend you want to use (see 'Running' below).
+We recommend using the 'stage' backend for development and testing, however the 'test' backend is said to be
+the most stable of OSF's environments.  When configuring your application, make sure that your login REDIRECT_URI
+is correct.  If it needs a trailing slash, be sure to include a trailing slash!
+
+Edit the new file (installed in the config directory) and set:
+- `CLIENT_ID` to the client id of your developer application
+- `PERSONAL_ACCESS_TOKEN` to the newly generated token (if applicable, optional for staging development)
+- REDIRECT_URI: Must exactly match the redirect URI used to register the OAuth developer application.
+Default value is appropriate for local development using `ember server`, with a login page at `/login`
 
 ## Running / Development
 
 - `BACKEND=stage ember server`
 - Visit your app at <http://localhost:4200>.
+- Our production URL is <http://craftproject.org>
 
-### Code Generators
+#### Code Generators
 
 Make use of the many generators for code, try `ember help generate` for more details
 
-### Running Tests
+#### Running Tests
 
 - `ember test`
 - `ember test --server`
 
-### Building
+#### Building
+You will need to go back to `https://staging.osf.io`, or which ever OSF instance you are using, and create another
+Developer app in the account settings.  Save the client ID.  Use the following authorization callback url:
+
+- <http://stockpile.crc.nd.edu/?portal_slug=login>
+
+You can reuse your existing personal access token.
+
+Open the local.yml file in the ember-craft-repository directory and comment out the localhost development settings
+that you use on your own machine.  Add another 'stage' configuration, put in your new client ID, your personal access
+token and change the `REDIRECT_URI:` to `http://stockpile.crc.ned.edu/?portal_clug=login`. Then build.
 
 - `ember build` (development)
 - `ember build --environment production` (production)
+- `ember build --environment staging` (OSF staging server) (currently (9.29.16) the build for craftproject.org)
 
-### Deploying
+#### Deploying
 
-Specify what it takes to deploy your app.
+Once you build your app, the files will be in the `dist` directory in your `ember-craft-repositor` directory.  Copy
+all the files and move them to your production server.
 
 ## Further Reading / Useful Links
 
 - [ember.js](http://emberjs.com/)
 - [ember-cli](http://ember-cli.com/)
 
-Development Browser Extensions:
+#### Development Browser Extensions:
 
 - [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
 - [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+
+#### More Documentation
+Further documentation can be found under the `documentation` directory in this project.

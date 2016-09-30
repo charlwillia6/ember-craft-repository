@@ -5,36 +5,18 @@ import PaginatedComponentMixin from 'ember-craft-repository/mixins/paginated-com
 
 export default Ember.Component.extend(PaginatedComponentMixin, {
     layout,
-    currentUser: Ember.inject.service(),
-    user: null,
     attributeBindings:['elementId:id'],
     elementId: 'projects-cards',
     classNames: ['projects', 'cards'],
     isLoading: true,
     pageSize: null,
     isPublic: false,
-    init() {
+    didRender() {
         this._super(...arguments);
-
-        if (this.get('session.isAuthenticated')) {
-            this._setCurrentUser();
-        }
-    },
-    _setCurrentUser() {
-        this.get('currentUser').load().then(user => this.set('user', user));
-    },
-    onGetCurrentUser: Ember.observer('user', function() {
         this.loadProfileList();
-    }),
+    },
     loadProfileList: function() {
         var user = this.get('user');
-
-        if(user) {
-            this.set('user', user);
-        } else {
-            user = this.get('store').findRecord('user', 'me');
-            this.set('user', user);
-        }
 
         var routeParams = {
             page: this.get('page'),
@@ -48,7 +30,6 @@ export default Ember.Component.extend(PaginatedComponentMixin, {
             }
         };
 
-        // console.log('Page: ', this.get('page'));
         this.queryForComponent('node', routeParams, userParams).then(() => {
             this.send('hideLoading');
         });

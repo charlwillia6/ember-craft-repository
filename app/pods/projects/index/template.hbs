@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        {{projects-cards pageSize=10 isPubic=false}}
+        {{projects-cards user=currentUser pageSize=10 isPubic=false}}
     </div>
     <div class="two wide column"></div>
 </div>
@@ -21,7 +21,7 @@
     <div class="two wide column"></div>
     <div class="twelve wide column">
         <h3 class="ui header">Public Projects</h3>
-        {{projects-public-cards pageSize=6 isPublic=true}}
+        {{projects-public-cards user=currentUser pageSize=6 isPublic=true}}
     </div>
     <div class="two wide column"></div>
 </div>

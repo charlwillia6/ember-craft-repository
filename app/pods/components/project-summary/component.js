@@ -7,8 +7,8 @@ export default Ember.Component.extend({
     attributeBindings:['elementId:id'],
     elementId: 'project-summary',
     classNames: ['project', 'summary', 'ui', 'segments'],
-    store: Ember.inject.service(),
-    session: Ember.inject.service(),
+    // store: Ember.inject.service(),
+    // session: Ember.inject.service(),
     actions: {
         addATag() {
             this.sendAction('addATag', ...arguments);

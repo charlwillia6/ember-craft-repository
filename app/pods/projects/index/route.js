@@ -7,42 +7,20 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     store: Ember.inject.service(),
     session: Ember.inject.service(),
     routeParams: null,
-    // TODO: Compare and test to ember-osf dummy app
-    model(routeParams) {
+    setupController: function(controller, model) {
+
+        this._super(controller);
         let user = this.modelFor('application');
-        var userParams = {
-            filter: {
-                contributors: ''
-            }
-        };
 
-        if(user) {
-            userParams['filter']['contributors'] = user.id;
-            // publicParams['filter']['public'] = true;
-            this.set('routeParams', routeParams);
-
-            return this.queryForPage('node', routeParams, userParams);
+        if (user) {
+            controller.set('currentUser', user);
+            console.log(controller.get('currentUser'));
+            console.log(controller.get('currentUser').get('fullName'));
         } else {
-            let self = this;
-
-            return this.get('store').findRecord('user', 'me').then(function(user) {
-                userParams['filter']['contributors'] = user.id;
-                return self.queryForPage('node', routeParams, userParams);
+            this.get('store').findRecord('user', 'me').then(function (user) {
+                controller.set('currentUser', user);
             });
         }
-    },
-    setupController: function(controller, model) {
-        var publicParams = {
-            filter: {
-                public: ''
-            }
-        };
-
-        let routeParams = this.get('routeParams');
-        publicParams['filter']['public'] = true;
-
-        controller.set('publicProjects', this.queryForPage('node', routeParams, publicParams));
-        controller.set('model', model);
     },
     actions: {
         reloadProjectListRoute: function() {
