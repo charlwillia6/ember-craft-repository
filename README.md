@@ -5,7 +5,7 @@ This project is for creating a Ember Dashboard for the DARPA Craft repository on
 ## Prerequisites
 
 You will need the following things properly installed on your computer.
-
+ 
 - [Git](http://git-scm.com/)
 - [Node.js](http://nodejs.org/) (with NPM) (Please use Node.js 6.3.0 and higher)
 - [Bower](http://bower.io/)
