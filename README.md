@@ -46,7 +46,7 @@ it is syncronized monthly with primary OSF repository
 
 When you are done your basic directory structure should be like:
 
-- /home/username/project-folder/
+- /home/username/project-folder/ 
   - ember-craft-repository/
   - ember-osf/
   - env-node/
