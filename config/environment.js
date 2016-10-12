@@ -24,7 +24,7 @@ module.exports = function(environment) {
         // e.g. 'with-controller': true
       },
       EXTEND_PROTOTYPES: {
-        Date: false,
+        Date: false,    // Why do we need to disable the prototype extensions for Date? - Adam
       }
     },
     APP: {
@@ -51,13 +51,14 @@ module.exports = function(environment) {
     }
   };
 
-  /*if (environment === 'development') {
+  if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
-    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_BINDINGS = true;
+    ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
-    // ENV.APP.LOG_VIEW_LOOKUPS = true;
-  }*/
+    ENV.APP.LOG_VIEW_LOOKUPS = true;
+  }
 
   if (environment === 'test') {
     // Testem prefers this...

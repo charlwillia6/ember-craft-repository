@@ -143,3 +143,18 @@ Google Chrome and Firefox extensions.
 
 #### More Documentation
 Further documentation can be found under the `documentation` directory in this project.
+
+#### Some Help with Debugging
+Use the Debug Logger mixin to log info to the console. This uses ember-debug-logger which lets you specify what levels
+of debug info you want to see. For example, you can choose to see only debug info from a single route or namespace.
+
+- `import DebugLogger from 'ember-craft-repository/mixins/debug-logger';`
+
+Extending this mixin gives the object a `logger` with four functions: error(), debug(), info(), trace(). In ember you can then console log
+with:
+
+- `logger.debug('something');`
+
+Then in the console, you can specify to see only `debug` logs:
+
+- `debug.enable('debug');` 
