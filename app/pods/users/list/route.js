@@ -9,14 +9,12 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, PaginatedRouteMixin, 
     session: Ember.inject.service(),
     model(routeParams) {
         var self = this;
-        var promiseUsers = this.queryForPage('user', routeParams)
+        return this.queryForPage('user', routeParams)
             .then((_users) => {
                 _users.forEach((_user) => {
                     self.logger.debug(_user.data);
                 });
                 return _users;
             });
-
-        return promiseUsers;
     }
 });
