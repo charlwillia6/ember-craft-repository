@@ -53,7 +53,7 @@ export default Ember.Component.extend(DebugLoggerMixin, UtilsMixin, {
             this.set('newContributorId', user.id);
         },
         findUser(searchText) {
-            if((Date.now()-this.lastQueryTimeMs) < this.THROTTLE_SPEED) {
+            if((Date.now()-this.lastQueryTimeMs) < this.THROTTLE_SPEED || this.isQuerying) {
                 return;
             }
 
