@@ -42,6 +42,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-link-action": "0.0.35",
     "ember-load-initializers": "^0.5.1",
+    "ember-lodash": "0.0.10",
     "ember-moment": "^6.1.0",
     "ember-osf": "file:../ember-osf",
     "ember-page-title": "^3.0.3",
