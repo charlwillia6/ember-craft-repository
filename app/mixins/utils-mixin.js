@@ -30,5 +30,19 @@ export default Ember.Mixin.create({
             reject: reject,
             promise: promise
         };
+    },
+    ///////////////////////////////////////////////////////////////
+    DeferNextPromise: function() {
+        var args = Array.prototype.slice.call(arguments);
+
+        var error = args[0];
+        var deferred = args[1];
+        var result = args[2] || true;
+
+        if(!!error) {
+            return deferred.reject(error);
+        }
+
+        deferred.resolve(result);
     }
 });
