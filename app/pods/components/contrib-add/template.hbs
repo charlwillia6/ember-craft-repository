@@ -14,9 +14,21 @@
         <div class="ui stackable grid">
             <div class="sixteen wide column">
                 <label class="bold">User ID:</label>
-                <div class="ui fluid input">
+                {{#ui-dropdown class="search selection" placeholder="Full Name" required=true allowAdditions=true selected=searchText onNoResults=(action 'findUser') onChange=(action 'selectUser') as |execute mapper|}}
+                  <div class="default text">Start typing</div>
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <!-- <div class="item" data-value="">All Items</div> -->
+                    {{#each users as |item|}}
+                      <div class="item" data-value="{{map-value mapper item}}">
+                        {{item._data.fullName}}
+                      </div>
+                    {{/each}}
+                  </div>
+                {{/ui-dropdown}}
+                <!-- <div class="ui fluid input">
                     {{input type="text" value=newContributorId placeholder="User ID" required=true}}
-                </div>
+                </div> -->
             </div>
             <div class="two column row">
                 <div class="column">

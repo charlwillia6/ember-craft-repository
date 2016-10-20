@@ -29,10 +29,12 @@ export default Ember.Controller.extend(CommentableMixin, TaggableMixin, NodeActi
             this.set('responseError', '');
         },
         fileDetail(file) {
-            this.transitionToRoute('projects.detail.files.provider.file',
-                                   this.get('project'),
-                                   file.get('provider'),
-                                   file);
+            this.transitionToRoute(
+                'projects.detail.files.provider.file',
+                this.get('project'),
+                file.get('provider'),
+                file
+            );
         },
         projectDetail(project) {
             this.transitionToRoute('projects.detail', project);
