@@ -19,9 +19,9 @@ export default Ember.Component.extend(DebugLoggerMixin, UtilsMixin, {
     newContributorPermissions: {},
     newContributorIsBibliographic: {},
     newContributorId: null,
+    isQuerying: false,
     lastQueryTimeMs: 0,
     THROTTLE_SPEED: 1000 * 1,  // seconds,
-    isQuerying: false,
     init() {
         this._super(...arguments);
     },
@@ -53,15 +53,16 @@ export default Ember.Component.extend(DebugLoggerMixin, UtilsMixin, {
             this.set('newContributorId', user.id);
         },
         findUser(searchText) {
-            let self = this;
-            let users = this.get('users');
-            let store = this.get('store');
-
             if((Date.now()-this.lastQueryTimeMs) < this.THROTTLE_SPEED) {
                 return;
             }
 
+            let self = this;
+            let users = this.get('users');
+            let store = this.get('store');
+
             this.logger.debug("Querying for unfound user");
+
             this.set('lastQueryTimeMs', Date.now());
             this.set('isQuerying', true);
 
