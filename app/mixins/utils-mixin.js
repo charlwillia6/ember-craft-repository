@@ -11,6 +11,7 @@ export default Ember.Mixin.create({
                     _.set(acc, _attribute,  _.get(object, _attribute));
                     return acc;
                 }, {});
+                return hash;
             })
             .value();
     },
